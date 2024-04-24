@@ -24,7 +24,10 @@ class AssigntaskController extends Controller
     public function index()
     {
         $user = Auth::id();
-        return view('admin.assign')->with(['assigns'=> Assign::all(),'employees'=> Employee::all(),'userid'=>$user]);
+        $Empgname = Assign::join('employees', 'tasks.employee_id', '=', 'employees.id')
+            ->selectRaw('employees.name as ename, tasks.name, tasks.duration, tasks.created_at, tasks.is_active, tasks.completed')
+            ->get();
+        return view('admin.assign')->with(['assigns'=> $Empgname,'employees'=> Employee::all(),'userid'=>$user]);
     }
 
     public function store(AssignEmp $request)

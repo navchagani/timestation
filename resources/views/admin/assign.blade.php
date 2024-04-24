@@ -49,9 +49,10 @@
 
                                 <thead>
                                     <tr>
-                                        <th data-priority="1">Name</th>
-                                        <th data-priority="2">Assigned employee</th>
+                                        <th data-priority="1">Task</th>
+                                        <th data-priority="2">Assigned Employee</th>
                                         <th data-priority="5">Duration</th>
+                                        <th data-priority="5">Task Assigned Date</th>
                                         <th data-priority="5">Status</th>
                                         <th data-priority="5">Completed</th>
                                     </tr>
@@ -60,10 +61,20 @@
                                     @foreach ($assigns as $assign)
                                         <tr>
                                             <td> {{ $assign->name }} </td>
-                                            <td> {{ $assign->employee_id}}</td>
+                                            <td> {{ $assign->ename}}</td>
                                             <td> {{ $assign->duration}} days</td>
-                                            <td> {{ $assign->is_active}}</td>
-                                            <td> {{ $assign->completed}}</td>
+                                            <td>{{ $assign->created_at}} </td>
+                                            <td> @if ($assign->is_active== 1)
+                                                    <span class="badge badge-success badge-pill">Active</span>
+                                                   @else
+                                                    <span class="badge badge-danger badge-pill">Active</span>
+                                                   @endif</td>
+                                            <td> @if ($assign->completed== 1)
+                                                    <span class="badge badge-success badge-pill">Complete</span>
+                                                @else
+                                                    <span class="badge badge-danger badge-pill">Pending</span>
+                                                @endif
+                                            </td>
                                             {{--<td>
 
                                                 <a href="#edit{{ $assign->employee_id}}" data-toggle="modal"

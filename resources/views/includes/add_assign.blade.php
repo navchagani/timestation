@@ -18,7 +18,7 @@
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="name">Name</label>
+                            <label for="name">Task</label>
                             <textarea class="form-control" placeholder="Please write something here..." name="name" cols="50" rows="10" id="name" required></textarea>
                             </div>
                                 <div class="form-group col-md-6">
