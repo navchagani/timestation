@@ -3,13 +3,14 @@
 
 <!-- LOGO -->
 <div class="topbar-left">
-    <a href="/" class="logo">
+    <a href="{{route('admin')}}" class="logo">
         <span>
-                <h1 style="color: white; ">TS</h1>
+            <img src="{{ asset('assets/images/opalpay.png') }}" alt="Logo" style="width: 188px;">
+                {{--<h1 style="color: white; ">OpalTime Card</h1>--}}
             </span>
-        <i>
+        {{--<i>
             <h1>A</h1>
-            </i>
+            </i>--}}
     </a>
 </div>
 

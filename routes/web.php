@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/admin', '\App\Http\Controllers\AdminController@index')->name('admin');
     Route::resource('/schedule', '\App\Http\Controllers\ScheduleController');
     Route::resource('/department', '\App\Http\Controllers\DepartmentController');
+    Route::resource('/assigntask', '\App\Http\Controllers\AssigntaskController');
     Route::get('/check', '\App\Http\Controllers\CheckController@index')->name('check');
     Route::get('/sheet-report', '\App\Http\Controllers\CheckController@sheetReport')->name('sheet-report');
     Route::post('check-store','\App\Http\Controllers\CheckController@CheckStore')->name('check_store');

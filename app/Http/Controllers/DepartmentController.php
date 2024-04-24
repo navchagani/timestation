@@ -20,14 +20,9 @@ class DepartmentController extends Controller
     public function store(DepartmentEmp $request)
     {
         $request->validated();
-
         $department = new department;
         $department->name = $request->name;
         $department->save();
-
-
-
-
         flash()->success('Success','department has been created successfully !');
         return redirect()->route('department.index');
 

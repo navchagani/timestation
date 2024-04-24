@@ -29,6 +29,11 @@
                                     <i class="ti-time"></i> <span> Department </span>
                                 </a>
                             </li>
+                            <li class="">
+                                <a href="http://localhost/TimeStation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                    <i class="ti-time"></i> <span> Assign Task </span>
+                                </a>
+                            </li>
 
                            {{-- <li class="menu-title">Management</li>
 

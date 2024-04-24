@@ -1,5 +1,4 @@
 @extends('layouts.master')
-<?php echo phpversion();?>
 @section('css')
 <!--Chartist Chart CSS -->
 <link rel="stylesheet" href="{{ URL::asset('plugins/chartist/css/chartist.min.css') }}">
@@ -9,14 +8,14 @@
 <div class="col-sm-6 text-left" >
      <h4 class="page-title">Dashboard</h4>
      <ol class="breadcrumb">
-         <li class="breadcrumb-item active">Welcome to TS</li>
+         <li class="breadcrumb-item active">Welcome to OpalTime Card</li>
      </ol>
 </div>
 @endsection
 
 @section('content')
                    <div class="row">
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-4 col-md-6">
                                 <div class="card mini-stat bg-primary text-white">
                                     <div class="card-body">
                                         <div class="mb-4">
@@ -37,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-4 col-md-6">
                                 <div class="card mini-stat bg-primary text-white">
                                     <div class="card-body">
                                         <div class="mb-4">
@@ -46,7 +45,7 @@
                                             </div>
                                             <h6  class="font-16 text-uppercase mt-0 text-white-50" >On Time <br> Percentage</h6>
                                             <h4 class="font-500">{{$data[3]}} %<i class="text-danger ml-2"></i></h4>
-                                            <span class="peity-donut" data-peity='{ "fill": ["#02a499", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[3]}}/{{count($data)}}</span>
+                                            <span class="peity-donut" data-peity='{ "fill": ["#626ed4", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[3]}}/{{count($data)}}</span>
 
                                         </div>
                                         <div class="pt-2">
@@ -59,7 +58,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-4 col-md-6">
                                 <div class="card mini-stat bg-primary text-white">
                                     <div class="card-body">
                                         <div class="mb-4">
@@ -68,7 +67,7 @@
                                             </div>
                                             <h5 class="font-16 text-uppercase mt-0 text-white-50">On Time <br> Today</h5>
                                             <h4 class="font-500">{{$data[1]}} <i class=" text-success ml-2"></i></h4>
-                                            <span class="peity-donut" data-peity='{ "fill": ["#02a499", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[1]}}/{{count($data)}}</span>
+                                            <span class="peity-donut" data-peity='{ "fill": ["#626ed4", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[1]}}/{{count($data)}}</span>
 
                                         </div>
                                         <div class="pt-2">
@@ -81,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-md-6">
+                            {{--div class="col-xl-3 col-md-6">
                                 <div class="card mini-stat bg-primary text-white">
                                     <div class="card-body">
                                         <div class="mb-4">
@@ -102,11 +101,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
                         </div>
                         <!-- end row -->
 
-                        <div class="row">
+                      {{--  <div class="row">
                             <div class="col-xl-9">
                                 <div class="card">
                                     <div class="card-body">
@@ -199,9 +198,112 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <!-- end row -->
+                   <div class="row">
+                       <div class="col-6">
+                           <div class="card">
+                               <div class="card-body">
 
+                                   <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                       <thead>
+                                       <tr>
+                                           <th colspan="3">  Recent Activity</th>
+                                       </tr>
+                                       <tr>
+                                           <th data-priority="1">Status</th>
+                                           <th data-priority="2">Name</th>
+                                           <th data-priority="3">Last Activity</th>
+
+
+                                       </tr>
+                                       </thead>
+                                       <tbody>
+
+                                       @foreach ($attendances as $attendance)
+
+                                           <tr>
+                                               <td>{{ $attendance->attendance_time }}
+                                                   @if ($attendance->status == 1)
+                                                       <span class="badge badge-success badge-pill float-right">IN</span>
+                                                   @else
+                                                       <span class="badge badge-danger badge-pill float-right">OUT</span>
+                                                   @endif
+                                               </td>
+                                               <td>{{ $attendance->employee->name }}</td>
+                                               <td>
+                                                   @if ($attendance->status == 1)
+                                                       IN
+                                                   @else
+                                                       OUT
+                                                   @endif
+                                                   at
+                                                       {{ $attendance->attendance_time }}
+                                                    On
+                                                   {{ $attendance->attendance_date }}</td>
+                                              {{-- <td>{{ $attendance->emp_id }}</td>--}}
+
+
+
+                                              {{-- <td>{{ $attendance->employee->schedules->first()->time_in }} </td>
+                                               <td>{{ $attendance->employee->schedules->first()->time_out }}</td>--}}
+                                           </tr>
+
+                                       @endforeach
+
+
+                                       </tbody>
+                                   </table>
+                               </div>
+                           </div>
+                       </div>
+
+
+
+                   <div class="col-6">
+                       <div class="card">
+                           <div class="card-body">
+
+                               <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                   <thead>
+                                   <tr>
+                                       <th colspan="3">  Departments</th>
+                                   </tr>
+                                   <tr>
+                                       <th data-priority="1">Department Name</th>
+                                       <th data-priority="2">Employees</th>
+                                       <th data-priority="3">In	</th>
+                                       <th data-priority="3">Out</th>
+
+                                   </tr>
+                                   </thead>
+                                   <tbody>
+                                   @if ($empgnams->isEmpty())
+                                       <tr>
+                                           <td colspan="5"><center>No attendance records found</center></td>
+                                       </tr>
+                                   @else
+                                    @foreach ($empgnams as $empgname)
+                                        <tr>
+                                            <td>{{ $empgname['position'] }}</td>
+                                            <td>{{ $empgname['count'] }}</td>
+                                            <td>{{ $empgname['ine'] }}</td>
+                                            <td>{{ $empgname['oute'] }}</td>
+                                        </tr>
+                                    @endforeach
+                                   @endif
+
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+                   </div>
+                   </div>
+                   </div> <!-- end col -->
+                   </div> <!-- end row -->
 
                         <!-- end row -->
 @endsection
