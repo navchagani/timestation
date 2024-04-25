@@ -56,6 +56,15 @@ class EmployeeController extends Controller
                 ], 200);
                 //return response()->json(['error' => 'Unauthorised'], 401);
             }
+        }else {
+            return response()->json([
+                "success" => false,
+                "data" => [
+                    "type" => "invalid_user_password",
+                    "info" => "Invalid User or Password"
+                ]
+            ], 200);
+            //return response()->json(['error' => 'Unauthorised'], 401);
         }
     }
     public function markattandence(Request $request)
