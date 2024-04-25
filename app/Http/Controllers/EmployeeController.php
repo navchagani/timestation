@@ -96,7 +96,7 @@ class EmployeeController extends Controller
                         "data" => [
                             "employeename" => $employee->name,
                             "perhourrate" => $employee->hourrate,
-                            "in" => $existingAttendance->attendance_date . $existingAttendance->attendance_time,
+                            "in" => $existingAttendance->attendance_date .' '. $existingAttendance->attendance_time,
                             "out" => date("Y-m-d H:i:s"),
                             "difference" => $difference->format('%H:%I:%S')
                         ]
