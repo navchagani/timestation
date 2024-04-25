@@ -41,7 +41,7 @@ class EmployeeController extends Controller
                 return response()->json([
                     "success" => true,
                     "data" => [
-                        "user name" => $user->uname,
+                        "username" => $user->uname,
                         "email" => $user->email,
                         "location_id" => $user->lname
                     ]
