@@ -14,6 +14,7 @@ use App\Http\Requests\EmployeeRec;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use DateTime;
 
 class EmployeeController extends Controller
 {
@@ -82,10 +83,25 @@ class EmployeeController extends Controller
                     $attendance->emp_id = $employee->id;
                     $attendance->attendance_time = date("H:i:s");
                     $attendance->attendance_date = date("Y-m-d");
-                    $attendance->status = 0; // Set status to 1 for check-in
+                    $attendance->status = 0; // Set status to 0 for check-in
                     $attendance->save();
-                    return response()->json(['success' => 'Successful OUT'], 200);
-                } else {
+
+                    // Calculate time difference
+                    $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $existingAttendance->attendance_time);
+                    $currentTime = new DateTime();
+                    $difference = $existingAttendanceTime->diff($currentTime);
+
+                    return response()->json([
+                        "success" => true,
+                        "data" => [
+                            "employeename" => $employee->name,
+                            "perhourrate" => $employee->hourrate,
+                            "in" => $existingAttendance->attendance_date . $existingAttendance->attendance_time,
+                            "out" => date("Y-m-d H:i:s"),
+                            "difference" => $difference->format('%H:%I:%S')
+                        ]
+                    ], 200);
+                }else {
                     // Either there's no existing record for the day or the employee hasn't checked out yet
                     $attendance = new Attendance;
                     $attendance->emp_id = $employee->id;
@@ -93,7 +109,14 @@ class EmployeeController extends Controller
                     $attendance->attendance_date = date("Y-m-d");
                     $attendance->status = 1; // Set status to 0 for check-out
                     $attendance->save();
-                    return response()->json(['success' => 'Successful IN'], 200);
+                    return response()->json([
+                        "success" => true,
+                        "data" => [
+                            "employeename" => $employee->name,
+                            "in" => date("Y-m-d H:i:s")
+                        ]
+                    ], 200);
+                    //return response()->json(['success' => 'Successful IN'], 200);
                 }
             } else {
                 return response()->json(['error' => 'Failed to assign the attendance'], 404);
