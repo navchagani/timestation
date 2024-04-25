@@ -4,12 +4,10 @@
 
     <div class="wrapper-page">
         <div class="card overflow-hidden account-card mx-3">
-            <div class="bg-primary p-4 text-white text-center position-relative">
-                <h4 class="font-20 m-b-5">Welcome Back !</h4>
-                <p class="text-white-50 mb-4">Sign in Sign in as Admin to Time Station</p>
-                <a href="{{ route('welcome') }}" class="logo logo-admin">
-                    <h1>TS</h1>
-                </a>
+            <div class="bg-primary p-4 text-white text-center position-relative" style="background-color:#FFFFFF !important;">
+                {{--<h4 class="font-20 m-b-5">Welcome Back !</h4>
+                <p class="text-white-50 mb-4">Sign in Sign in as Admin to Time Station</p>--}}
+                <img src="{{ asset('assets/images/opalpay.png') }}" alt="Logo" style="width: 188px;">
             </div>
             <div class="account-card-content">
                 <form class="form-horizontal m-t-30" method="POST" action="{{ route('login') }}">

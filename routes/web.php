@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
         return back();
     })->name('finger_device.clear.attendance');
 });
-
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('/home', 'HomeController@index')->name('home');
     //Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
