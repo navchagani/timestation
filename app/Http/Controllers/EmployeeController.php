@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Assign;
 use App\Models\Attendance;
 use App\Models\Leave;
 use Illuminate\Http\Request;
@@ -31,11 +32,30 @@ class EmployeeController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user();
-            //$token = $user->createToken('MyApp')->accessToken;
-            return response()->json(['user name' => $user->name], 200);
-        } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            $user = Auth::user()
+                ->join('business_locations', 'users.location_id', '=', 'business_locations.id')
+                ->selectRaw('users.name as uname, users.email, business_locations.name as lname')
+                ->first();
+
+            if ($user) {
+                return response()->json([
+                    "success" => true,
+                    "data" => [
+                        "user name" => $user->uname,
+                        "email" => $user->email,
+                        "location_id" => $user->lname
+                    ]
+                ], 200);
+            } else {
+                return response()->json([
+                    "success" => false,
+                    "data" => [
+                        "type" => "invalid_user_password",
+                        "info" => "Invalid User or Password"
+                    ]
+                ], 200);
+                //return response()->json(['error' => 'Unauthorised'], 401);
+            }
         }
     }
     public function markattandence(Request $request)
