@@ -224,7 +224,7 @@
                                        @foreach ($attendances as $attendance)
 
                                            <tr>
-                                               <td>{{ $attendance->attendance_time }}
+                                               <td>{{ !! $attendance->attendance_time }}
                                                    @if ($attendance->status == 1)
                                                        <span class="badge badge-success badge-pill float-right">IN</span>
                                                    @else
