@@ -88,7 +88,6 @@
             </div>
         </div> <!-- end col -->--}}
         <div class="container">
-            <div class=" jumbotron">
                 <div class="row">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
@@ -114,7 +113,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
 
         </script>
