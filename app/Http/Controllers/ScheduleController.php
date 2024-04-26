@@ -15,7 +15,7 @@ class ScheduleController extends Controller
         if ($data->count()) {
             foreach ($data as $key => $value) {
                 $events[] = \Calendar::event(
-                    $value->slug,
+                    $value->slug ."\n". $value->time_in ."\n". $value->time_out . "\n", // or use "<br>"
                     true,
                     new \DateTime($value->time_in),
                     new \DateTime($value->time_out.'+1 day'),
