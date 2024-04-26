@@ -36,8 +36,8 @@ class AdminController extends Controller
             }
 
         $data = [$totalEmp, $ontimeEmp, $latetimeEmp, $percentageOntime];
-
-        return view('admin.index')->with(['data' => $data,'attendances' => Attendance::all(),'empgnams' => $Empgname]);
+        $attendances = Attendance::orderBy('created_at', 'desc')->get();
+        return view('admin.index')->with(['data' => $data,'attendances' => $attendances,'empgnams' => $Empgname]);
     }
 
 }

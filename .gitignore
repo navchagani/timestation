@@ -16,3 +16,4 @@ resources/views/clock.blade.php
 resources/views/layouts/sidebar.blade.php
 resources/views/layouts/sidebar.blade.php
 resources/views/layouts/sidebar.blade.php
+resources/views/admin/schedule.blade.php
