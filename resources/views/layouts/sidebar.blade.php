@@ -14,47 +14,55 @@
                                 </a>
                             </li>
 
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i><span> User <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="http://localhost/ts/timestation/public/users" class="waves-effect {{ request()->is("user") || request()->is("/user") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>User List</span></a>
+                                    </li>
 
+                                </ul>
+                            </li>
                             <li>
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i><span> Employees <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="http://localhost/TimeStation/public/employees" class="waves-effect {{ request()->is("employees") || request()->is("/employees/*") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>Employees List</span></a>
+                                        <a href="http://localhost/ts/timestation/public/employees" class="waves-effect {{ request()->is("employees") || request()->is("/employees") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>Employees List</span></a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="">
-                                <a href="http://localhost/TimeStation/public/department" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/department" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="ti-time"></i> <span> Department </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://localhost/TimeStation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="ti-time"></i> <span> Assign Task </span>
                                 </a>
                             </li>
 
-                           {{-- <li class="menu-title">Management</li>
+                            <li class="menu-title">Management</li>
 
                             <li class="">
-                                <a href="http://localhost/TimeStation/public/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="ti-time"></i> <span> Schedule </span>
                                 </a>
                             </li>
-                            <li class="">
-                                <a href="http://localhost/TimeStation/public/check" class="waves-effect {{ request()->is("check") || request()->is("check/*") ? "mm active" : "" }}">
+                            {{--<li class="">
+                                <a href="http://localhost/ts/timestation/public/check" class="waves-effect {{ request()->is("check") || request()->is("check/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Attendance Sheet </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://localhost/TimeStation/public/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Sheet Report </span>
                                 </a>
                             </li>
 
                             <li class="">
-                                <a href="http://localhost/TimeStation/public/attendance" class="waves-effect {{ request()->is("attendance") || request()->is("attendance/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/attendance" class="waves-effect {{ request()->is("attendance") || request()->is("attendance/*") ? "mm active" : "" }}">
                                     <i class="ti-calendar"></i> <span> Attendance Logs </span>
                                 </a>
                             </li>

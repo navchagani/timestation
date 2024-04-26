@@ -8,10 +8,10 @@
 
 @section('breadcrumb')
     <div class="col-sm-6">
-        <h4 class="page-title text-left">Schedules</h4>
+        <h4 class="page-title text-left">User</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0);">Schedule</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0);">User</a></li>
 
 
         </ol>
@@ -38,7 +38,7 @@
 @endif
 <!--End showing Validation Errors here-->
 
-    {{--<div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
@@ -50,29 +50,26 @@
                                 <thead>
                                     <tr>
                                         <th data-priority="1">ID</th>
-                                        <th data-priority="2">Shift</th>
-                                        <th data-priority="3">Time In</th>
-                                        <th data-priority="4">Time Out</th>
-                                        <th data-priority="5">Action</th>
+                                        <th data-priority="2">Name</th>
+                                        <th data-priority="5">Pin code</th>
 
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($schedules as $schedule)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td> {{ $schedule->id }} </td>
-                                            <td> {{ $schedule->slug }} </td>
-                                            <td> {{ $schedule->time_in }} </td>
-                                            <td> {{ $schedule->time_out }} </td>
+                                            <td> {{ $user->name }} </td>
+                                            <td> {{ $user->email }} </td>
+                                            <td> {{ $user->pin_code }}</td>
                                             <td>
 
-                                                <a href="#edit{{ $schedule->slug }}" data-toggle="modal"
+                                               {{-- <a href="#edit{{ $user->name }}" data-toggle="modal"
                                                     class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i>
                                                     Edit</a>
-                                                <a href="#delete{{ $schedule->slug }}" data-toggle="modal"
+                                                <a href="#delete{{ $user->name }}" data-toggle="modal"
                                                     class="btn btn-danger btn-sm delete btn-flat"><i
-                                                        class='fa fa-trash'></i> Delete</a>
+                                                        class='fa fa-trash'></i> Delete</a>--}}
 
                                             </td>
                                         </tr>
@@ -81,55 +78,21 @@
 
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div> <!-- end col -->--}}
-        <div class="container">
-            <div class=" jumbotron">
-                <div class="row">
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block">
-                            <p> {{ \session::get('success')}} </p>
-                        </div>
-                    @endif
-                   {{-- <a href="/addeventurl" class="btn btn-success"> Add Events </a>
-                    <a href="/editeventurl" class="btn btn-primary"> Edit Events </a>
-                    <a href="/deleteeventurl" class="btn btn-danger"> Delete Events </a>--}}
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" style="background: #2e6da4; color: white">
-                                Schedules Calendar
-                            </div>
-                            <div class="panel-body">
-
-                                {!! $calendar->calendar() !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </script>
-        {!! $calendar->script() !!}
-
+        </div> <!-- end col -->
     </div> <!-- end row -->
 
-    @foreach ($schedules as $schedule)
-        @include('includes.edit_delete_schedule')
-    @endforeach
+   {{-- @foreach ($department as $departments)
+        @include('includes.edit_delete_department')
+    @endforeach--}}
 
-    @include('includes.add_schedule')
+    @include('includes.add_department')
 
 @endsection
-@stack('scripts')
+
 
 @section('script')
     <!-- Responsive-table-->

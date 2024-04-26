@@ -4,16 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleEmp;
-
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 class ScheduleController extends Controller
 {
-   
+
     public function index()
     {
-     
-        return view('admin.schedule')->with('schedules', Schedule::all());
-        flash()->success('Success','Schedule has been created successfully !');
+        $events = [];
+        $data = Schedule::all();
+        if ($data->count()) {
+            foreach ($data as $key => $value) {
+                $events[] = \Calendar::event(
+                    $value->slug,
+                    true,
+                    new \DateTime($value->time_in),
+                    new \DateTime($value->time_out.'+1 day'),
+                    null,
+                    // Add color
+                    [
+                        'color'=> $value->color,
+                        'textColor' => $value->textColor,
+                    ]
+                );
+            }
+        }
 
+        $calendar = \Calendar::addEvents($events);
+
+        // Display success flash message
+        flash()->success('Success', 'Schedule has been created successfully !');
+
+        return view('admin.schedule', compact('events', 'calendar'))
+            ->with('schedules', Schedule::all());
     }
 
 
@@ -52,7 +74,7 @@ class ScheduleController extends Controller
 
     }
 
-  
+
     public function destroy(Schedule $schedule)
     {
         $schedule->delete();

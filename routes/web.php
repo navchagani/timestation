@@ -11,6 +11,7 @@ Auth::routes(['register' => false, 'reset' => false]);
 
 Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function () {
     //Route::resource('/employees', '\App\Http\Controllers\EmployeeController');
+    Route::get('/users', '\App\Http\Controllers\UsersController@index');
     Route::resource('/employees', '\App\Http\Controllers\EmployeeController');
     Route::get('/attendance', '\App\Http\Controllers\AttendanceController@index')->name('attendance');
     Route::get('/latetime', '\App\Http\Controllers\AttendanceController@indexLatetime')->name('indexLatetime');
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
         return back();
     })->name('finger_device.clear.attendance');
 });
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['middleware' => ['auth']], function () {
     // Route::get('/home', 'HomeController@index')->name('home');

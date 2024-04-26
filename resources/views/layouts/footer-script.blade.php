@@ -16,7 +16,7 @@
 <script src="{{ URL::asset('assets/pages/sweet-alert.init.js') }}"></script>   --}}
 <script src="/js/sweetalert.min.js"></script>
 <!-- Responsive-table-->
-<script src="{{ URL::asset('plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js') }}"></script>      
+<script src="{{ URL::asset('plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js') }}"></script>
 <!-- Required datatable js -->
 <script src="{{ URL::asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ URL::asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
@@ -34,8 +34,10 @@
 <script src="{{ URL::asset('plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 
 <!-- Datatable init js -->
-<script src="{{ URL::asset('assets/pages/datatables.init.js') }}"></script>   
-
+<script src="{{ URL::asset('assets/pages/datatables.init.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js">
 
 @yield('script-bottom')
 
