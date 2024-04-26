@@ -122,7 +122,12 @@ class EmployeeController extends Controller
                 return response()->json(['error' => 'Failed to assign the attendance'], 404);
             }
         }else {
-        echo 'Invalid User';
+            return response()->json([
+                "success" => false,
+                "data" => [
+                    "error" => 'Invalid User'
+                ]
+            ], 404);
         }
         //return response()->json(['success' => 'Successful in assign the attendance'], 200);
         /*$valueToCheck = $request->input('pin');
