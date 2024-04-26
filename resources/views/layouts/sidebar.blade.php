@@ -18,7 +18,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i><span> User <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="http://localhost/ts/timestation/public/users" class="waves-effect {{ request()->is("user") || request()->is("/user") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>User List</span></a>
+                                        <a href="https://monstersmokeoutlet.com/public/timestation/public/users" class="waves-effect {{ request()->is("user") || request()->is("/user") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>User List</span></a>
                                     </li>
 
                                 </ul>
@@ -27,18 +27,18 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i><span> Employees <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="http://localhost/ts/timestation/public/employees" class="waves-effect {{ request()->is("employees") || request()->is("/employees") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>Employees List</span></a>
+                                        <a href="https://monstersmokeoutlet.com/public/timestation/public/employees" class="waves-effect {{ request()->is("employees") || request()->is("/employees") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>Employees List</span></a>
                                     </li>
 
                                 </ul>
                             </li>
                             <li class="">
-                                <a href="http://localhost/ts/timestation/public/department" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="https://monstersmokeoutlet.com/public/timestation/public/department" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="ti-time"></i> <span> Department </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://localhost/ts/timestation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="https://monstersmokeoutlet.com/public/timestation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="ti-time"></i> <span> Assign Task </span>
                                 </a>
                             </li>
@@ -46,7 +46,7 @@
                             <li class="menu-title">Management</li>
 
                             <li class="">
-                                <a href="http://localhost/ts/timestation/public/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="https://monstersmokeoutlet.com/public/timestation/public/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="ti-time"></i> <span> Schedule </span>
                                 </a>
                             </li>
