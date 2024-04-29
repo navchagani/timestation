@@ -3,22 +3,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title"><b>Add Schedule</b></h4>
+                <h4 class="modal-title"><b>Add Scheduling</b></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
 
             </div>
-
             <div class="modal-body text-left">
                 <form class="form-horizontal" method="POST" action="{{ route('schedule.store') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="col-sm-6 control-label">Employee Name</label>
+                        <label for="name" class="col-sm-6 control-label">Assing to Employee</label>
 
+                        <select class="form-control" id="employees" name="name" required>
+                            <option value="" selected>- Employees -</option>
+                            @foreach($employees as $employee)
+                                <option value="{{$employee->name}}">{{$employee->name}}</option>
+                            @endforeach
 
-                            <div class="bootstrap-timepicker">
-                                <input type="text" class="form-control timepicker" id="name" name="slug">
-                            </div>
+                        </select>
 
                     </div>
                     <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Schedule;
 use App\Http\Requests\ScheduleEmp;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
@@ -35,7 +36,8 @@ class ScheduleController extends Controller
         flash()->success('Success', 'Schedule has been created successfully !');
 
         return view('admin.schedule', compact('events', 'calendar'))
-            ->with('schedules', Schedule::all());
+            ->with('schedules', Schedule::all())
+            ->with('employees', Employee::all());
     }
 
 
@@ -44,9 +46,10 @@ class ScheduleController extends Controller
         $request->validated();
 
         $schedule = new schedule;
-        $schedule->slug = $request->slug;
+        $schedule->slug = $request->name;
         $schedule->time_in = $request->time_in;
         $schedule->time_out = $request->time_out;
+        $schedule->color = $request->color;
         $schedule->save();
 
 
