@@ -18,6 +18,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/leave', '\App\Http\Controllers\LeaveController@index')->name('leave');
     Route::get('/overtime', '\App\Http\Controllers\LeaveController@indexOvertime')->name('indexOvertime');
     Route::get('/admin', '\App\Http\Controllers\AdminController@index')->name('admin');
+    Route::get('/recentActivity', '\App\Http\Controllers\AdminController@recentActivity');
     Route::resource('/schedule', '\App\Http\Controllers\ScheduleController');
     Route::resource('/department', '\App\Http\Controllers\DepartmentController');
     Route::resource('/assigntask', '\App\Http\Controllers\AssigntaskController');

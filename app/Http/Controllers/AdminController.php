@@ -39,5 +39,33 @@ class AdminController extends Controller
         $attendances = Attendance::orderBy('created_at', 'desc')->get();
         return view('admin.index')->with(['data' => $data,'attendances' => $attendances,'empgnams' => $Empgname]);
     }
+    public function RecentActivity()
+    {
+        //Dashboard statistics
+        $d =date('Y-m-d');
+        $totalEmp =  count(Employee::all());
+        $AllAttendance = count(Attendance::whereAttendance_date(date("Y-m-d"))->get());
+        $ontimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('1')->get());
+        $latetimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('0')->get());
 
+
+        $data = [$totalEmp, $ontimeEmp, $latetimeEmp];
+        $attendances = Attendance::join('employees', 'attendances.emp_id', '=', 'employees.id')
+            ->selectRaw('attendances.status as status')
+            ->selectRaw('attendances.attendance_time as attendance_time')
+            ->selectRaw('attendances.attendance_date as attendance_date')
+            ->selectRaw('employees.name as name')
+            ->orderBy('attendances.created_at', 'desc')->get();
+        // Assuming $Empgname is already formatted correctly
+
+        return response()->json([
+            'data' => $data,
+            'attendances' => $attendances,
+        ]);
+
+    }
+    public function getone() {
+        $msg = "This is a simple message.";
+        return response()->json(array('msg'=> $msg), 200);
+    }
 }

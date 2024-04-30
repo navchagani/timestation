@@ -203,9 +203,21 @@
                    <div class="row">
                        <div class="col-6">
                            <div class="card">
-                               <div class="card-body">
+                               <div class="card-body" >
+                                   <table class="table table-bordered table-sm">
+                                       <thead>
+                                       <tr>
+                                           <th data-priority="1">Status</th>
+                                           <th data-priority="2">Name</th>
+                                           <th data-priority="3">Last Activity</th>
+                                       </tr>
+                                       </thead>
+                                       <tbody id="bodyData">
 
-                                   <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                       </tbody>
+                                   </table>
+
+                                   {{--<table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 
                                        <thead>
                                        <tr>
@@ -222,7 +234,7 @@
                                        <tbody>
 
                                        @foreach ($attendances as $attendance)
-
+                                        {{dd($attendance->employee)}}
                                            <tr>
                                                <td>
                                                    @if ($attendance->status == 1)
@@ -242,23 +254,22 @@
                                                        {{ $attendance->attendance_time }}
                                                     On
                                                    {{ $attendance->attendance_date }}</td>
-                                              {{-- <td>{{ $attendance->emp_id }}</td>--}}
+                                                <td>{{ $attendance->emp_id }}</td>
 
 
 
-                                              {{-- <td>{{ $attendance->employee->schedules->first()->time_in }} </td>
-                                               <td>{{ $attendance->employee->schedules->first()->time_out }}</td>--}}
+                                           --}}{{-- <td>{{ $attendance->employee->schedules->first()->time_in }} </td>
+                                                <td>{{ $attendance->employee->schedules->first()->time_out }}</td>--}}{{--
                                            </tr>
 
                                        @endforeach
 
 
                                        </tbody>
-                                   </table>
+                                   </table>--}}
                                </div>
                            </div>
                        </div>
-
 
 
                    <div class="col-6">
@@ -298,6 +309,8 @@
                                    </tbody>
                                </table>
                            </div>
+
+
                        </div>
                    </div>
                    </div>
@@ -309,6 +322,27 @@
 @endsection
 
 @section('script')
+<script>
+    // Function to refresh the content of the div
+        // AJAX call to fetch new content
+        $.ajax({
+            url: 'http://localhost/ts/timestation/public/recentActivity',
+            success: function(data) {
+                var bodyData = '';
+                var i=1;
+                $.each(data.attendances, function(index, attendance) {
+                    bodyData+="<tr>"
+                    bodyData += "<td>" + (attendance.status == 1 ? 'IN' : 'OUT') + "<td>" + attendance.name + "</td><td>" + (attendance.status == 1 ? 'IN' : 'OUT') + " at "+ attendance.attendance_time + " On "+ attendance.attendance_date + "</td>";
+                    bodyData += "</tr>";
+                });
+                $("#bodyData").append(bodyData);
+            },
+            error: function(xhr, status, error) {
+                // Handle any errors that occur during the AJAX request
+                console.error(error);
+            }
+        });
+</script>
 <!--Chartist Chart-->
 <script src="{{ URL::asset('plugins/chartist/js/chartist.min.js') }}"></script>
 <script src="{{ URL::asset('plugins/chartist/js/chartist-plugin-tooltip.min.js') }}"></script>
