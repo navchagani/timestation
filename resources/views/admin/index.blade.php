@@ -323,25 +323,33 @@
 
 @section('script')
 <script>
-    // Function to refresh the content of the div
-        // AJAX call to fetch new content
+    function refreshDiv() {
         $.ajax({
             url: 'https://monstersmokeoutlet.com/public/timestation/public/recentActivity',
-            success: function(data) {
+            success: function (data) {
                 var bodyData = '';
-                var i=1;
-                $.each(data.attendances, function(index, attendance) {
-                    bodyData+="<tr>"
-                    bodyData += "<td>" + (attendance.status == 1 ? 'IN' : 'OUT') + "<td>" + attendance.name + "</td><td>" + (attendance.status == 1 ? 'IN' : 'OUT') + " at "+ attendance.attendance_time + " On "+ attendance.attendance_date + "</td>";
+                $.each(data.attendances, function (index, attendance) {
+                    bodyData += "<tr>";
+                    bodyData += "<td>" + (attendance.status == 1 ? 'IN' : 'OUT') + "</td><td>" + attendance.name + "</td><td>" + (attendance.status == 1 ? 'IN' : 'OUT') + " at " + attendance.attendance_time + " On " + attendance.attendance_date + "</td>";
                     bodyData += "</tr>";
                 });
-                $("#bodyData").append(bodyData);
+                $("#bodyData").html(bodyData);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 // Handle any errors that occur during the AJAX request
                 console.error(error);
             }
         });
+    }
+
+    // Initial fade out after 1 second
+    setInterval(function() {
+        $('#bodyData').fadeIn('fast', function() {
+            // Call refreshDiv function after fadeOut is complete
+            refreshDiv();
+        });
+    }, 5000);
+
 </script>
 <!--Chartist Chart-->
 <script src="{{ URL::asset('plugins/chartist/js/chartist.min.js') }}"></script>
