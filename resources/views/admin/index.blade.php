@@ -326,7 +326,7 @@
     // Function to refresh the content of the div
         // AJAX call to fetch new content
         $.ajax({
-            url: 'http://localhost/ts/timestation/public/recentActivity',
+            url: 'https://monstersmokeoutlet.com/public/timestation/public/recentActivity',
             success: function(data) {
                 var bodyData = '';
                 var i=1;
