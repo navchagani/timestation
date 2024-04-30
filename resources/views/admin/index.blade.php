@@ -291,7 +291,7 @@
     function refreshDiv() {
         $('.ajax-loading').show();
         $.ajax({
-            url: 'http://localhost/ts/timestation/public/recentActivity',
+            url: 'https://monstersmokeoutlet.com/public/timestation/public/recentActivity',
             success: function (data) {
                 var bodyData = '';
                 $.each(data.attendances, function (index, attendance) {
