@@ -330,7 +330,7 @@
                 var bodyData = '';
                 $.each(data.attendances, function (index, attendance) {
                     bodyData += "<tr>";
-                    bodyData += "<td>" + (attendance.status == 1 ? 'IN' : 'OUT') + "</td><td>" + attendance.name + "</td><td>" + (attendance.status == 1 ? 'IN' : 'OUT') + " at " + attendance.attendance_time + " On " + attendance.attendance_date + "</td>";
+                    bodyData += "<td>" + (attendance.status == 1 ? '<span class="badge badge-success badge-pill float-right">IN</span>' : '<span class="badge badge-danger badge-pill float-right">OUT</span>') + "</td><td>" + attendance.name + "</td><td>" + (attendance.status == 1 ? 'IN' : 'OUT') + " at " + attendance.attendance_time + " On " + attendance.attendance_date + "</td>";
                     bodyData += "</tr>";
                 });
                 $("#bodyData").html(bodyData);
