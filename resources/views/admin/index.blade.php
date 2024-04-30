@@ -204,6 +204,7 @@
                        <div class="col-6">
                            <div class="card">
                                <div class="card-body" >
+
                                    <table class="table table-bordered table-sm">
                                        <thead>
                                        <tr>
@@ -212,61 +213,13 @@
                                            <th data-priority="3">Last Activity</th>
                                        </tr>
                                        </thead>
-                                       <tbody id="bodyData">
 
+                                       <tbody id="bodyData">
+                                        <tr class="ajax-loading">
+                                        </tr>
                                        </tbody>
                                    </table>
 
-                                   {{--<table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-
-                                       <thead>
-                                       <tr>
-                                           <th colspan="3">  Recent Activity</th>
-                                       </tr>
-                                       <tr>
-                                           <th data-priority="1">Status</th>
-                                           <th data-priority="2">Name</th>
-                                           <th data-priority="3">Last Activity</th>
-
-
-                                       </tr>
-                                       </thead>
-                                       <tbody>
-
-                                       @foreach ($attendances as $attendance)
-                                        {{dd($attendance->employee)}}
-                                           <tr>
-                                               <td>
-                                                   @if ($attendance->status == 1)
-                                                       <span class="badge badge-success badge-pill float-right">IN</span>
-                                                   @else
-                                                       <span class="badge badge-danger badge-pill float-right">OUT</span>
-                                                   @endif
-                                               </td>
-                                               <td>{{ $attendance->employee->name }}</td>
-                                               <td>
-                                                   @if ($attendance->status == 1)
-                                                       IN
-                                                   @else
-                                                       OUT
-                                                   @endif
-                                                   at
-                                                       {{ $attendance->attendance_time }}
-                                                    On
-                                                   {{ $attendance->attendance_date }}</td>
-                                                <td>{{ $attendance->emp_id }}</td>
-
-
-
-                                           --}}{{-- <td>{{ $attendance->employee->schedules->first()->time_in }} </td>
-                                                <td>{{ $attendance->employee->schedules->first()->time_out }}</td>--}}{{--
-                                           </tr>
-
-                                       @endforeach
-
-
-                                       </tbody>
-                                   </table>--}}
                                </div>
                            </div>
                        </div>
@@ -319,20 +272,34 @@
                    </div> <!-- end row -->
 
                         <!-- end row -->
+    <style>
+        tr.ajax-loading{
+            position: absolute;
+            top: 50px;
+            left: -12px;
+            height:100%;
+            width:100%;
+            background-image: url('http://localhost/ts/timestation/public/assets/images/Ajax-loader.gif');
+            background-position:  center center;
+            background-repeat: no-repeat;
+        }
+    </style>
 @endsection
 
 @section('script')
 <script>
     function refreshDiv() {
+        $('.ajax-loading').show();
         $.ajax({
-            url: 'https://monstersmokeoutlet.com/public/timestation/public/recentActivity',
+            url: 'http://localhost/ts/timestation/public/recentActivity',
             success: function (data) {
                 var bodyData = '';
                 $.each(data.attendances, function (index, attendance) {
                     bodyData += "<tr>";
-                    bodyData += "<td>" + (attendance.status == 1 ? '<span class="badge badge-success badge-pill float-right">IN</span>' : '<span class="badge badge-danger badge-pill float-right">OUT</span>') + "</td><td>" + attendance.name + "</td><td>" + (attendance.status == 1 ? 'IN' : 'OUT') + " at " + attendance.attendance_time + " On " + attendance.attendance_date + "</td>";
+                    bodyData += "<td>" + (attendance.status == 1 ? '<span class="badge badge-success badge-pill float-right">IN<span>' : '<span class="badge badge-danger badge-pill float-right">OUT') + "</td><td>" + attendance.name + "</td><td>" + (attendance.status == 1 ? 'IN' : 'OUT') + " at " + attendance.attendance_time + " On " + attendance.attendance_date + "</td>";
                     bodyData += "</tr>";
                 });
+                $('.ajax-loading').hide();
                 $("#bodyData").html(bodyData);
             },
             error: function (xhr, status, error) {

@@ -24,6 +24,12 @@
             });
         });
     });
+    $(function() {
+        $('#timepicker').timepicker({
+            timeFormat: 'HH:mm', // 24-hour format
+            // Other options as needed
+        });
+    });
 </script>
 <div class="modal fade" id="addnew">
     <div class="modal-dialog modal-lg">
@@ -73,20 +79,51 @@
                                    required />
                         </div>
                         </div>
+
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                            <label for="position">Hour rate: </label>
-                            <input type="text" class="form-control" placeholder="Enter Hour rate" id="hrate" name="hourrate"
-                                   required />
-                        </div>
-
+                                <label for="position">Mobile: </label>
+                                <input type="text" class="form-control" placeholder="Mobile" id="mobile" name="mobile"
+                                       required />
+                            </div>
                             <div class="form-group col-md-6">
-
                             <label for="position">4 Digit pin: </label>
                                 <span id="error-message" style="display: none; color: red;font-size: large;">Pin Already exist!</span>
                             <input type="text" class="form-control" placeholder="Enter 4 Digit pin" id="pin" name="pin"
                                    required />
                         </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="position">Type: </label>
+                                <select class="form-control" id="typeemp" name="typeemp" required>
+                                    <option value="" selected>- Select -</option>
+                                    <option value="hourly">Hourly</option>
+                                    <option value="fixed">Fixed</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="position">Hour rate: </label>
+                                <input type="text" class="form-control" placeholder="Hour rate" id="hrate" name="hourrate"/>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="position">Fixed Salary: </label>
+                                <input type="text" class="form-control" placeholder="Fixed Salary" id="fixedsalary" name="fixedsalary"
+                                       required />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="position">Day Start time: </label>
+                                <input type="time" min="00:01" max="24:00" required class="form-control" id="starttime" name="starttime"
+                                       required />
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="position">Day End time: </label>
+                    {{--{{ Form::time('time', \Carbon\Carbon::now()->timezone('Europe/Brussels')->format('H:i'), ['class' => 'form-control']) }}--}}
+                                <input type="time"  name="endtime" min="00:01" max="24:00" required  class="form-control" />
+
+                            </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-2">Notifications : </div>

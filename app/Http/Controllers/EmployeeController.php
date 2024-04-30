@@ -184,10 +184,11 @@ class EmployeeController extends Controller
     public function store(EmployeeRec $request)
     {
         $request->validated();
-
+        $userid = Auth::id();
         $employee = new Employee;
         $employee->name = $request->name;
         $employee->empid = $request->empid;
+        $employee->user_id = $userid;
         $employee->title = $request->title;
         $employee->hourrate = $request->hourrate;
         $employee->pin = $request->pin;
@@ -196,6 +197,11 @@ class EmployeeController extends Controller
         $employee->Psite = $request->Psite;
         $employee->position = $request->position;
         $employee->email = $request->email;
+        $employee->mobile = $request->mobile;
+        $employee->type = $request->typeemp;
+        $employee->fsalary = $request->fixedsalary;
+        $employee->starttime = $request->starttime;
+        $employee->endtime = $request->endtime;
         $employee->pin_code = bcrypt($request->pin_code);
         $employee->save();
 /*
