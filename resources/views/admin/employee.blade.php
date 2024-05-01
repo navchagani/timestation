@@ -48,7 +48,7 @@
                                                         <th data-priority="3">Department</th>
                                                         <th data-priority="5">Title</th>
                                                         <th data-priority="4">Status</th>
-                                                        <th data-priority="6">Last Activity</th>
+                                                        <th data-priority="6">QR</th>
                                                        {{-- <th data-priority="7">Actions</th>--}}
 
                                                     </tr>
@@ -62,7 +62,7 @@
                                                             <td>{{$employee->position}}</td>
                                                             <td>{{$employee->title}}</td>
                                                             <td>{{$employee->email}}</td>
-                                                            <td>{{$employee->created_at}}</td>
+                                                            <td>  {!! QrCode::size(100)->generate('{{$employee->empid}}') !!}</td>
                                                            {{-- <td>
 
                                                                 <a href="#edit{{$employee->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
