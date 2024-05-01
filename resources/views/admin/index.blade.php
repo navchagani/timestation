@@ -279,7 +279,7 @@
             left: -12px;
             height:100%;
             width:100%;
-            background-image: url('http://localhost/ts/timestation/public/assets/images/Ajax-loader.gif');
+            background-image: url('https://opaltimecard.com/public/assets/images/Ajax-loader.gif');
             background-position:  center center;
             background-repeat: no-repeat;
         }
@@ -291,7 +291,7 @@
     function refreshDiv() {
         $('.ajax-loading').show();
         $.ajax({
-            url: 'https://monstersmokeoutlet.com/public/timestation/public/recentActivity',
+            url: 'https://opaltimecard.com/recentActivity',
             success: function (data) {
                 var bodyData = '';
                 $.each(data.attendances, function (index, attendance) {
