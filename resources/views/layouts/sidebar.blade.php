@@ -24,7 +24,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i><span> Employees <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-id-badge"></i><span> Employees <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
                                     <li>
                                         <a href="https://opaltimecard.com/employees" class="waves-effect {{ request()->is("employees") || request()->is("/employees") ? "mm active" : "" }}"><i class="dripicons-view-apps"></i><span>Employees List</span></a>
@@ -34,7 +34,7 @@
                             </li>
                             <li class="">
                                 <a href="https://opaltimecard.com/department" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
-                                    <i class="ti-time"></i> <span> Department </span>
+                                    <i class="fas fa-store-alt"></i> <span> Department </span>
                                 </a>
                             </li>
 
@@ -43,12 +43,12 @@
 
                             <li class="">
                                 <a href="https://opaltimecard.com/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
-                                    <i class="ti-time"></i> <span> Schedule </span>
+                                    <i class="fab fa-superpowers"></i> <span> Schedule </span>
                                 </a>
                             </li>
                             <li class="">
                                 <a href="https://opaltimecard.com/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
-                                    <i class="ti-time"></i> <span> Assign Task </span>
+                                    <i class="fas fa-tasks"></i> <span> Assign Task </span>
                                 </a>
                             </li>
                             <li class="menu-title">Report</li>
