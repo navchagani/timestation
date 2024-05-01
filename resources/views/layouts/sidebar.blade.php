@@ -37,11 +37,7 @@
                                     <i class="ti-time"></i> <span> Department </span>
                                 </a>
                             </li>
-                            <li class="">
-                                <a href="http://localhost/ts/timestation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
-                                    <i class="ti-time"></i> <span> Assign Task </span>
-                                </a>
-                            </li>
+
 
                             <li class="menu-title">Management</li>
 
@@ -50,14 +46,21 @@
                                     <i class="ti-time"></i> <span> Schedule </span>
                                 </a>
                             </li>
+                            <li class="">
+                                <a href="https://opaltimecard.com/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                    <i class="ti-time"></i> <span> Assign Task </span>
+                                </a>
+                            </li>
+                            <li class="menu-title">Report</li>
+                            <li class="">
+                                <a href="https://opaltimecard.com/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                                    <i class="dripicons-to-do"></i> <span> Employee Report </span>
+                                </a>
+                            </li>
+
                             {{--<li class="">
                                 <a href="http://localhost/ts/timestation/public/check" class="waves-effect {{ request()->is("check") || request()->is("check/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Attendance Sheet </span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="http://localhost/ts/timestation/public/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
-                                    <i class="dripicons-to-do"></i> <span> Sheet Report </span>
                                 </a>
                             </li>
 
