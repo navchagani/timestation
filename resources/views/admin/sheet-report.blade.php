@@ -17,20 +17,20 @@
                             @php
                                 $today = today();
                                 $dates = [];
-                                
+
                                 for ($i = 1; $i < $today->daysInMonth + 1; ++$i) {
                                     $dates[] = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
                                 }
-                                
+
                             @endphp
                             @foreach ($dates as $date)
                             <th style="">
-                            
-                                
+
+
                                     {{ $date }}
-                            
+
                         </th>
-                      
+
 
                             @endforeach
 
@@ -61,50 +61,74 @@
 
 
                                     @php
-                                        
+
                                         $date_picker = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
-                                        
+
                                         $check_attd = \App\Models\Attendance::query()
                                             ->where('emp_id', $employee->id)
                                             ->where('attendance_date', $date_picker)
-                                            ->first();
-                                        
+                                            ->get();
+
                                         $check_leave = \App\Models\Leave::query()
                                             ->where('emp_id', $employee->id)
                                             ->where('leave_date', $date_picker)
                                             ->first();
-                                        
+
                                     @endphp
                                     <td>
+                                        <table>
+                                            <tr>
+                                           {{-- {{dd($check_attd)}}--}}
+                                            @foreach ($check_attd as $check_attds)
+                                                @if ($check_attds->status==1)
+                                            <td style="color: green">IN {{$check_attds->attendance_time}}</td>
+                                                @endif
+                                                @if ($check_attds->status==0)
+                                                        @php
+                                                            $checkattd = \App\Models\Attendance::query()
+                                                                ->where('emp_id', $employee->id)
+                                                                ->where('attendance_date', $date_picker)
+                                                                ->where('status', '1')
+                                                                ->first();
+                           $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $check_attds->attendance_time);
+                           $existingAttendanceend = DateTime::createFromFormat('H:i:s', $checkattd->attendance_time);
+                           $difference = $existingAttendanceTime->diff($existingAttendanceend);
+                                                        @endphp
+                                                        <td style="color: red"> Out {{$check_attds->attendance_time}}</td> <td style="color: blue">D {{$difference->format('%H:%I:%S')}}</td>
 
-                                        <div class="form-check form-check-inline ">
+                                                @endif
+                                            @endforeach
+                                            </tr>
+                                        </table>
+                                            {{--{{die}}
 
                                             @if (isset($check_attd))
                                                  @if ($check_attd->status==1)
-                                                 <i class="fa fa-check text-success"></i>
-                                                 @else
-                                                 <i class="fa fa-check text-danger"></i>
+                                                IN
+                                                @endif
+                                                 @if ($check_attd->status==0)
+                                               Out
                                                  @endif
-                                               
+
                                             @else
                                             <i class="fas fa-times text-danger"></i>
-                                            @endif
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                          
+                                            @endif--}}
+
+                                        {{--<div class="form-check form-check-inline">
+
                                             @if (isset($check_leave))
-                                            @if ($check_leave->status==1)
+                                            @if ($check_leave->status==0)
                                             <i class="fa fa-check text-success"></i>
                                             @else
                                             <i class="fa fa-check text-danger"></i>
                                             @endif
-                                          
+
                                        @else
                                        <i class="fas fa-times text-danger"></i>
                                        @endif
-                                        
 
-                                        </div>
+
+                                        </div>--}}
 
                                     </td>
 
