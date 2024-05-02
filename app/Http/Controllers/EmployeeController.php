@@ -37,14 +37,14 @@ class EmployeeController extends Controller
                 ->join('business_locations', 'users.location_id', '=', 'business_locations.id')
                 ->selectRaw('users.name as uname, users.email, business_locations.name as lname')
                 ->first();
-
             if ($user) {
                 return response()->json([
                     "success" => true,
                     "data" => [
                         "username" => $user->uname,
                         "email" => $user->email,
-                        "location_id" => $user->lname
+                        "location_id" => $user->lname,
+                        'employees'=> Employee::all()
                     ]
                 ], 200);
             } else {
