@@ -44,7 +44,7 @@ class EmployeeController extends Controller
                         "username" => $user->uname,
                         "email" => $user->email,
                         "location_id" => $user->lname,
-                        'employees'=> Employee::all()
+                        'employees'=> Employee::all()->first()
                     ]
                 ], 200);
             } else {
