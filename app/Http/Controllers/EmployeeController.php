@@ -45,7 +45,7 @@ class EmployeeController extends Controller
                         "username" => $user->uname,
                         "email" => $user->email,
                         "location_id" => $user->lname,
-                        "employee" => Employee::latest()->paginate(10)
+                        'employees' => Employee::get()
                     ]
                 ], 200);
             } else {
