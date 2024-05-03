@@ -45,7 +45,7 @@ class EmployeeController extends Controller
                         "username" => $user->uname,
                         "email" => $user->email,
                         "location_id" => $user->lname,
-                        'employees' => Employee::get()
+                        "employees" =>  Employee::selectRaw('name as name, pin as pin, starttime as starttime, endtime as endtime')->get()
                     ]
                 ], 200);
             } else {
