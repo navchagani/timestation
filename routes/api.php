@@ -17,6 +17,7 @@ use App\Http\Controllers\EmployeeController;
 Route::get('/employees', '\App\Http\Controllers\EmployeeController@getCustomers');
 Route::post('/login', '\App\Http\Controllers\EmployeeController@login');
 Route::post('/markattandence', '\App\Http\Controllers\EmployeeController@markattandence');
+Route::post('/markofflineattandence','\App\Http\Controllers\EmployeeController@markofflineattandence');
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
