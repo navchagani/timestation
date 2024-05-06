@@ -77,7 +77,7 @@ class EmployeeController extends Controller
         $empid = $request->input('empid');
         $ndate = $request->input('date');
         $ntime = $request->input('time');
-        $status = $request->input('status');
+        $status = strtoupper($request->input('status'));
 
         $existingAttendance = Attendance::where('attendance_date', $ndate)
             ->where('attendance_time', $ntime)
