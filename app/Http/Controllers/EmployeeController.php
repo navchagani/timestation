@@ -35,17 +35,17 @@ class EmployeeController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user()
                 ->join('business_locations', 'users.location_id', '=', 'business_locations.id')
-                ->selectRaw('users.name as uname, users.email, business_locations.name as lname')
+                ->selectRaw('users.id as uid,users.name as uname, users.email, business_locations.name as lname')
                 ->first();
-
             if ($user) {
                 return response()->json([
                     "success" => true,
                     "data" => [
+                        "uid" => $user->uid,
                         "username" => $user->uname,
                         "email" => $user->email,
                         "location_id" => $user->lname,
-                        "employees" =>  Employee::selectRaw('name as name, pin as pin, starttime as starttime, endtime as endtime')->get()
+                        "employees" =>  Employee::selectRaw('id as id, name as name, pin as pin, starttime as starttime, endtime as endtime')->get()
                     ]
                 ], 200);
             } else {
@@ -68,6 +68,24 @@ class EmployeeController extends Controller
             ], 200);
             //return response()->json(['error' => 'Unauthorised'], 401);
         }
+    }
+    public function markofflineattandence(Request $request)
+    {
+        $pin = $request->input('pin');
+        $empid = $request->input('empid');
+        $ndate = $request->input('date');
+        $ntime = $request->input('time');
+        $status = $request->input('status');
+        $attendance = new Attendance;
+        $attendance->emp_id = $empid;
+        $attendance->attendance_time = $ntime;
+        $attendance->attendance_date = $ndate;
+        $attendance->status = $status; // Set status to 0 for check-in
+        $attendance->save();
+        return response()->json([
+            "success" => true
+
+        ], 200);
     }
     public function markattandence(Request $request)
     {
