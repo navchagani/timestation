@@ -26,8 +26,8 @@ class AdminController extends Controller
             ->groupBy('employees.position') // Include 'position' in the group by
             ->selectRaw('employees.position as position')
             ->selectRaw('count(DISTINCT employees.id) as count')
-            ->selectRaw('SUM(IF(attendances.status = 1, 1, 0)) as ine')
-            ->selectRaw('SUM(IF(attendances.status =  0, 1, 0)) as oute')
+            ->selectRaw('SUM(CASE WHEN attendances.status = "IN" THEN 1 ELSE 0 END) as ine')
+            ->selectRaw('SUM(CASE WHEN attendances.status = "OUT" THEN 1 ELSE 0 END) as oute')
             ->get();
         if($AllAttendance > 0){
                 $percentageOntime = str_split(($ontimeEmp/ $AllAttendance)*100, 4)[0];
