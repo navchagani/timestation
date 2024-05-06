@@ -72,12 +72,14 @@ class EmployeeController extends Controller
     public function markofflineattandence(Request $request)
     {
         $pin = $request->input('pin');
+        $uid = $request->input('uid');
         $empid = $request->input('empid');
         $ndate = $request->input('date');
         $ntime = $request->input('time');
         $status = $request->input('status');
         $attendance = new Attendance;
         $attendance->emp_id = $empid;
+        $attendance->uid = $uid;
         $attendance->attendance_time = $ntime;
         $attendance->attendance_date = $ndate;
         $attendance->status = $status; // Set status to 0 for check-in
