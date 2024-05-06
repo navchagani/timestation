@@ -15,7 +15,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        //Dashboard statistics
+
         $d =date('Y-m-d');
         $totalEmp =  count(Employee::all());
         $AllAttendance = count(Attendance::whereAttendance_date(date("Y-m-d"))->get());
