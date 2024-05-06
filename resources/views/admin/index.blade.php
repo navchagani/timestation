@@ -291,7 +291,7 @@
     function refreshDiv() {
         $('.ajax-loading').show();
         $.ajax({
-            url: '\'https://opaltimecard.com/recentActivity',
+            url: 'https://opaltimecard.com/recentActivity',
             success: function (data) {
                 var bodyData = '';
                 $.each(data.attendances, function (index, attendance) {
