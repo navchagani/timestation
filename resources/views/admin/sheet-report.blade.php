@@ -18,7 +18,7 @@
                 </div>
             </form>
             <div class="table-responsive">
-                <table class="table table-sm" id="printTable">
+                <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
                         <th>Name</th>
