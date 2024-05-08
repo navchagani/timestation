@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Attendance;
@@ -11,6 +11,7 @@ class CheckController extends Controller
 {
     public function index()
     {
+
         return view('admin.check')->with(['employees' => Employee::all()]);
     }
 
@@ -27,16 +28,16 @@ class CheckController extends Controller
                                 ->first()
                         ) {
                             $data = new Attendance();
-                            
+
                             $data->emp_id = $key;
                             $emp_req = Employee::whereId($data->emp_id)->first();
                             $data->attendance_time = date('H:i:s', strtotime($emp_req->schedules->first()->time_in));
                             $data->attendance_date = $keys;
-                            
+
                             // $emps = date('H:i:s', strtotime($employee->schedules->first()->time_in));
                             // if (!($emps >= $data->attendance_time)) {
                             //     $data->status = 0;
-                           
+
                             // }
                             $data->save();
                         }
@@ -61,9 +62,9 @@ class CheckController extends Controller
                             $data->leave_date = $keys;
                             // if ($employee->schedules->first()->time_out <= $data->leave_time) {
                             //     $data->status = 1;
-                                
+
                             // }
-                            // 
+                            //
                             $data->save();
                         }
                     }
@@ -75,7 +76,23 @@ class CheckController extends Controller
     }
     public function sheetReport()
     {
-
-    return view('admin.sheet-report')->with(['employees' => Employee::all()]);
+        $attendancesall = DB::table('attendances AS t1')
+            ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
+            ->select(
+                't1.status',
+                't1.attendance_time',
+                't1.attendance_date',
+                't2.name',
+                't2.fsalary',
+                DB::raw('TIMESTAMPDIFF(HOUR,
+            (SELECT t3.attendance_time FROM attendances AS t3 WHERE t3.emp_id = t1.emp_id AND t3.attendance_date = t1.attendance_date AND t3.status = "IN" ORDER BY t3.attendance_time LIMIT 1),
+            t1.attendance_time
+        ) AS time_difference')
+            )
+            ->where('t1.status', 'OUT')
+            ->orderBy('t1.attendance_date', 'asc')
+            ->orderBy('t1.attendance_time', 'asc')
+            ->get();
+    return view('admin.sheet-report')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall]);
     }
 }
