@@ -210,7 +210,8 @@
                                        <tr>
                                            <th data-priority="1">Status</th>
                                            <th data-priority="2">Name</th>
-                                           <th data-priority="3">Last Activity</th>
+                                           <th data-priority="3">Current Day Activities</th>
+
                                        </tr>
                                        </thead>
 
@@ -267,6 +268,7 @@
                        </div>
                    </div>
                    </div>
+
                    </div>
                    </div> <!-- end col -->
                    </div> <!-- end row -->
