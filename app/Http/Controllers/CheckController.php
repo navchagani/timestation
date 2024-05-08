@@ -74,25 +74,31 @@ class CheckController extends Controller
         flash()->success('Success', 'You have successfully submited the attendance !');
         return back();
     }
-    public function sheetReport()
+    public function sheetReport(Request $request)
     {
-        $attendancesall = DB::table('attendances AS t1')
-            ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
-            ->select(
-                't1.status',
-                't1.attendance_time',
-                't1.attendance_date',
-                't2.name',
-                't2.fsalary',
-                DB::raw('TIMESTAMPDIFF(HOUR,
+        $emp = $request->input('employee');
+        if($emp) {
+            $attendancesall = DB::table('attendances AS t1')
+                ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
+                ->select(
+                    't1.status',
+                    't1.attendance_time',
+                    't1.attendance_date',
+                    't2.name',
+                    't2.fsalary',
+                    DB::raw('TIMESTAMPDIFF(HOUR,
             (SELECT t3.attendance_time FROM attendances AS t3 WHERE t3.emp_id = t1.emp_id AND t3.attendance_date = t1.attendance_date AND t3.status = "IN" ORDER BY t3.attendance_time LIMIT 1),
             t1.attendance_time
         ) AS time_difference')
-            )
-            ->where('t1.status', 'OUT')
-            ->orderBy('t1.attendance_date', 'asc')
-            ->orderBy('t1.attendance_time', 'asc')
-            ->get();
+                )
+                ->where('t1.status', 'OUT')
+                ->where('t1.emp_id', $emp)
+                ->orderBy('t1.attendance_date', 'asc')
+                ->orderBy('t1.attendance_time', 'asc')
+                ->get();
+        }else{
+            $attendancesall = []; // Set to an empty array instead of 0
+        }
     return view('admin.sheet-report')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall]);
     }
 }

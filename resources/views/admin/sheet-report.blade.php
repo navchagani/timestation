@@ -6,6 +6,17 @@
             <center> <b>Salary calculated to hourly based</b></center>
         </div>
         <div class="card-body">
+            <form>
+                <div class="form-group col-md-3">
+                    <label class="required" for="employee">Employee</label>
+                    <select class="form-control" name="employee" id="employee">
+                        <option hidden>Select an employee</option>
+                        @foreach($employees as $employee)
+                            <option value="{{ $employee->id }}" {{ request()->input('employee') == $employee->id ? 'selected' : '' }}>{{ $employee->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-sm" id="printTable">
                     <thead>
@@ -33,5 +44,12 @@
         </div>
     </div>
 
-
+    <script>
+        $(function () {
+            $('#employee').change(function () {
+                $(this).parents('form').submit();
+            });
+        });
+    </script>
 @endsection
+
