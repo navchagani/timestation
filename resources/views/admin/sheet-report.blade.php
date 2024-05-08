@@ -28,11 +28,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if ($attendancesall == [])
-                        <tr>
-                            <td colspan="4"><center>No attendance records found</center></td>
-                        </tr>
-                    @else
+                    @if (sizeof($attendancesall))
                     @foreach($attendancesall as $attendance)
                         <tr>
                             <td>{{ $attendance->name }}</td>
@@ -43,6 +39,10 @@
                             <td><b>$</b>{{ $attendance->time_difference*$attendance->hourrate }}</td>
                         </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td colspan="4"><center>No attendance records found</center></td>
+                    </tr>
                     @endif
                     </tbody>
                 </table>
