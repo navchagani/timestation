@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\User;
 use App\Models\Employee;
 use App\Models\Latetime;
@@ -47,14 +47,13 @@ class AdminController extends Controller
         $AllAttendance = count(Attendance::whereAttendance_date(date("Y-m-d"))->get());
         $ontimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('1')->get());
         $latetimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('0')->get());
-
-
         $data = [$totalEmp, $ontimeEmp, $latetimeEmp];
         $attendances = Attendance::join('employees', 'attendances.emp_id', '=', 'employees.id')
             ->selectRaw('attendances.status as status')
             ->selectRaw('attendances.attendance_time as attendance_time')
             ->selectRaw('attendances.attendance_date as attendance_date')
             ->selectRaw('employees.name as name')
+            ->whereDate('attendances.attendance_date', $d)
             ->orderBy('attendances.created_at', 'desc')->get();
         // Assuming $Empgname is already formatted correctly
 
