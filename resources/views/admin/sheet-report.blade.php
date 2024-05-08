@@ -30,9 +30,7 @@
                     <tbody>
 
                     @if (sizeof($attendancesall))
-                        @php
-                             $totalHourRate = 0;
-                        @endphp
+                        {{! $totalHourRate = 0 }}
                     @foreach($attendancesall as $attendance)
                         {{! $hourRate = $attendance->time_difference*$attendance->hourrate  }}
                         {{! $totalHourRate += $hourRate }}
