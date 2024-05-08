@@ -35,7 +35,7 @@
                             {{--<td>{{ $attendance->attendance_time }}</td>--}}
                             <td>{{ $attendance->attendance_date }}</td>
                             <td>{{ $attendance->time_difference }}</td>
-                            <td>{{ $attendance->time_difference*$attendance->fsalary }}</td>
+                            <td><b>$</b>{{ $attendance->time_difference*$attendance->fsalary }}</td>
                         </tr>
                     @endforeach
                     </tbody>
