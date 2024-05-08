@@ -28,17 +28,28 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @if (sizeof($attendancesall))
+                        @php
+                             $totalHourRate = 0;
+                        @endphp
                     @foreach($attendancesall as $attendance)
+                        {{! $hourRate = $attendance->time_difference*$attendance->hourrate  }}
+                        {{! $totalHourRate += $hourRate }}
                         <tr>
                             <td>{{ $attendance->name }}</td>
                             {{--<td>{{ $attendance->status }}</td>--}}
                             {{--<td>{{ $attendance->attendance_time }}</td>--}}
                             <td>{{ $attendance->attendance_date }}</td>
                             <td>{{ $attendance->time_difference }}</td>
-                            <td><b>$</b>{{ $attendance->time_difference*$attendance->hourrate }}</td>
+
+                             <td><b>$</b>{{ $hourRate }}</td>
                         </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="3"><b>Total payment</b></td>
+                        <td><b>$</b>{{ $totalHourRate }}</td>
+                    </tr>
                     @else
                     <tr>
                         <td colspan="4"><center>No attendance records found</center></td>
