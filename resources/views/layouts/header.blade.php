@@ -5,7 +5,7 @@
 <div class="topbar-left">
     <a href="{{route('admin')}}" class="logo">
         <span>
-            <img src="{{ asset('assets/images/opalpay.png') }}" alt="Logo" style="width: 188px;">
+            <img src="{{ asset('assets/images/opalpay.png') }}" alt="Logo" style="width: 100px;">
                 {{--<h1 style="color: white; ">OpalTime Card</h1>--}}
             </span>
         {{--<i>
