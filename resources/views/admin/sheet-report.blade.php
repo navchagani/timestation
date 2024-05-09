@@ -23,8 +23,10 @@
                     <tr>
                         <th>Name</th>
                         <th>Attendance Date</th>
-                        <th>Total Working hours</th>
+                        <th>Action Hours</th>
+                        <th>Pay Rate</th>
                         <th>Total pay</th>
+                        <th>Department</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,13 +44,15 @@
                             {{--<td>{{ $attendance->attendance_time }}</td>--}}
                             <td>{{ $attendance->attendance_date }}</td>
                             <td>{{ $attendance->time_difference }}</td>
-
+                            <td>{{ $attendance->hourrate }}</td>
                              <td><b>$</b>{{ $hourRate }}</td>
+                            <td>{{ $attendance->position }}</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <td colspan="3"><b>Total payment</b></td>
+                        <td colspan="4"><b>Total payment</b></td>
                         <td><b>$</b>{{ $totalHourRate }}</td>
+                        <td></td>
                     </tr>
                     @else
                     <tr>
