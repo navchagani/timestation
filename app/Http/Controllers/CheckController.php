@@ -102,4 +102,8 @@ class CheckController extends Controller
         }
     return view('admin.sheet-report')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall]);
     }
+    public function employeedailyReport()
+    {
+        return view('admin.employee-daily-report')->with(['employees' => Employee::all()]);
+    }
 }
