@@ -112,7 +112,7 @@
                                 @endfor
 
                                 <td>{{$employee->hourrate}}</td>
-                                <td>{{$totalValue}}</td>
+                                <td>${{$totalValue*$employee->hourrate}}</td>
                             </tr>
                         @endforeach
 
