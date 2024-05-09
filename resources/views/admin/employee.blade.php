@@ -58,7 +58,7 @@
                                                         @foreach( $employees as $employee)
 
                                                         <tr>
-                                                            <td>{{$employee->pincard}}</td>
+                                                            <td>{{$employee->pin}}</td>
                                                             <td>{{$employee->title}}</td>
                                                             <td>{{$employee->name}}</td>
                                                             <td>{{$employee->position}}</td>
