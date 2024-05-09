@@ -21,7 +21,7 @@
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Employee Name</th>
                         <th>Attendance Date</th>
                         <th>Action Hours</th>
                         <th>Pay Rate</th>
