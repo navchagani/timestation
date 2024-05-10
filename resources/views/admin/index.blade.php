@@ -203,7 +203,7 @@
                            <div class="card">
                                <div class="card-body" >
 
-                                   <table class="table table-bordered table-sm">
+                                   <table id="example" class="table table-striped" style="width:100%">
                                        <thead>
                                        <tr>
                                            <th data-priority="1">Status</th>
@@ -317,6 +317,7 @@
         });
     }, 5000);
 
+    new DataTable('#example');
 </script>
 <!--Chartist Chart-->
 <script src="{{ URL::asset('plugins/chartist/js/chartist.min.js') }}"></script>
