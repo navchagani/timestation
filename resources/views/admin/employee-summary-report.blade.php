@@ -34,18 +34,25 @@
                                                't1.attendance_date',
                                                't2.name',
                                                't2.position',
-                                                't2.hourrate'
+                                                't2.hourrate',
+                                                DB::raw('TIMESTAMPDIFF(HOUR,
+            (SELECT t3.attendance_time FROM attendances AS t3 WHERE t3.emp_id = t1.emp_id AND t3.attendance_date = t1.attendance_date AND t3.status = "IN" ORDER BY t3.attendance_time LIMIT 1),
+            t1.attendance_time
+        ) AS time_difference')
                                            )
-                                           ->where('t1.status', 'IN')
+                                           ->where('t1.status', 'OUT')
                                            ->where('t1.emp_id', $employee->id)
                                            ->where('t1.attendance_date', $d)
                                            ->orderBy('t1.attendance_date', 'asc')
                                            ->orderBy('t1.attendance_time', 'asc')
                                            ->first();
                                 @endphp
-                            <td>{{ $dailyabsence->attendance_time ?? '' }}</td>
-                            <td>{{ $employee->hourrate ?? '' }}</td>
-                            <td> </td>
+                            <td>{{ $dailyabsence->time_difference ?? '' }}</td>
+                            <td>${{ $employee->hourrate ?? '' }}</td>
+                            <td>@php if (!empty($dailyabsence->time_difference)) {
+                                      echo '$'.$dailyabsence->time_difference * $employee->hourrate;
+                                }
+                                @endphp</td>
                         </tr>
                     @endforeach
                    {{-- @if (sizeof($dailyabsence))
