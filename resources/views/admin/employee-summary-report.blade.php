@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Employee Summary</b></center>
+            <center> <b> Monthly Employee Summary</b></center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -22,7 +22,7 @@
                     @foreach ($employees as $employee)
 
                         <tr>
-                            <td>{{ $d = date('Y-m-d') }}</td>
+                            <td>{{ $d = date('m-d') }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
                             @php
