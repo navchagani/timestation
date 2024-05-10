@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/check', '\App\Http\Controllers\CheckController@index')->name('check');
     Route::get('/sheet-report', '\App\Http\Controllers\CheckController@sheetReport')->name('sheet-report');
     Route::get('/employee-daily', '\App\Http\Controllers\CheckController@employeedailyReport')->name('employee-daily');
+    Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
     Route::post('check-store','\App\Http\Controllers\CheckController@CheckStore')->name('check_store');
     // Fingerprint Devices
     Route::post('/check-duplicate', '\App\Http\Controllers\EmployeeController@checkDuplicate')->name('check-duplicate');
