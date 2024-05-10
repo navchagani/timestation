@@ -45,8 +45,7 @@
                                             </div>
                                             <h6  class="font-16 text-uppercase mt-0 text-white-50" >On Time <br> Percentage</h6>
                                             <h4 class="font-500">{{$data[3]}} %<i class="text-danger ml-2"></i></h4>
-                                            <span class="peity-donut" data-peity='{ "fill": ["#626ed4", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[3]}}/{{count($data)}}</span>
-
+                                            <span class="ti-timer" style="font-size: 71px"></span>
                                         </div>
                                         <div class="pt-2">
                                             <div class="float-right">
@@ -67,8 +66,7 @@
                                             </div>
                                             <h5 class="font-16 text-uppercase mt-0 text-white-50">On Time <br> Today</h5>
                                             <h4 class="font-500">{{$data[1]}} <i class=" text-success ml-2"></i></h4>
-                                            <span class="peity-donut" data-peity='{ "fill": ["#626ed4", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[1]}}/{{count($data)}}</span>
-
+                                            <span class="ti-filter" style="font-size: 71px"></span>
                                         </div>
                                         <div class="pt-2">
                                             <div class="float-right">
