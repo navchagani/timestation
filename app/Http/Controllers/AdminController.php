@@ -19,8 +19,8 @@ class AdminController extends Controller
         $d =date('Y-m-d');
         $totalEmp =  count(Employee::all());
         $AllAttendance = count(Attendance::whereAttendance_date(date("Y-m-d"))->get());
-        $ontimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('1')->get());
-        $latetimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('0')->get());
+        $ontimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('IN')->get());
+        $latetimeEmp = count(Attendance::whereAttendance_date(date("Y-m-d"))->whereStatus('OUT')->get());
         $Empgname = Employee::join('attendances', 'employees.id', '=', 'attendances.emp_id')
             ->whereDate('attendances.attendance_date', '=', date('Y-m-d'))
             ->groupBy('employees.position') // Include 'position' in the group by
