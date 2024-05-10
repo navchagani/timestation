@@ -22,7 +22,7 @@
                     @foreach ($employees as $employee)
 
                         <tr>
-                            <td>{{! $d = date('Y-m-d') }}{{date('M-d') }}</td>
+                            <td>{{! $d = date('Y-m-d') }}{{date('Y-M') }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
                             @php
