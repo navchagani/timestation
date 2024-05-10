@@ -24,7 +24,7 @@
                             <td>{{ $d = date('Y-m-d') }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
-                            {{--@php
+                            @php
                                 $dailyabsence = DB::table('attendances AS t1')
                                            ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
                                            ->select(
@@ -43,7 +43,7 @@
                                            ->first();
                                 @endphp
                             <td> {{ $dailyabsence->status ?? ''}}</td>
-                            <td> {{ $dailyabsence->attendance_time ?? ''}}</td>--}}
+                            <td> {{ $dailyabsence->attendance_time ?? ''}}</td>
                         </tr>
                     @endforeach
                    {{-- @if (sizeof($dailyabsence))
