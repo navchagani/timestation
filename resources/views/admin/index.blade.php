@@ -288,6 +288,7 @@
 
 @section('script')
 <script>
+    new DataTable('#example');
     function refreshDiv() {
         $('.ajax-loading').show();
         $.ajax({
@@ -317,7 +318,6 @@
         });
     }, 5000);
 
-    new DataTable('#example');
 </script>
 <!--Chartist Chart-->
 <script src="{{ URL::asset('plugins/chartist/js/chartist.min.js') }}"></script>
