@@ -34,12 +34,11 @@
                                                't2.name',
                                                't2.position'
                                            )
-                                           ->where('t1.status', "'IN'")
-                                           ->where('t1.emp_id', "'$employee->id'")
-                                           ->where('t1.attendance_date', "'$d'")
+                                           ->where('t1.status', 'IN')
+                                           ->where('t1.emp_id', $employee->id)
+                                           ->where('t1.attendance_date', $d)
                                            ->orderBy('t1.attendance_date', 'asc')
                                            ->orderBy('t1.attendance_time', 'asc')
-                                           ->groupBy('t1.emp_id')
                                            ->first();
                                 @endphp
                             <td> {{ $dailyabsence->status ?? ''}}</td>
