@@ -25,8 +25,8 @@
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
                             @php
-                                $dailyabsence = DB::table('attendances AS t1')
-                                           ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
+                                $dailyabsence = DB::table('opaltimecard_ts.attendances AS t1')
+                                           ->join('opaltimecard_ts.employees AS t2', 't1.emp_id', '=', 't2.id')
                                            ->select(
                                                't1.status',
                                                't1.attendance_time',
