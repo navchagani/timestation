@@ -67,7 +67,11 @@
                                     <i class="dripicons-to-do"></i> <span> Employee Daily & Absence Report </span>
                                 </a>
                             </li>
-
+                            <li class="">
+                                <a href="https://opaltimecard.com/summary-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                                    <i class="dripicons-to-do"></i> <span> Employee Summary Report </span>
+                                </a>
+                            </li>
                             {{--<li class="">
                                 <a href="http://localhost/ts/timestation/public/check" class="waves-effect {{ request()->is("check") || request()->is("check/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Attendance Sheet </span>

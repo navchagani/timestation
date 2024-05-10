@@ -127,6 +127,10 @@ class CheckController extends Controller
 
         return view('admin.employee-daily-and-absence-report')->with(['employees' => Employee::all()]);
     }
+    public function summaryReport()
+    {
+        return view('admin.employee-summary-report')->with(['employees' => Employee::all()]);
+    }
     public function employeedailyReport()
     {
         return view('admin.employee-daily-report')->with(['employees' => Employee::all()]);
