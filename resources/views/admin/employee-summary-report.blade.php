@@ -51,10 +51,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                     @if (!empty($dailyabsence))
-                         @php
-                             $totalValue = 0;
-                         @endphp
+                    @if (!empty($dailyabsence))
+                        @php
+                            $totalValue = 0;
+                        @endphp
                         @foreach($dailyabsence as $attendancesalls)
                             <tr>
                                 <td>{{ $attendancesalls->attendance_date}}</td>
@@ -62,24 +62,31 @@
                                 <td>{{ $attendancesalls->position }}</td>
                                 <td>{{ $attendancesalls->time_difference }}</td>
                                 <td>{{$attendancesalls->hourrate }}</td>
-                                <td>{{ $totalValue += $attendancesalls->time_difference*$attendancesalls->hourrate }}</td>
+                                <td>${{ $attendancesalls->time_difference * $attendancesalls->hourrate }}</td>
                             </tr>
-
+                            @php
+                                $totalValue += $attendancesalls->time_difference * $attendancesalls->hourrate;
+                            @endphp
                         @endforeach
-                        <tr><td colspan="6">
-                            <div class="col-md-2">
-                                <label for="time_out" class="col-sm-6 control-label"><br></label>
-                                <button type="submit" class="btn btn-primary form-control">
-                                    Pay
-                                </button>
-                            </div>
+                        <tr>
+                            <td colspan="5"><strong>Total Value:</strong></td>
+                            <td>${{ $totalValue }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <div class="col-md-2">
+                                    <label for="time_out" class="col-sm-6 control-label"><br></label>
+                                    <button type="submit" class="btn btn-primary form-control">
+                                        Pay Amount ${{$totalValue}}
+                                    </button>
+                                </div>
                             </td>
                         </tr>
-                     @else
-                         <tr>
-                             <td colspan="6"><center>Please select Start - End Date</center></td>
-                         </tr>
-                         @endif
+                    @else
+                        <tr>
+                            <td colspan="6"><center>Please Select Start - End Date</center></td>
+                        </tr>
+                    @endif
                     {{--@foreach ($employees as $employee)
 
                         <tr>
