@@ -69,7 +69,7 @@
                             @endphp
                         @endforeach
                         <tr>
-                            <td colspan="5"><strong>Total Value:</strong></td>
+                            <td colspan="5"><strong>Total Payment Amount:</strong></td>
                             <td>${{ $totalValue }}</td>
                         </tr>
                         <tr>
