@@ -292,7 +292,7 @@
     function refreshDiv() {
         $('.ajax-loading').show();
         $.ajax({
-            url: 'http://localhost/ts/timestation/public/recentActivity',
+            url: 'https://opaltimecard.com/recentActivity',
             success: function (data) {
                 if (data.attendances.length === 0) {
                     // If no records found, display a message
