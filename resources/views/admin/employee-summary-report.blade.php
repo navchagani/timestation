@@ -34,7 +34,7 @@
     </form>
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Monthly Employee Summary</b></center>
+            <center> <b> Employee Payment</b></center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -66,7 +66,15 @@
                             </tr>
 
                         @endforeach
-
+                        <tr><td colspan="6">
+                            <div class="col-md-2">
+                                <label for="time_out" class="col-sm-6 control-label"><br></label>
+                                <button type="submit" class="btn btn-primary form-control">
+                                    Pay
+                                </button>
+                            </div>
+                            </td>
+                        </tr>
                      @else
                          <tr>
                              <td colspan="6"><center>No attendance records found</center></td>
@@ -135,12 +143,12 @@
         </div>
     </div>
 
-    <script>
+   {{-- <script>
         $(function () {
             $('#employee').change(function () {
                 $(this).parents('form').submit();
             });
         });
-    </script>
+    </script>--}}
 @endsection
 
