@@ -75,8 +75,7 @@
                         <tr>
                             <td colspan="6">
                                 <div class="col-md-2">
-                                    <label for="time_out" class="col-sm-6 control-label"><br></label>
-                                    <button type="submit" class="btn btn-primary form-control">
+                                    <button type="submit"  @if($totalValue == 0) disabled @else class="btn btn-primary form-control" @endif>
                                         Pay Amount ${{$totalValue}}
                                     </button>
                                 </div>
