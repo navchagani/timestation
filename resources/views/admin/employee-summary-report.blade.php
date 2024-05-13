@@ -77,7 +77,7 @@
                         </tr>
                      @else
                          <tr>
-                             <td colspan="6"><center>No attendance records found</center></td>
+                             <td colspan="6"><center>Please select Start - End Date</center></td>
                          </tr>
                          @endif
                     {{--@foreach ($employees as $employee)
