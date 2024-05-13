@@ -294,18 +294,24 @@
         $.ajax({
             url: 'https://opaltimecard.com/recentActivity',
             success: function (data) {
-                var bodyData = '';
-                $.each(data.attendances, function (index, attendance) {
-                    bodyData += "<tr>";
-                    bodyData += "<td>" + (attendance.status == 'IN' ? '<span class="badge badge-success badge-pill float-right">IN<span>' : '<span class="badge badge-danger badge-pill float-right">OUT</span>') + "</td><td>" + attendance.name + "</td><td>" + (attendance.status == 'IN' ? 'IN' : 'OUT') + " at " + attendance.attendance_time + " On " + attendance.attendance_date + "</td>";
-                    bodyData += "</tr>";
-                });
+                if (data.attendances.length === 0) {
+                    // If no records found, display a message
+                    $("#bodyData").html('<tr><td colspan="3">No records found</td></tr>');
+                } else {
+                    var bodyData = '';
+                    $.each(data.attendances, function (index, attendance) {
+                        bodyData += "<tr>";
+                        bodyData += "<td>" + (attendance.status == 'IN' ? '<span class="badge badge-success badge-pill float-right">IN<span>' : '<span class="badge badge-danger badge-pill float-right">OUT</span>') + "</td><td>" + attendance.name + "</td><td>" + (attendance.status == 'IN' ? 'IN' : 'OUT') + " at " + attendance.attendance_time + " On " + attendance.attendance_date + "</td>";
+                        bodyData += "</tr>";
+                    });
+                    $("#bodyData").html(bodyData);
+                }
                 $('.ajax-loading').hide();
-                $("#bodyData").html(bodyData);
             },
             error: function (xhr, status, error) {
                 // Handle any errors that occur during the AJAX request
                 console.error(error);
+                // Optionally, you can also show an error message here
             }
         });
     }
