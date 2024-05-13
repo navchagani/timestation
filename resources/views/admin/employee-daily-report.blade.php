@@ -97,7 +97,8 @@
                            $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $check_attds->attendance_time);
                            $existingAttendanceend = DateTime::createFromFormat('H:i:s', $checkattd->attendance_time);
                             $difference = $existingAttendanceTime->diff($existingAttendanceend);
-                            $totalSecondsDifference = $difference->s + $difference->i + $difference->h;
+                            /*$difference->s + $difference->i + */
+                            $totalSecondsDifference = $difference->h;
                                 $totalValue += $totalSecondsDifference;
                                                         @endphp
                                                         <td style="color: blue">{{$difference->h}}</td>
