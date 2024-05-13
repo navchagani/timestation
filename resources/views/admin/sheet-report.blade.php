@@ -56,7 +56,7 @@
                     </tr>
                     @else
                     <tr>
-                        <td colspan="4"><center>No attendance records found</center></td>
+                        <td colspan="6"><center>No attendance records found</center></td>
                     </tr>
                     @endif
                     </tbody>
