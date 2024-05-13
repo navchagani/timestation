@@ -100,7 +100,7 @@
                             $totalSecondsDifference = $difference->s + $difference->i + $difference->h;
                                 $totalValue += $totalSecondsDifference;
                                                         @endphp
-                                                        <td style="color: blue">{{$totalSecondsDifference}}</td>
+                                                        <td style="color: blue">{{$difference->h}}</td>
 
                                                 @endif
                                             @endforeach
