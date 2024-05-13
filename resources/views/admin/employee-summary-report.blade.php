@@ -1,6 +1,37 @@
 @extends('layouts.master')
 @section('content')
-
+    <form method="POST" action="{{ route('filter') }}">
+        @csrf
+    <div class="form-group row">
+            <div class="col-md-3">
+                <label class="required" for="employee">Employee</label>
+                <select class="form-control" name="employee">
+                    <option hidden>Select an employee</option>
+                    @foreach($employees as $employee)
+                        <option value="{{ $employee->id }}" {{ request()->input('employee') == $employee->id ? 'selected' : '' }}>{{ $employee->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        <div class="col-md-3">
+            <label for="time_in" class="col-sm-3 control-label">Start Date</label>
+            <div class="bootstrap-timepicker">
+                <input type="date" class="form-control timepicker" id="start" name="start" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="time_out" class="col-sm-6 control-label">End Date</label>
+            <div class="bootstrap-timepicker">
+                <input type="date" class="form-control timepicker" id="end" name="end" required>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label for="time_out" class="col-sm-6 control-label"><br></label>
+        <button type="submit" class="btn btn-primary form-control">
+            Filter
+        </button>
+        </div>
+    </div>
+    </form>
     <div class="card">
         <div class="card-header bg-success text-white">
             <center> <b> Monthly Employee Summary</b></center>
@@ -16,10 +47,32 @@
                         <th>	Total Hours</th>
                         <th>Hourly Rate</th>
                         <th>	Total Pay</th>
+                      {{--  <th>	Action</th>--}}
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($employees as $employee)
+                     @if (!empty($dailyabsence))
+                         @php
+                             $totalValue = 0;
+                         @endphp
+                        @foreach($dailyabsence as $attendancesalls)
+                            <tr>
+                                <td>{{ $attendancesalls->attendance_date}}</td>
+                                <td>{{ $attendancesalls->name }}</td>
+                                <td>{{ $attendancesalls->position }}</td>
+                                <td>{{ $attendancesalls->time_difference }}</td>
+                                <td>{{$attendancesalls->hourrate }}</td>
+                                <td>{{ $totalValue += $attendancesalls->time_difference*$attendancesalls->hourrate }}</td>
+                            </tr>
+
+                        @endforeach
+
+                     @else
+                         <tr>
+                             <td colspan="5"><center>No attendance records found</center></td>
+                         </tr>
+                         @endif
+                    {{--@foreach ($employees as $employee)
 
                         <tr>
                             <td>{{! $d = date('Y-m-d') }}{{date('Y-M') }}</td>
@@ -53,8 +106,12 @@
                                       echo '$'.$dailyabsence->time_difference * $employee->hourrate;
                                 }
                                 @endphp</td>
+                           --}}{{-- <td>
+                                <form method="POST" action="{{ route('pay') }}">
+
+                                </form></td>--}}{{--
                         </tr>
-                    @endforeach
+                    @endforeach--}}
                    {{-- @if (sizeof($dailyabsence))
 
                         --}}{{--@foreach($dailyabsence as $dailyabsences)

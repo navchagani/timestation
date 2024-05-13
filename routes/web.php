@@ -27,9 +27,12 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/employee-daily', '\App\Http\Controllers\CheckController@employeedailyReport')->name('employee-daily');
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
+    Route::post('/filter', '\App\Http\Controllers\CheckController@filter')->name('filter');
     Route::post('check-store','\App\Http\Controllers\CheckController@CheckStore')->name('check_store');
     // Fingerprint Devices
     Route::post('/check-duplicate', '\App\Http\Controllers\EmployeeController@checkDuplicate')->name('check-duplicate');
+    Route::post('/pay', '\App\Http\Controllers\EmployeeController@pay')->name('pay');
+
     Route::resource('/finger_device', '\App\Http\Controllers\BiometricDeviceController');
     Route::delete('finger_device/destroy', '\App\Http\Controllers\BiometricDeviceController@massDestroy')->name('finger_device.massDestroy');
     Route::get('finger_device/{fingerDevice}/employees/add', '\App\Http\Controllers\BiometricDeviceController@addEmployee')->name('finger_device.add.employee');

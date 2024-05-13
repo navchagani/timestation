@@ -253,6 +253,13 @@ class EmployeeController extends Controller
 
         return redirect()->route('employees.index')->with('success');
     }
+    public function pay(Request $request)
+    {
+        $request['starts'] = $request->starts;
+        $request['end'] = $request->end;
+        $request['emp_id'] = $request->empid;
+        return redirect()->route('admin.employee-summary-report');
+    }
 
     public function checkDuplicate(Request $request)
     {
