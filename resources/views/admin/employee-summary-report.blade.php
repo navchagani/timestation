@@ -69,7 +69,7 @@
 
                      @else
                          <tr>
-                             <td colspan="5"><center>No attendance records found</center></td>
+                             <td colspan="6"><center>No attendance records found</center></td>
                          </tr>
                          @endif
                     {{--@foreach ($employees as $employee)
