@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="wrapper-page">
-        <div class="card overflow-hidden account-card mx-3">
-           
+        <div class="card overflow-hidden account-card mx-4 shadow">
+
             <div class="account-card-content">
                 <img src="{{ asset('assets/images/opalpayfull.png') }}" alt="Logo" class="img-fluid">
                 <form class="form-horizontal m-t-30" method="POST" action="{{ route('login') }}">
