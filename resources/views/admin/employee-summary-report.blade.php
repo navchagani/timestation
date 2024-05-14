@@ -1,5 +1,11 @@
 @extends('layouts.master')
 @section('content')
+    @if (!empty($success))
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong> Success! </strong>{{ $success }}
+        </div>
+    @endif
     <form method="POST" action="{{ route('filter') }}">
         @csrf
     <div class="form-group row">
@@ -75,9 +81,15 @@
                         <tr>
                             <td colspan="6">
                                 <div class="col-md-2">
+                                    <form method="POST" action="{{ route('pay') }}">
+                                        @csrf
+                                        <input type="hidden" name="emp" value="{{$empi}}">
+                                        <input type="hidden" name="sta" value="{{$sta}}">
+                                        <input type="hidden" name="dend" value="{{$dend}}">
                                     <button type="submit"  @if($totalValue == 0) disabled @else class="btn btn-primary form-control" @endif>
                                         Pay Amount ${{$totalValue}}
                                     </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
