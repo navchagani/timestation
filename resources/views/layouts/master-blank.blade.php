@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="assets/images/">
         @include('layouts.head')
   </head>
-    <body class="pb-0" >
+    <body class="pb-0" style="background-image: url({{ URL::asset('assets/images/bg1.jpg') }})">
         @yield('content')
         @include('layouts.footer-script')
         @include('includes.flash')
