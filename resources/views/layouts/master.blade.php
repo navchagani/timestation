@@ -7,6 +7,7 @@
         <title>OpalTime Card</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
+        <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets/images/favicon.png') }}">
         @include('layouts.head')
     </head>
 <body>
