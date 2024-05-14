@@ -62,6 +62,9 @@
                             $totalValue = 0;
                         @endphp
                         @foreach($dailyabsence as $attendancesalls)
+                            @php
+                            $pay = $attendancesalls->pay;
+                            @endphp
                             <tr>
                                 <td>{{ $attendancesalls->attendance_date}}</td>
                                 <td>{{ $attendancesalls->name }}</td>
@@ -80,15 +83,22 @@
                         </tr>
                         <tr>
                             <td colspan="6">
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <form method="POST" action="{{ route('pay') }}">
                                         @csrf
                                         <input type="hidden" name="emp" value="{{$empi}}">
                                         <input type="hidden" name="sta" value="{{$sta}}">
                                         <input type="hidden" name="dend" value="{{$dend}}">
-                                    <button type="submit"  @if($totalValue == 0) disabled @else class="btn btn-primary form-control" @endif>
+
+                                    <button type="submit"  @if($totalValue == 0) disabled @elseif($pay == 1) disabled @else class="btn btn-primary form-control" @endif>
                                         Pay Amount ${{$totalValue}}
                                     </button>
+                                        @if($pay == 1)
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong> Already! </strong>{{ $error }}
+                                            </div>
+                                        @endif
                                     </form>
                                 </div>
                             </td>

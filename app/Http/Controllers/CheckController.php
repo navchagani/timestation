@@ -86,6 +86,7 @@ class CheckController extends Controller
                 't1.status',
                 't1.attendance_time',
                 't1.attendance_date',
+                't1.pay',
                 't2.name',
                 't2.position',
                 't2.hourrate',
@@ -107,7 +108,7 @@ class CheckController extends Controller
         } else {
             $dailyabsence = []; // Set to an empty array instead of 0
         }
-        return view('admin.employee-summary-report')->with(['employees' => Employee::all(),'dailyabsence' => $dailyabsence,'empi' => $empid,'sta' => $start,'dend' => $end]);;
+        return view('admin.employee-summary-report')->with(['employees' => Employee::all(),'dailyabsence' => $dailyabsence,'empi' => $empid,'sta' => $start,'dend' => $end])->withError('Amount pay');
     }
     public function sheetReport(Request $request)
     {
@@ -147,7 +148,7 @@ class CheckController extends Controller
             ->where('attendance_date', '>=', $start) // Filter records with attendance_date greater than or equal to $start
             ->where('attendance_date', '<=', $end)   // Filter records with attendance_date less than or equal to $end
             ->update(['pay' => 1]);
-        return view('admin.employee-summary-report')->with(['employees' => Employee::all()])->withSuccess('Pay Amount');;;
+        return view('admin.employee-summary-report')->with(['employees' => Employee::all()])->withSuccess('Pay Amount');
     }
     public function dailyabsenceReport()
     {
