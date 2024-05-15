@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/summary-reporttwo', '\App\Http\Controllers\CheckController@summaryReportTwo')->name('summary-reporttwo');
     Route::post('/filter', '\App\Http\Controllers\CheckController@filter')->name('filter');
     Route::post('/pay', '\App\Http\Controllers\CheckController@pay')->name('pay');
+    Route::post('/paynow', '\App\Http\Controllers\CheckController@paynow')->name('paynow');
     Route::post('check-store','\App\Http\Controllers\CheckController@CheckStore')->name('check_store');
     // Fingerprint Devices
     Route::post('/check-duplicate', '\App\Http\Controllers\EmployeeController@checkDuplicate')->name('check-duplicate');

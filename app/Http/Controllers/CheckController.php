@@ -150,6 +150,21 @@ class CheckController extends Controller
             ->update(['pay' => 1]);
         return view('admin.employee-summary-report')->with(['employees' => Employee::all()])->withSuccess('Pay Amount');
     }
+    public function paynow(Request $request)
+    {
+        $start = date('Y-m-01');
+        $end = date('Y-m-31');
+        $empid = $request->input('employee_checkbox');
+        // Iterating through the array
+        foreach ($empid as $employee) {
+            DB::table('attendances')
+                ->where('emp_id', $employee)
+                ->where('attendance_date', '>=', $start) // Filter records with attendance_date greater than or equal to $start
+                ->where('attendance_date', '<=', $end)   // Filter records with attendance_date less than or equal to $end
+                ->update(['pay' => 1]);
+        }
+        return view('admin.employee-summary-reporttwo')->with(['employees' => Employee::all()])->withError('Amount pay');
+    }
     public function dailyabsenceReport()
     {
         /*$d =date('Y-m-d');

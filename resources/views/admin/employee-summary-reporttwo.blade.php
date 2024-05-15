@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <form method="POST" action="{{ route('filter') }}">
+    {{--<form method="POST" action="{{ route('filter') }}">
         @csrf
         <div class="form-group row">
             <div class="col-md-3">
@@ -31,7 +31,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form>--}}
     <div class="card">
         <div class="card-header bg-success text-white">
             <center> <b> Employee Daily & Absence</b></center>
@@ -51,13 +51,15 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <form method="POST" action="{{ route('paynow') }}">
+                        @csrf
                     @php
                         $grandTotal = 0; // Initialize grand total outside the loop
                     @endphp
                     @foreach ($employees as $employee)
                         <tr>
-                            <td><input type="checkbox" name="employee_checkbox[]" value="{{ $employee->id }}"></td>
-                            <td>{{ $d = date('M') }}</td>
+                            <td><input type="checkbox" name="employee_checkbox[]" value="{{ $employee->id }}" required></td>
+                            <td>{{ $d = date('Y-M') }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
                             @php
@@ -72,10 +74,6 @@
                                         ->where('attendance_date', $date_picker)
                                         ->get();
 
-                                    $check_leave = \App\Models\Leave::query()
-                                        ->where('emp_id', $employee->id)
-                                        ->where('leave_date', $date_picker)
-                                        ->first();
                                 @endphp
                                 @foreach ($check_attd as $check_attds)
                                     @if ($check_attds->status=='OUT')
@@ -109,19 +107,25 @@
                     <tr>
                         <td colspan="6">
                             <div class="col-md-4">
-                                <form method="POST" action="{{ route('pay') }}">
-                                    @csrf
+
                                    {{-- <input type="hidden" name="emp" value="{{$empi}}">
                                     <input type="hidden" name="sta" value="{{$sta}}">
                                     <input type="hidden" name="dend" value="{{$dend}}">--}}
 
-                                    <button type="submit"  @if($grandTotal == 0) disabled  @else class="btn btn-primary form-control" @endif>
+                                    <button type="submit"  @if($grandTotal == 0) disabled @elseif($checkattd->pay == 1) disabled   @else class="btn btn-primary form-control" @endif>
                                         Pay Amount ${{$grandTotal}}
                                     </button>
-                                </form>
+                                @if($checkattd->pay == 1)
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong> Already! </strong>{{ $error }}
+                                    </div>
+                                @endif
+
                             </div>
                         </td>
                     </tr>
+                    </form>
                     </tbody>
                 </table>
             </div>
