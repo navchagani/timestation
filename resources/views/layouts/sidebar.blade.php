@@ -10,7 +10,7 @@
                             <li class="menu-title">Main</li>
                             <li class="">
                                 <a href="{{route('admin')}}" class="waves-effect {{ request()->is("admin") || request()->is("admin/*") ? "mm active" : "" }}">
-                                    <i class="ti-home"></i><span class="badge badge-primary badge-pill float-right">2</span> <span> Dashboard </span>
+                                    <i class="ti-home"></i><span> Dashboard </span>
                                 </a>
                             </li>
 
@@ -39,18 +39,18 @@
                             </li>
 
 
-                           {{-- <li class="menu-title">Management</li>
+                            <li class="menu-title">Management</li>
 
                             <li class="">
-                                <a href="http://localhost/ts/timestation/public/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="https://opaltimecard.com/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="fab fa-superpowers"></i> <span> Schedule </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://localhost/ts/timestation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="https://opaltimecard.com/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="fas fa-tasks"></i> <span> Assign Task </span>
                                 </a>
-                            </li>--}}
+                            </li>
                             <li class="menu-title">Report</li>
                             <li class="">
                                 <a href="https://opaltimecard.com/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
@@ -70,6 +70,11 @@
                             <li class="">
                                 <a href="https://opaltimecard.com/summary-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Employee Summary Report </span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="https://opaltimecard.com/summary-reporttwo" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                                    <i class="dripicons-to-do"></i> <span> multiple Employee Summary Report </span>
                                 </a>
                             </li>
                             {{--<li class="">

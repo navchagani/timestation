@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/employee-daily', '\App\Http\Controllers\CheckController@employeedailyReport')->name('employee-daily');
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
+    Route::get('/summary-reporttwo', '\App\Http\Controllers\CheckController@summaryReportTwo')->name('summary-reporttwo');
     Route::post('/filter', '\App\Http\Controllers\CheckController@filter')->name('filter');
     Route::post('/pay', '\App\Http\Controllers\CheckController@pay')->name('pay');
     Route::post('check-store','\App\Http\Controllers\CheckController@CheckStore')->name('check_store');
