@@ -8,7 +8,7 @@
 <div class="col-sm-6 text-left" >
      <h4 class="page-title">Dashboard</h4>
      <ol class="breadcrumb">
-         <li class="breadcrumb-item active">Welcome to OpalTime Card</li>
+         <li class="breadcrumb-item active">Welcome to OpalTime Card </li>
      </ol>
 </div>
 @endsection
@@ -203,12 +203,12 @@
                            <div class="card">
                                <div class="card-body" >
 
-                                   <table id="example" class="table table-striped" style="width:100%">
+                                   <table class="display nowrap" style="width:100%">
                                        <thead>
                                        <tr>
-                                           <th data-priority="1">Status</th>
-                                           <th data-priority="2">Name</th>
-                                           <th data-priority="3">Current Day Activities {{$d =date('Y-m-d H:i:s')}}</th>
+                                           <th>Status</th>
+                                           <th>Name</th>
+                                           <th>Current Day Activities {{$d =date('Y-m-d H:i:s')}}</th>
 
                                        </tr>
                                        </thead>
