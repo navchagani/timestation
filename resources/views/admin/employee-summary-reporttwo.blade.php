@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    {{--<form method="POST" action="{{ route('filter') }}">
+    <form method="POST" action="{{ route('filter') }}">
         @csrf
         <div class="form-group row">
             <div class="col-md-3">
@@ -31,7 +31,7 @@
                 </button>
             </div>
         </div>
-    </form>--}}
+    </form>
     <div class="card">
         <div class="card-header bg-success text-white">
             <center> <b> Employee Daily & Absence</b></center>
