@@ -36,6 +36,7 @@
 
 
     </div>
+    <div class="container">
     <!-- Features Section -->
     <section id="features" class="features section">
 
@@ -311,6 +312,7 @@
         </div>
 
     </section><!-- /More Features Section -->
+    </div>
     <!-- end wrapper-page -->
 @endsection
 
