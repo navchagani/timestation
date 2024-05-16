@@ -9,9 +9,13 @@
         <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets/images/favicon.png') }}">
         @include('layouts.head')
   </head>
-    {{$route = Route::current()->getName()}}
+    {{!!$route = Route::current()->getName()}}
+    @if($route == 'login')
+        <body class="pb-0" style="background-image: url({{ URL::asset('assets/images/bg2.jpg') }})">
+        @else
     <body class="pb-0" style="background-image: url({{ URL::asset('assets/images/bg1.jpg') }});background-repeat:no-repeat;background-size:cover">
-        @yield('content')
+    @endif
+    @yield('content')
         @include('layouts.footer-script')
         @include('includes.flash')
     </body>
