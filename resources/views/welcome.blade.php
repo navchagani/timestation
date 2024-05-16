@@ -14,6 +14,29 @@
             @endauth
         </div>
     @endif
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+            <a href="index.html" class="logo d-flex align-items-center me-auto">
+{{--                <img src="assets/img/logo.png" alt="">--}}
+                <h1 class="sitename">QuickStart</h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+
+
+
+                    </li>
+
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+            <a class="btn-getstarted" href="index.html#about">Login</a>
+
+        </div>
+    </header>
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1 data-aos="fade-up" class="">Welcome to <span>Opal Time Card</span></h1>
         <p data-aos="fade-up" data-aos-delay="100" class="">Quickly start your project now and set the stage for success<br></p>
