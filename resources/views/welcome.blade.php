@@ -14,14 +14,9 @@
             @endauth
         </div>
     @endif
-    <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-
             <a class="btn-getstarted" href="{{ route('login') }}">Login</a>
-
         </div>
-    </header>
     <div class="d-flex flex-column justify-content-center align-items-center">
         <h1 data-aos="fade-up" class="">Welcome to <span>Opal Time Card</span></h1>
         <p data-aos="fade-up" data-aos-delay="100" class="">Quickly start your project now and set the stage for success<br></p>
