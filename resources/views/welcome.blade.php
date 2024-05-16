@@ -1,5 +1,5 @@
 @include('layouts.welcome')
-  
+
     <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
         <div class="top-right links color-white">
@@ -15,12 +15,13 @@
         </div>
         @endif
 
-        <div class="content">
-            <div class="title m-b-md">
-                <div class="clockStyle" id="clock">123</div>
-            </div>
+            <div class="wrapper-page">
+                <div class="card overflow-hidden account-card mx-4 shadow">
 
-            
-        </div>
+
+                </div>
+
+
+            </div>
     </div>
 
