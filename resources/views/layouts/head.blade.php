@@ -8,7 +8,7 @@
 <link href="{{ URL::asset('assets/css/metismenu.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ URL::asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/css/main.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/css/aos.css') }}" rel="stylesheet" type="text/css" />
 {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">--}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
 
