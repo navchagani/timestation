@@ -1,34 +1,26 @@
-@extends('layouts.master-blank')
+@include('layouts.welcome')
 
-@section('content')
-    @if (Route::has('login'))
+    <div class="flex-center position-ref full-height">
+        @if (Route::has('login'))
         <div class="top-right links color-white">
             @auth
-                <a href="{{ url('/admin') }}">Admin</a>
+            <a href="{{ url('/admin') }}">Admin</a>
             @else
-                <a style="color: white" href="{{ route('login') }}">Login</a>
+            <a style="color: blue" href="{{ route('login') }}">Login</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
+            @if (Route::has('register'))
+            <a href="{{ route('register') }}">Register</a>
+            @endif
             @endauth
         </div>
-    @endif
-    <div class="wrapper-page">
-        <div class="card overflow-hidden account-card mx-4 shadow">
+        @endif
 
-            <div class="account-card-content">
-                <img src="{{ asset('assets/images/opalpayfull.png') }}" alt="Logo" class="img-fluid">
-
+        <div class="content">
+            <div class="title m-b-md">
+                <div class="clockStyle" id="clock">123</div>
             </div>
+
+
         </div>
-
-
     </div>
-    <!-- end wrapper-page -->
-@endsection
-
-@section('script')
-@endsection
-
 
