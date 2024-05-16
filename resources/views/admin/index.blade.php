@@ -203,8 +203,9 @@
                            <div class="card">
                                <div class="card-body" >
 
-                                   <table class="display nowrap" style="width:100%">
-                                       <thead>
+                                   <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+
+                                   <thead>
                                        <tr>
                                            <th>Status</th>
                                            <th>Name</th>
