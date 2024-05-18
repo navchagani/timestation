@@ -61,7 +61,7 @@
              @endphp
                     @foreach ($employees as $employee)
                         <tr>
-                            <td><input type="checkbox" name="employee_checkbox[]" value="{{ $employee->id }}" required></td>
+                            <td><input type="checkbox" name="employee_checkbox[]" value="{{ $employee->id }}"></td>
                             <td>{{ $d = date('Y-M') }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
