@@ -48,6 +48,8 @@
                         <th>Total Hours</th>
                         <th>Hourly Rate</th>
                         <th>Total Pay</th>
+                        <th>Payment</th>
+                        <th>balance</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,7 +57,8 @@
                         @csrf
                     @php
                         $grandTotal = 0; // Initialize grand total outside the loop
-                    @endphp
+                        $grandTotaltwo = 0;
+             @endphp
                     @foreach ($employees as $employee)
                         <tr>
                             <td><input type="checkbox" name="employee_checkbox[]" value="{{ $employee->id }}" required></td>
@@ -64,6 +67,7 @@
                             <td>{{ $employee->position }}</td>
                             @php
                                 $totalValue = 0;
+                                $totalValuepay =0;
                                 $today = today();
                             @endphp
                             @for ($i = 1; $i < $today->daysInMonth + 1; ++$i)
@@ -83,6 +87,7 @@
                                                 ->where('attendance_date', $date_picker)
                                                 ->where('status', 'IN')
                                                 ->first();
+
                                             $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $check_attds->attendance_time);
                                             $existingAttendanceend = DateTime::createFromFormat('H:i:s', $checkattd->attendance_time);
                                             $difference = $existingAttendanceTime->diff($existingAttendanceend);
@@ -90,19 +95,43 @@
                                             $totalValue += $totalSecondsDifference;
                                         @endphp
                                     @endif
+
+                                            @php
+                                                $checkattd = \App\Models\Attendance::query()
+                                                    ->where('emp_id', $employee->id)
+                                                    ->where('attendance_date', $date_picker)
+                                                     ->where('pay', '1')
+                                                    ->first();
+
+                                                if ($checkattd) {
+
+                                                $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $check_attds->attendance_time);
+                                                $existingAttendanceend = DateTime::createFromFormat('H:i:s', $checkattd->attendance_time);
+                                                $difference = $existingAttendanceTime->diff($existingAttendanceend);
+                                                $totalSecondsDifference = $difference->h;
+                                                $totalValuepay += $totalSecondsDifference;
+
+                                                }
+                                            @endphp
+
                                 @endforeach
                             @endfor
                             <td>{{ $totalValue ?? 0 }}</td>
                             <td>${{ $employee->hourrate }}</td>
-                            <td>${{ $employee->hourrate * $totalValue }}</td>
+                            <td>${{$tp = $employee->hourrate * $totalValue ?? 0 }}</td>
+                            <td>${{$tpb = $employee->hourrate * $totalValuepay ?? 0 }}</td>
+                            <td>${{$tp - $tpb}}</td>
                         </tr>
                         @php
                             $grandTotal += $employee->hourrate * $totalValue; // Calculate the subtotal for each employee and add it to the grand total
+                            $grandTotaltwo += $employee->hourrate * $totalValuepay;
                         @endphp
                     @endforeach
                     <tr>
                         <td colspan="6"><strong>Total Payment Amount:</strong></td>
                         <td>${{ $grandTotal }}</td> <!-- Display the grand total -->
+                        <td>${{ $grandTotaltwo }}</td>
+                        <td>${{ $g = $grandTotal - $grandTotaltwo }}</td>
                     </tr>
                     <tr>
                         <td colspan="6">
@@ -111,11 +140,10 @@
                                    {{-- <input type="hidden" name="emp" value="{{$empi}}">
                                     <input type="hidden" name="sta" value="{{$sta}}">
                                     <input type="hidden" name="dend" value="{{$dend}}">--}}
-
-                                    <button type="submit"  @if($grandTotal == 0) disabled @elseif($checkattd->pay == 1) disabled   @else class="btn btn-primary form-control" @endif>
-                                        Pay Amount ${{$grandTotal}}
+                                    <button type="submit"  @if($grandTotal == 0) disabled @elseif($checkattd !== null && isset($checkattd->pay)== 1) disabled   @else class="btn btn-primary form-control" @endif>
+                                        Pay Amount ${{$g}}
                                     </button>
-                                @if($checkattd->pay == 1)
+                                @if($checkattd !== null && isset($checkattd->pay) == 1)
                                     <div class="alert alert-danger alert-dismissible">
                                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                         <strong> Already! </strong>{{ $error }}
