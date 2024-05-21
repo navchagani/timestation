@@ -41,13 +41,15 @@
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
-                        <th><input type="checkbox" id="checkAll"></th>
+                       {{-- <th><input type="checkbox" id="checkAll"></th>--}}
+                        <th>#</th>
                         <th>Month</th>
                         <th> Name</th>
                         <th>Department</th>
                         <th>Total Hours</th>
                         <th>Hourly Rate</th>
                         <th>Total Pay</th>
+
                         <th>Payment</th>
                         <th>balance</th>
                     </tr>
@@ -61,15 +63,14 @@
              @endphp
                     @foreach ($employees as $employee)
                         <tr>
-                            <td><input type="checkbox" name="employee_checkbox[]" value="{{ $employee->id }}"></td>
-                            <td>{{ $d = date('Y-M') }}</td>
-                            <td>{{ $employee->name }}</td>
-                            <td>{{ $employee->position }}</td>
+                            {{--<td><input type="checkbox" name="employee_checkbox[]" value="{{ $employee->id }}"></td>--}}
                             @php
                                 $totalValue = 0;
                                 $totalValuepay =0;
                                 $today = today();
                             @endphp
+
+
                             @for ($i = 1; $i < $today->daysInMonth + 1; ++$i)
                                 @php
                                     $date_picker = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
@@ -116,9 +117,17 @@
 
                                 @endforeach
                             @endfor
+                            @php
+                                $tpbs = $employee->hourrate * $totalValue ?? 0
+                            @endphp
+                            <td><input type="checkbox" class="employee-checkbox" data-pay="{{$tpbs}}"></td>
+                            <td>{{ $d = date('Y-M') }}</td>
+                            <td>{{ $employee->name }}</td>
+                            <td>{{ $employee->position }}</td>
                             <td>{{ $totalValue ?? 0 }}</td>
                             <td>${{ $employee->hourrate }}</td>
                             <td>${{$tp = $employee->hourrate * $totalValue ?? 0 }}</td>
+                            {{--<td><input type="checkbox" class="employee-checkbox" data-pay="{{$tp}}"></td>--}}
                             <td>${{$tpb = $employee->hourrate * $totalValuepay ?? 0 }}</td>
                             <td>${{$tp - $tpb}}</td>
                         </tr>
@@ -140,8 +149,9 @@
                                    {{-- <input type="hidden" name="emp" value="{{$empi}}">
                                     <input type="hidden" name="sta" value="{{$sta}}">
                                     <input type="hidden" name="dend" value="{{$dend}}">--}}
-                                    <button type="submit"  @if($grandTotal == 0) disabled @elseif($checkattd !== null && isset($checkattd->pay)== 1) disabled   @else class="btn btn-primary form-control" @endif>
-                                        Pay Amount ${{$g}}
+                                    <button type="submit"  @if($grandTotal == 0) disabled @elseif($checkattd !== null && isset($checkattd->pay)== 1) disabled   @else class="btn btn-primary form-control" @endif >
+                                        {{--Pay Amount ${{$g}}--}}
+                                        Total Pay Amount: $<span id="total-pay">0</span>
                                     </button>
                                 @if($checkattd !== null && isset($checkattd->pay) == 1)
                                     <div class="alert alert-danger alert-dismissible">
@@ -167,7 +177,7 @@
             });
         });
     </script>
-    <script>
+    {{--<script>
         document.addEventListener("DOMContentLoaded", function () {
             // Select the "Check All" checkbox
             const checkAllCheckbox = document.getElementById('checkAll');
@@ -201,6 +211,27 @@
                 });
             });
         });
+    </script>--}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.employee-checkbox');
+            const totalPayElement = document.getElementById('total-pay');
+
+            let totalPay = 0;
+
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    const pay = parseFloat(this.dataset.pay);
+                    if (this.checked) {
+                        totalPay += pay;
+                    } else {
+                        totalPay -= pay;
+                    }
+                    totalPayElement.textContent = totalPay.toFixed(2);
+                });
+            });
+        });
     </script>
+
 @endsection
 
