@@ -120,7 +120,7 @@
                             @php
                                 $tpbs = $employee->hourrate * $totalValue ?? 0
                             @endphp
-                            <td><input type="checkbox" class="employee-checkbox" data-pay="{{$tpbs}}"></td>
+                            <td><input type="checkbox" class="employee-checkbox" data-pay="{{$tpbs}}" name="employee_checkbox[]" value="{{ $employee->id }}"></td>
                             <td>{{ $d = date('Y-M') }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
@@ -149,7 +149,8 @@
                                    {{-- <input type="hidden" name="emp" value="{{$empi}}">
                                     <input type="hidden" name="sta" value="{{$sta}}">
                                     <input type="hidden" name="dend" value="{{$dend}}">--}}
-                                    <button type="submit"  @if($grandTotal == 0) disabled @elseif($checkattd !== null && isset($checkattd->pay)== 1) disabled   @else class="btn btn-primary form-control" @endif >
+                                    {{--<button type="submit"  @if($grandTotal == 0) disabled @elseif($checkattd !== null && isset($checkattd->pay)== 1) disabled   @else class="btn btn-primary form-control" @endif >--}}
+                                <button type="submit" id="submit-button" disabled class="btn btn-primary form-control">
                                         {{--Pay Amount ${{$g}}--}}
                                         Total Pay Amount: $<span id="total-pay">0</span>
                                     </button>
@@ -216,6 +217,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const checkboxes = document.querySelectorAll('.employee-checkbox');
             const totalPayElement = document.getElementById('total-pay');
+            const submitButton = document.getElementById('submit-button');
 
             let totalPay = 0;
 
@@ -228,6 +230,9 @@
                         totalPay -= pay;
                     }
                     totalPayElement.textContent = totalPay.toFixed(2);
+
+                    // Enable submit button if total pay amount is greater than 0
+                    submitButton.disabled = totalPay <= 0;
                 });
             });
         });
