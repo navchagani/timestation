@@ -11,7 +11,7 @@
   </head>
     {{!$route = Route::current()->getName()}}
     @if($route == 'login')
-        <body class="pb-0" style="background-image: url({{ URL::asset('assets/images/bg2.jpg') }})">
+        <body class="pb-0" style="background-image: url({{ URL::asset('assets/images/bg2.jpg') }});background-repeat: no-repeat;background-size: cover;">
         @else
     <body class="pb-0" style="background-image: url({{ URL::asset('assets/images/bg1.jpg') }});background-repeat:no-repeat;background-size:cover">
     @endif
