@@ -39,7 +39,7 @@
                             </li>
 
 
-                            <li class="menu-title">Management</li>
+                           {{-- <li class="menu-title">Management</li>
 
                             <li class="">
                                 <a href="https://opaltimecard.com/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
@@ -50,7 +50,7 @@
                                 <a href="https://opaltimecard.com/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="fas fa-tasks"></i> <span> Assign Task </span>
                                 </a>
-                            </li>
+                            </li>--}}
                             <li class="menu-title">Report</li>
                             <li class="">
                                 <a href="https://opaltimecard.com/report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
