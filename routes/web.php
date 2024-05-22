@@ -24,8 +24,10 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::resource('/assigntask', '\App\Http\Controllers\AssigntaskController');
     Route::get('/check', '\App\Http\Controllers\CheckController@index')->name('check');
     Route::get('/sheet-report', '\App\Http\Controllers\CheckController@sheetReport')->name('sheet-report');
+    Route::get('/report', '\App\Http\Controllers\ReportController@index')->name('report');
     Route::get('/employee-daily', '\App\Http\Controllers\CheckController@employeedailyReport')->name('employee-daily');
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
+    Route::get('/current-employee', '\App\Http\Controllers\CheckController@currentemployee')->name('current-employee');
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
     Route::get('/summary-reporttwo', '\App\Http\Controllers\CheckController@summaryReportTwo')->name('summary-reporttwo');
     Route::post('/filter', '\App\Http\Controllers\CheckController@filter')->name('filter');
@@ -50,7 +52,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['middleware' => ['auth']], function () {
-    // Route::get('/home', 'HomeController@index')->name('home');
+     Route::get('/home', '\App\Http\Controllers\HomeController@index')->name('home');
     //Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 });
 
