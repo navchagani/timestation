@@ -61,15 +61,15 @@
                                         <tr>
                                             <td> {{ $departments->id }} </td>
                                             <td> {{ $departments->name }} </td>
-                                            <td> </td>
+
                                             <td>
 
                                                 <a href="#edit{{ $departments->name }}" data-toggle="modal"
                                                     class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i>
                                                     Edit</a>
-                                                <a href="#delete{{ $departments->name }}" data-toggle="modal"
+                                               {{-- <a href="#delete{{ $departments->name }}" data-toggle="modal"
                                                     class="btn btn-danger btn-sm delete btn-flat"><i
-                                                        class='fa fa-trash'></i> Delete</a>
+                                                        class='fa fa-trash'></i> Delete</a>--}}
 
                                             </td>
                                         </tr>
