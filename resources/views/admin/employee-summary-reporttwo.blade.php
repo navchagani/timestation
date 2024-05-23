@@ -24,7 +24,7 @@
                 </select>
             </div>
             <div class="col-md-2">
-                <label for="time_in" class="col-sm-3 control-label">Start Date</label>
+                <label for="time_in" class="col-sm-6 control-label">Start Date</label>
                 <div class="bootstrap-timepicker">
                     <input type="date" class="form-control timepicker" id="start" name="start" required>
                 </div>
