@@ -9,7 +9,7 @@
             <form>
                 <div class="form-group col-md-3">
                     <label class="required" for="employee">Select Reports</label>
-                    <select class="form-control" name="employee" id="employee">
+                    <select class="form-control" name="employeereport" id="employee">
                         <option hidden>Please Select</option>
                         <option value="/sheet-report">Employee Report</option>
                         <option value="/current-employee">Current Employee Report</option>
@@ -27,7 +27,7 @@
 
     <script>
         $(function () {
-            $('#employee').change(function () {
+            $('#employeereport').change(function () {
                 var selectedOption = $(this).val();
                 if (selectedOption) {
                     window.location.href = selectedOption;

@@ -8,6 +8,19 @@
         <div class="card-body">
             <form>
                 <div class="form-group col-md-3">
+                    <label class="required" for="employee">Select Reports</label>
+                    <select class="form-control" name="employeereport" id="employee">
+                        <option hidden>Please Select</option>
+                        <option value="/sheet-report">Employee Report</option>
+                        <option value="/current-employee">Current Employee Report</option>
+                        <option value="/employee-daily">Employee Daily Report</option>
+                        <option value="/daily-absence">Employee Daily & Absence Report</option>
+                        <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
+                    </select>
+                </div>
+            </form>
+            <form>
+                <div class="form-group col-md-3">
                     <label class="required" for="employee">Employee</label>
                     <select class="form-control" name="employee" id="employee">
                         <option hidden>Select an employee</option>
@@ -69,6 +82,14 @@
         $(function () {
             $('#employee').change(function () {
                 $(this).parents('form').submit();
+            });
+        });
+        $(function () {
+            $('#employeereport').change(function () {
+                var selectedOption = $(this).val();
+                if (selectedOption) {
+                    window.location.href = selectedOption;
+                }
             });
         });
     </script>
