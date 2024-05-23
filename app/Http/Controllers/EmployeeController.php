@@ -22,7 +22,7 @@ class EmployeeController extends Controller
     public function index()
     {
 
-        return view('admin.employee')->with(['employees'=> Employee::all(), 'schedules'=>Schedule::all(),'departments'=>Department::all()]);
+        return view('admin.employee')->with(['employees'=> Employee::all(), 'schedules'=>Schedule::all(),'departments'=>Department::all(),'departments'=>Department::all()]);
     }
     public function getCustomers(){
         $blogs = Employee::latest()->paginate(10);
@@ -101,6 +101,7 @@ class EmployeeController extends Controller
 
         ], 200);
     }
+
     public function markattandence(Request $request)
     {
         $valueToCheck = $request->input('pin');
@@ -253,13 +254,7 @@ class EmployeeController extends Controller
 
         return redirect()->route('employees.index')->with('success');
     }
-    public function pay(Request $request)
-    {
-        $request['starts'] = $request->starts;
-        $request['end'] = $request->end;
-        $request['emp_id'] = $request->empid;
-        return redirect()->route('admin.employee-summary-report');
-    }
+
 
     public function checkDuplicate(Request $request)
     {

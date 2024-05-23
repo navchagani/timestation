@@ -14,6 +14,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/users', '\App\Http\Controllers\UsersController@index');
     Route::resource('/employees', '\App\Http\Controllers\EmployeeController');
     Route::get('/attendance', '\App\Http\Controllers\AttendanceController@index')->name('attendance');
+    Route::post('/empattandenceupdate', '\App\Http\Controllers\AttendanceController@empattandenceupdate')->name('empattandenceupdate');
     Route::get('/latetime', '\App\Http\Controllers\AttendanceController@indexLatetime')->name('indexLatetime');
     Route::get('/leave', '\App\Http\Controllers\LeaveController@index')->name('leave');
     Route::get('/overtime', '\App\Http\Controllers\LeaveController@indexOvertime')->name('indexOvertime');

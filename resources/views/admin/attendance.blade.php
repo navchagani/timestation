@@ -31,7 +31,7 @@
                     <div class="table-rep-plugin">
                         <div class="table-responsive mb-0" data-pattern="priority-columns">
                             <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        
+
                                 <thead>
                                     <tr>
                                         <th data-priority="1">Date</th>
@@ -54,7 +54,7 @@
                                             <td>{{ $attendance->emp_id }}</td>
                                             <td>{{ $attendance->employee->name }}</td>
                                             <td>{{ $attendance->attendance_time }}
-                                                @if ($attendance->status == 1)
+                                                @if ($attendance->status == 'IN')
                                                     <span class="badge badge-primary badge-pill float-right">On Time</span>
                                                 @else
                                                     <span class="badge badge-danger badge-pill float-right">Late</span>
@@ -83,7 +83,7 @@
 @section('script')
     <!-- Responsive-table-->
     <script src="{{ URL::asset('plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js') }}"></script>
- 
+
 @endsection
 
 @section('script')

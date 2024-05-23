@@ -48,9 +48,9 @@
                                                         <th data-priority="2">Name</th>
                                                         <th data-priority="3">Department</th>
                                                         <th data-priority="4">Email</th>
-                                                        <th data-priority="4">Employee type</th>
+                                                        {{--<th data-priority="4">Employee type</th>--}}
                                                         <th data-priority="6">Employee QR</th>
-                                                       {{-- <th data-priority="7">Actions</th>--}}
+                                                       <th data-priority="7">Actions</th>
 
                                                     </tr>
                                                     </thead>
@@ -63,12 +63,12 @@
                                                             <td>{{$employee->name}}</td>
                                                             <td>{{$employee->position}}</td>
                                                             <td>{{$employee->email}}</td>
-                                                            <td>{{$employee->type}}</td>
+                                                            {{--<td>{{$employee->type}}</td>--}}
                                                             <td>  {!! QrCode::size(100)->generate($employee->pin) !!}</td>
-                                                           {{-- <td>
+                                                           <td>
                                                                 <a href="#edit{{$employee->name}}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i> Edit</a>
-                                                                <a href="#delete{{$employee->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>
-                                                            </td>--}}
+                                                           {{--      <a href="#delete{{$employee->name}}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i> Delete</a>--}}
+                                                            </td>
                                                         </tr>
                                                         @endforeach
 
