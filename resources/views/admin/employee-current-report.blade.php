@@ -3,9 +3,24 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Employee Daily & Absence</b></center>
+            <center> <b> Current Employee </b></center>
         </div>
         <div class="card-body">
+            <div class="form-group row">
+                <form>
+                    <div class="col-md-12">
+                        <label class="required" for="employee">Select Reports</label>
+                        <select class="form-control" name="employeereport" id="employeereport">
+                            <option hidden>Please Select</option>
+                            <option value="/sheet-report">Employee Report</option>
+                            <option value="/current-employee">Current Employee Report</option>
+                            <option value="/employee-daily">Employee Daily Report</option>
+                            <option value="/daily-absence">Employee Daily & Absence Report</option>
+                            <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
             <div class="table-responsive">
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
@@ -70,6 +85,14 @@
         $(function () {
             $('#employee').change(function () {
                 $(this).parents('form').submit();
+            });
+        });
+        $(function () {
+            $('#employeereport').change(function () {
+                var selectedOption = $(this).val();
+                if (selectedOption) {
+                    window.location.href = selectedOption;
+                }
             });
         });
     </script>
