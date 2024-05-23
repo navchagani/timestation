@@ -6,8 +6,9 @@
             <center> <b>Salary calculated to hourly based</b></center>
         </div>
         <div class="card-body">
+            <div class="form-group row">
             <form>
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                     <label class="required" for="employee">Select Reports</label>
                     <select class="form-control" name="employeereport" id="employeereport">
                         <option hidden>Please Select</option>
@@ -20,7 +21,7 @@
                 </div>
             </form>
             <form>
-                <div class="form-group col-md-3">
+                <div class="col-md-3">
                     <label class="required" for="employee">Employee</label>
                     <select class="form-control" name="employee" id="employee">
                         <option hidden>Select an employee</option>
@@ -30,6 +31,7 @@
                     </select>
                 </div>
             </form>
+            </div>
             <div class="table-responsive">
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
