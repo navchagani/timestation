@@ -3,7 +3,18 @@
     <form method="POST" action="{{ route('filter') }}">
         @csrf
         <div class="form-group row">
-            <div class="col-md-3">
+            <div class="col-md-2">
+                <label class="required" for="employee">Select Reports</label>
+                <select class="form-control" name="employeereport" id="employeereport">
+                    <option hidden>Please Select</option>
+                    <option value="/sheet-report">Employee Report</option>
+                    <option value="/current-employee">Current Employee Report</option>
+                    <option value="/employee-daily">Employee Daily Report</option>
+                    <option value="/daily-absence">Employee Daily & Absence Report</option>
+                    <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
+                </select>
+            </div>
+            <div class="col-md-2">
                 <label class="required" for="employee">Employee</label>
                 <select class="form-control" name="employee">
                     <option hidden>Select an employee</option>
@@ -12,13 +23,13 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label for="time_in" class="col-sm-3 control-label">Start Date</label>
                 <div class="bootstrap-timepicker">
                     <input type="date" class="form-control timepicker" id="start" name="start" required>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label for="time_out" class="col-sm-6 control-label">End Date</label>
                 <div class="bootstrap-timepicker">
                     <input type="date" class="form-control timepicker" id="end" name="end" required>
@@ -234,6 +245,14 @@
                     // Enable submit button if total pay amount is greater than 0
                     submitButton.disabled = totalPay <= 0;
                 });
+            });
+        });
+        $(function () {
+            $('#employeereport').change(function () {
+                var selectedOption = $(this).val();
+                if (selectedOption) {
+                    window.location.href = selectedOption;
+                }
             });
         });
     </script>
