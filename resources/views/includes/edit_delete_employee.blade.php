@@ -148,7 +148,8 @@
                                             </div>
 
                                             <div class="form-row">
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-4">
+                                                    <label for="position">Department : </label>
                                                 <select class="form-control" id="position" name="position">
                                                     <option value="" selected> {{ $employee->position }}</option>
                                                     {{-- @foreach($departments as $department)
@@ -158,6 +159,7 @@
                                                 </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
+                                                    <label for="position">Deduction : </label>
                                                 <select class="form-control" name="deduction">
                                                     <option value="0" selected>Auto</option>
                                                     <option value="0">None</option>
@@ -180,6 +182,7 @@
                                                 </select>
                                                 </div>
                                                 <div class="form-group col-md-4">
+                                                    <label for="position">Type : </label>
                                                     <select class="form-control" name="type">
                                                         <option value="0" selected>None</option>
                                                         <option value="1">Lunch</option>
