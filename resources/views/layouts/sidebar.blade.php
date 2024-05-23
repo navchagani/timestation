@@ -39,15 +39,15 @@
                             </li>
 
 
-                           {{-- <li class="menu-title">Management</li>
+                            {{--<li class="menu-title">Management</li>
 
                             <li class="">
-                                <a href="https://opaltimecard.com/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="fab fa-superpowers"></i> <span> Schedule </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="https://opaltimecard.com/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/assigntask" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
                                     <i class="fas fa-tasks"></i> <span> Assign Task </span>
                                 </a>
                             </li>--}}
@@ -57,32 +57,27 @@
                                     <i class="dripicons-to-do"></i> <span> Report </span>
                                 </a>
                             </li>
-                            <li class="">
-                                <a href="https://opaltimecard.com/current-employee" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
-                                    <i class="dripicons-to-do"></i> <span>Current Employee Status </span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="https://opaltimecard.com/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                            {{--   <li class="">
+                                <a href="http://localhost/ts/timestation/public/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Employee Report </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="https://opaltimecard.com/employee-daily" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/employee-daily" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Employee Daily Report </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="https://opaltimecard.com/daily-absence" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/daily-absence" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Employee Daily & Absence Report </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="https://opaltimecard.com/summary-reporttwo" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                                <a href="http://localhost/ts/timestation/public/summary-reporttwo" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Multiple Employee Summary Report </span>
                                 </a>
                             </li>
-                         {{--   <li class="">
+                         <li class="">
                                 <a href="http://localhost/ts/timestation/public/summary-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Employee Summary Report </span>
                                 </a>
