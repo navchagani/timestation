@@ -30,7 +30,7 @@
             $('#employee').change(function () {
                 var selectedOption = $(this).val();
                 if (selectedOption) {
-                    window.open(selectedOption);
+                    window.location.href = selectedOption;
                 }
             });
         });
