@@ -57,7 +57,8 @@
                                     <i class="dripicons-to-do"></i> <span> Report </span>
                                 </a>
                             </li>
-                            {{--   <li class="">
+
+                           {{-- <li class="">
                                 <a href="http://localhost/ts/timestation/public/sheet-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Employee Report </span>
                                 </a>
@@ -76,8 +77,13 @@
                                 <a href="http://localhost/ts/timestation/public/summary-reporttwo" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Multiple Employee Summary Report </span>
                                 </a>
+                            </li>--}}
+                            <li class="">
+                                <a href="https://opaltimecard.com/admin" class="waves-effect {{ request()->is("setting") || request()->is("setting/*") ? "mm active" : "" }}">
+                                    <i class="fas fa-tools"></i> <span> Setting </span>
+                                </a>
                             </li>
-                         <li class="">
+                         {{--   <li class="">
                                 <a href="http://localhost/ts/timestation/public/summary-report" class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                                     <i class="dripicons-to-do"></i> <span> Employee Summary Report </span>
                                 </a>
