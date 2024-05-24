@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b>Reports</b></center>
+            <center> <b>Administrator List Reports</b></center>
         </div>
         <div class="card-body">
             <form>
