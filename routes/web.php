@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/recentActivity', '\App\Http\Controllers\AdminController@recentActivity');
     Route::resource('/schedule', '\App\Http\Controllers\ScheduleController');
     Route::resource('/department', '\App\Http\Controllers\DepartmentController');
+    Route::resource('/business-setting', '\App\Http\Controllers\BusinessSettingController');
     Route::resource('/assigntask', '\App\Http\Controllers\AssigntaskController');
     Route::get('/check', '\App\Http\Controllers\CheckController@index')->name('check');
     Route::get('/sheet-report', '\App\Http\Controllers\CheckController@sheetReport')->name('sheet-report');

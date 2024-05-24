@@ -13,10 +13,10 @@ class DepartmentController extends Controller
     {
         $Empgname = Employee::join('attendances', 'employees.id', '=', 'attendances.emp_id')
             ->join('department', 'employees.position', '=', 'department.name')
-            ->groupBy('employees.position','department.type','department.id','department.reporting','department.timededuction','department.assign') // Include 'position' in the group by
+            ->groupBy('department.id','employees.position', 'department.type', 'department.reporting', 'department.timededuction', 'department.assign')
             ->selectRaw('employees.position as position')
             ->selectRaw('department.type as type')
-            ->selectRaw('department.id as did')// Use the alias 't2' for the department table
+            ->selectRaw('department.id as did')
             ->selectRaw('department.reporting as reporting')
             ->selectRaw('department.timededuction as timededuction')
             ->selectRaw('department.assign as assign')
