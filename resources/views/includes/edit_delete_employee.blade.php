@@ -54,7 +54,10 @@
                     </div>--}}
 
             </div>
+
             <div class="modal-footer">
+                <a href="#addmanual{{ $employee->name }}" class="btn btn-primary btn-lg" data-toggle="modal"><i class="mdi mdi-plus mr-2"></i>Create Manual Punch</a>
+
                 <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i
                         class="fa fa-close"></i> Close</button>
                 <button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i>
@@ -220,9 +223,110 @@
                 @endif
                 </tbody>
             </table>
+            <div class="modal fade" id="addmanual{{ $employee->name }}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header " style="align-items: center">
+
+                            <h4 class="modal-title "><span class="employee_id">Create Manual Punch &rarr; {{$employee->name}}</span></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" method="POST" action="{{ route('addempattandenceupdate') }}">
+                                @csrf
+                                <input type="hidden" name="emp_id" value="{{$employee->id}}">
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="position">Time In:	 </label>
+                                        <input type="time" class="form-control" name="starttime"/>
+                        </div>
+                        <div class="form-group col-md-4">
+                                        <label for="position">ON: </label>
+                                        {{--{{ Form::time('time', \Carbon\Carbon::now()->timezone('Europe/Brussels')->format('H:i'), ['class' => 'form-control']) }}--}}
+                                        <input type="date"  name="indateemp"  class="form-control" />
+
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="position">Time OUT:	 </label>
+                                        <input type="time"  name="endtime" class="form-control"/>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="position">ON : </label>
+                                        {{--{{ Form::time('time', \Carbon\Carbon::now()->timezone('Europe/Brussels')->format('H:i'), ['class' => 'form-control']) }}--}}
+                                        <input type="date"  name="enddateemp"   class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="position">Department : </label>
+                                        <select class="form-control" id="position" name="position">
+                                            <option value="" selected> {{ $employee->position }}</option>
+                                            {{-- @foreach($departments as $department)
+                                                 <option value="{{$department->name}}">{{$department->name}}</option>
+                                             @endforeach--}}
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="position">Deduction : </label>
+                                        <select class="form-control" name="deduction">
+                                            <option value="0" selected>Auto</option>
+                                            <option value="0">None</option>
+                                            <option value="15">15 Minutes</option>
+                                            <option value="30">30 Minutes</option>
+                                            <option value="45">45 Minutes</option>
+                                            <option value="60">1 Hour</option>
+                                            <option value="120">2 Hours</option>
+                                            <option value="180">3 Hours</option>
+                                            <option value="240">4 Hours</option>
+                                            <option value="300">5 Hours</option>
+                                            <option value="360">6 Hours</option>
+                                            <option value="420">7 Hours</option>
+                                            <option value="480">8 Hours</option>
+                                            <option value="540">9 Hours</option>
+                                            <option value="600">10 Hours</option>
+                                            <option value="660">11 Hours</option>
+                                            <option value="720">12 Hours</option>
+                                            <option value="-2">Custom</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="position">Type : </label>
+                                        <select class="form-control" name="type">
+                                            <option value="0" selected>None</option>
+                                            <option value="1">Lunch</option>
+                                            <option value="2">Break</option>
+                                            <option value="3">Leave</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="position">Note: </label>
+                                        <textarea name="note" rows="4" cols="50">
+                                               </textarea>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i
+                                    class="fa fa-close"></i> Close</button>
+                            <button type="submit" class="btn btn-success btn-flat"><i class="fa fa-save"></i> Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+
 
 <!-- Delete -->
 

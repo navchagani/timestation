@@ -24,7 +24,6 @@ class AttendanceController extends Controller
     {
         return view('admin.latetime')->with(['latetimes' => Latetime::all()]);
     }
-
     public function empattandenceupdate(Request $request)
     {
         $inid = $request->input('inid');
@@ -45,6 +44,39 @@ class AttendanceController extends Controller
             ->where('id', $outid)
             ->update(['attendance_time' => $endtime,'attendance_date' => $enddateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);
         flash()->success('Success','Addandence Record has been Updated successfully !');
+        return redirect()->route('employees.index')->with('success');
+    }
+    public function addempattandenceupdate(Request $request)
+    {
+        $emp_id = $request->input('emp_id');
+        $starttime = $request->input('starttime');
+        $indateemp = $request->input('indateemp');
+        $endtime = $request->input('endtime');
+        $enddateemp = $request->input('enddateemp');
+        $position = $request->input('position');
+        $deduction = $request->input('deduction');
+        $type = $request->input('type');
+        $note = $request->input('note');
+
+
+        $attendance = new Attendance;
+        $attendance->emp_id = $emp_id;
+        $attendance->attendance_time = $starttime;
+        $attendance->attendance_date = $indateemp;
+        $attendance->deduction = $deduction;
+        $attendance->type = $type;
+        $attendance->note = $note;
+        $attendance->status = 1; // Set status to 0 for check-in
+        $attendance->save();
+        $attendance->emp_id = $emp_id;
+        $attendance->attendance_time = $endtime;
+        $attendance->attendance_date = $enddateemp;
+        $attendance->deduction = $deduction;
+        $attendance->type = $type;
+        $attendance->note = $note;
+        $attendance->status = 0; // Set status to 0 for check-in
+        $attendance->save();
+        flash()->success('Success','Addandence Record has been add successfully !');
         return redirect()->route('employees.index')->with('success');
 
     }
