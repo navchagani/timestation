@@ -49,31 +49,46 @@
 
                                 <thead>
                                     <tr>
-                                        <th data-priority="1">ID</th>
-                                        <th data-priority="2">Name</th>
-                                        <th data-priority="5">Action</th>
+                                        <th data-priority="5">Edit</th>
+                                        <th data-priority="2">Department Name</th>
+                                        <th data-priority="2">Type</th>
+                                        <th data-priority="2">Employees	</th>
+                                        <th data-priority="2">IN</th>
+                                        <th data-priority="2">OUT</th>
+                                        <th data-priority="2">Membership</th>
+
 
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($department as $departments)
+                                @if ($empgnams->isEmpty())
+                                    <tr>
+                                        <td colspan="5"><center>No attendance records found</center></td>
+                                    </tr>
+                                @else
+                                    @foreach ($empgnams as $empgname)
                                         <tr>
-                                            <td> {{ $departments->id }} </td>
-                                            <td> {{ $departments->name }} </td>
-
                                             <td>
 
-                                                <a href="#edit{{ $departments->name }}" data-toggle="modal"
-                                                    class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i>
+                                                <a href="#edit{{ $empgname['did'] }}" data-toggle="modal"
+                                                   class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i>
                                                     Edit</a>
-                                               {{-- <a href="#delete{{ $departments->name }}" data-toggle="modal"
-                                                    class="btn btn-danger btn-sm delete btn-flat"><i
-                                                        class='fa fa-trash'></i> Delete</a>--}}
+                                                {{-- <a href="#delete{{ $empgname['did'] }}" data-toggle="modal"
+                                                     class="btn btn-danger btn-sm delete btn-flat"><i
+                                                         class='fa fa-trash'></i> Delete</a>--}}
 
                                             </td>
+                                            <td>{{ $empgname['position'] }}</td>
+                                            <td>{{ $empgname['type'] }}</td>
+                                            <td>{{ $empgname['count'] }}</td>
+                                            <td>{{ $empgname['ine'] }}</td>
+                                            <td>{{ $empgname['oute'] }}</td>
+                                            <td><a href="#">Members</a></td>
                                         </tr>
                                     @endforeach
+                                @endif
+
 
 
                                 </tbody>
@@ -85,7 +100,7 @@
         </div> <!-- end col -->
     </div> <!-- end row -->
 
-    @foreach ($department as $departments)
+    @foreach ($empgnams as $empgname)
         @include('includes.edit_delete_department')
     @endforeach
 
