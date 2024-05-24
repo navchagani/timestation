@@ -33,6 +33,15 @@ class ReportController extends Controller
     }
     public function attendancecounter()
     {
-        return view('admin.attendance-counter')->with(['employees'=> Employee::all()]);
+        $start = $request['start'] ?? 2024-05-05;
+        $end = $request['end'] ?? 2024-05-10;
+        return view('admin.attendance-counter')->with(['employees'=> Employee::all(),'start' => $start,'end' => $end]);
+    }
+    public function filters(Request $request)
+    {
+        $start = $request['start'];
+        $end = $request['end'];
+        $empid = $request['employee'];
+        return view('admin.attendance-counter')->with(['employees'=> Employee::all(),'start' => $start,'end' => $end]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <form method="POST" action="{{ route('filter') }}">
+    <form method="POST" action="{{ route('filters') }}">
         @csrf
         <div class="form-group row">
             <div class="col-md-2">
@@ -16,6 +16,7 @@
                     <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                 </select>
             </div>
+
             <div class="col-md-2">
                 <label class="required" for="employee">Select Employee:</label>
                 <select class="form-control" name="employee">
@@ -43,8 +44,9 @@
                     Filter
                 </button>
             </div>
+            </form>
         </div>
-    </form>
+
     <div class="card">
         <div class="card-header bg-success text-white">
             <center> <b> Attendance Counter</b></center>
