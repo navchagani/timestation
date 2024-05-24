@@ -7,6 +7,7 @@
                 <label class="required" for="employee">Select Reports</label>
                 <select class="form-control" name="employeereport" id="employeereport">
                     <option hidden>Please Select</option>
+                    <option value="/administrator-list">Administrator list</option>
                     <option value="/sheet-report">Employee Report</option>
                     <option value="/current-employee">Current Employee Report</option>
                     <option value="/employee-daily">Employee Daily Report</option>

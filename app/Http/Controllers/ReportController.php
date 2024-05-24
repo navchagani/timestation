@@ -25,4 +25,8 @@ class ReportController extends Controller
     {
         return view('admin.report');
     }
+    public function administrator()
+    {
+        return view('admin.administratorlist');
+    }
 }
