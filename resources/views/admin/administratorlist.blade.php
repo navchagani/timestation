@@ -21,7 +21,37 @@
                 </div>
             </form>
             <div class="table-responsive">
+                <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th> Name</th>
+                        <th>eMail</th>
+                        <th>Departments</th>
+                        <th>Permissions</th>
+                        <th>Date Created</th>
+                        <th>Last Login</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
+                        @foreach($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email  }}</td>
+                                <td>[ALL]</td>
+                                <td>[FULL]</td>
+                                <td>{{ $user->created_at }}</td>
+                                <td>{{ $user->updated_at }}</td>
+                            </tr>
+                        @endforeach
+
+                    @else
+                        <tr>
+                            <td colspan="6"><center>No attendance records found</center></td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

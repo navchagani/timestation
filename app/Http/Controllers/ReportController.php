@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -27,6 +28,6 @@ class ReportController extends Controller
     }
     public function administrator()
     {
-        return view('admin.administratorlist');
+        return view('admin.administratorlist')->with(['users'=> User::all()]);
     }
 }
