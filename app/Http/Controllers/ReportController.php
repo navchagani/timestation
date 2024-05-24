@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -29,5 +30,9 @@ class ReportController extends Controller
     public function administrator()
     {
         return view('admin.administratorlist')->with(['users'=> User::all()]);
+    }
+    public function attendancecounter()
+    {
+        return view('admin.attendance-counter')->with(['employees'=> Employee::all()]);
     }
 }
