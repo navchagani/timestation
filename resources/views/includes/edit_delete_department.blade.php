@@ -12,13 +12,39 @@
                 <form class="form-horizontal" method="POST" action="{{ route('department.update', $empgname['position'] ) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="did" value="{{$empgname['did']}}">
                     <div class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Name</label>
-
-
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $empgname['position'] }}"
-                            required>
-
+                        <label for="name">Department Name:</label>
+                        <input type="text" class="form-control" placeholder="Enter Department Name" id="name" name="name"
+                               required value="{{ $empgname['position'] }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Department Type:</label>
+                        <select class="form-control" name="DepartmentType" id="DepartmentType" style="margin-left:0px;">
+                            <option selected>{{ $empgname['type'] }}</option>
+                            <option value="Class">Class</option>
+                            <option value="Client">Client</option>
+                            <option value="Department" >Department</option>
+                            <option value="Group">Group</option>
+                            <option value="Job">Job</option>
+                            <option value="Job-Site">Job-Site</option>
+                            <option value="Location">Location</option>
+                            <option value="Office">Office</option>
+                            <option value="Project">Project</option>
+                            <option value="Task">Task</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Reporting :    </label>
+                        <input type="checkbox" name="reporting" value="1" @if($empgname['reporting'] == 1) checked @endif> Exclude from Reports
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Automatic Time Deduction :    </label>
+                        <input type="checkbox" name="deduction" value="1" @if($empgname['timededuction'] == 1) checked @endif> Use Company Settings
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Assign to All :     </label>
+                        <input type="checkbox" name="assign" value="1" @if($empgname['assign'] == 1) checked @endif> Assign to All Employees
                     </div>
 
 

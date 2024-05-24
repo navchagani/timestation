@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\Department;
 use App\Http\Requests\DepartmentEmp;
 use App\Models\Employee;
@@ -13,10 +13,13 @@ class DepartmentController extends Controller
     {
         $Empgname = Employee::join('attendances', 'employees.id', '=', 'attendances.emp_id')
             ->join('department', 'employees.position', '=', 'department.name')
-            ->groupBy('employees.position','department.type','department.id') // Include 'position' in the group by
+            ->groupBy('employees.position','department.type','department.id','department.reporting','department.timededuction','department.assign') // Include 'position' in the group by
             ->selectRaw('employees.position as position')
             ->selectRaw('department.type as type')
             ->selectRaw('department.id as did')// Use the alias 't2' for the department table
+            ->selectRaw('department.reporting as reporting')
+            ->selectRaw('department.timededuction as timededuction')
+            ->selectRaw('department.assign as assign')
             ->selectRaw('count(DISTINCT employees.id) as count')
             ->selectRaw('SUM(CASE WHEN attendances.status = "IN" THEN 1 ELSE 0 END) as ine')
             ->selectRaw('SUM(CASE WHEN attendances.status = "OUT" THEN 1 ELSE 0 END) as oute')
@@ -44,13 +47,10 @@ class DepartmentController extends Controller
 
     public function update(DepartmentEmp $request, Department $department)
     {
-        /*$request['time_in'] = str_split($request->time_in, 5)[0];
-        $request['time_out'] = str_split($request->time_out, 5)[0];
 
-        $request->validated();*/
-
-        $department->name = $request->name;
-        $department->save();
+        DB::table('department')
+            ->where('id', $request->did)
+            ->update(['name' => $request->name,'type' => $request->DepartmentType,'reporting' => $request->reporting ?? 0,'timededuction' => $request->deduction ?? 0,'assign' => $request->assign ?? 0]);
         flash()->success('Success','department has been Updated successfully !');
         return redirect()->route('department.index');
 
