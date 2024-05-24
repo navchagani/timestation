@@ -3,11 +3,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title"><b><span class="employee_id">Edit Department</span></b></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
 
             </div>
-            <h4 class="modal-title"><b><span class="employee_id">Edit Department</span></b></h4>
             <div class="modal-body text-left">
                 <form class="form-horizontal" method="POST" action="{{ route('department.update', $empgname['position'] ) }}">
                     @csrf
