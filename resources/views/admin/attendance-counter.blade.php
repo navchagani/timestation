@@ -21,7 +21,7 @@
                 <label class="required" for="employee">Select Employee:</label>
                 <select class="form-control" name="employee">
                     <option hidden>Select an employee</option>
-                    @foreach($employees as $employee)
+                    @foreach($employeesa as $employee)
                         <option value="{{ $employee->id }}" {{ request()->input('employee') == $employee->id ? 'selected' : '' }}>{{ $employee->name }}</option>
                     @endforeach
                 </select>
@@ -75,7 +75,7 @@
                                                     ->where('emp_id', $employee->id)
                                                     ->where('attendance_date', '>=', $start) // Filter records with attendance_date greater than or equal to $start
                                                     ->where('attendance_date', '<=', $end)
-                                                    ->selectRaw('count(DISTINCT emp_id) as count')
+                                                    ->selectRaw('count(emp_id) as count')
                                                     ->first();
                             @endphp
                             <td> {{ $check_attd->count }}</td>
