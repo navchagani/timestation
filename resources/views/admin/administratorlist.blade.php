@@ -33,7 +33,7 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    @if (sizeof($users))
                         @foreach($users as $user)
                             <tr>
                                 <td>{{ $user->name }}</td>
@@ -47,7 +47,7 @@
 
                     @else
                         <tr>
-                            <td colspan="6"><center>No attendance records found</center></td>
+                            <td colspan="6"><center>No Administrator List records found</center></td>
                         </tr>
                     @endif
                     </tbody>
