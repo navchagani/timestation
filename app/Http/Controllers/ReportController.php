@@ -118,4 +118,9 @@ class ReportController extends Controller
         return view('admin.employee-daily-report')->with(['employeesa' => Employee::all(),'employees' => $employee,'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
 
     }
+
+    public function currentemployee()
+    {
+        return view('admin.employee-current-report')->with(['employees' => Employee::all()]);
+    }
 }

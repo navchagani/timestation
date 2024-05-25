@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Current Employee </b></center>
+            <center> <b> Current Employee Status</b></center>
         </div>
         <div class="card-body">
             <div class="form-group row">
@@ -29,7 +29,8 @@
                     <thead>
                     <tr>
                         <th> Name</th>
-                        <th>Department</th>
+                        <th>	Primary Department	</th>
+                        <th>	Current  Department	</th>
                         <th>Status</th>
                         <th>Date / Time</th>
                     </tr>
@@ -39,6 +40,7 @@
 
                         <tr>
                             <td>{{ $employee->name }}</td>
+                            <td>{{ $employee->position }}</td>
                             <td>{{ $employee->position }}</td>
                             @php
                                 $dailyabsence = DB::table('attendances AS t1')
