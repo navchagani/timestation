@@ -69,8 +69,9 @@
 
                         <tr>
                             <td>{{ $employee->name }}</td>
-                            <td>{{ $employee->position }}</td>
                             <td>{{ $employee->title }}</td>
+                            <td>{{ $employee->position }}</td>
+
                             @php
 
                                 $check_attd = \App\Models\Attendance::query()
