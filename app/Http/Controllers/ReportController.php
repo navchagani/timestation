@@ -101,6 +101,21 @@ class ReportController extends Controller
         $start = $request['start'] ?? date("Y-m-05");
         $end = $request['end'] ?? date("Y-m-10");
         $empid = $request['employee'] ?? [];
+
         return view('admin.employee-daily-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
+    }
+    public function filterempattendance(Request $request)
+    {
+        // Default start and end dates
+        $start = $request['start'];
+        $end = $request['end'];
+        $empid = $request->input('employee');
+        if ($empid == 'Select an employee') {
+            $employee = Employee::all();
+        } else {
+            $employee = Employee::where('id', $empid)->get();
+        }
+        return view('admin.employee-daily-report')->with(['employeesa' => Employee::all(),'employees' => $employee,'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
+
     }
 }

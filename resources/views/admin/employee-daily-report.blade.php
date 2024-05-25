@@ -6,7 +6,7 @@
             <center> <b> Employee Daily Summary </b> </center>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('filterattendance') }}">
+            <form method="POST" action="{{ route('filterempattendance') }}">
                 @csrf
                 <div class="form-group row">
                     <div class="col-md-2">
