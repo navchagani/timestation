@@ -51,7 +51,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Attendance Counter</b></center>
+            <center> <b> Attendance list</b></center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
