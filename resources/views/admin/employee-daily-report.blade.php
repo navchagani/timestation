@@ -6,9 +6,10 @@
             <center> <b> Employee Daily Summary </b> </center>
         </div>
         <div class="card-body">
-            <div class="form-group row">
-                <form>
-                    <div class="col-md-12">
+            <form method="POST" action="{{ route('filterattendance') }}">
+                @csrf
+                <div class="form-group row">
+                    <div class="col-md-2">
                         <label class="required" for="employee">Select Reports</label>
                         <select class="form-control" name="employeereport" id="employeereport">
                             <option hidden>Please Select</option>
@@ -22,7 +23,36 @@
                             <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                         </select>
                     </div>
-                </form>
+
+                    <div class="col-md-2">
+
+                        <label class="required" for="employee">Select Employee:</label>
+                        <select class="form-control" name="employee">
+                            <option hidden>Select an employee</option>
+                            @foreach($employeesa as $employee)
+                                <option value="{{ $employee->id }}" {{ $empid == $employee->id  ? 'selected' : '' }}>{{ $employee->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="time_in" class="col-sm-6 control-label">Start Date</label>
+                        <div class="bootstrap-timepicker">
+                            <input type="date" class="form-control timepicker" id="start" name="start" value="{{$start}}" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="time_out" class="col-sm-6 control-label">End Date</label>
+                        <div class="bootstrap-timepicker">
+                            <input type="date" class="form-control timepicker" id="end" name="end" value="{{$end}}" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="time_out" class="col-sm-6 control-label"><br></label>
+                        <button type="submit" class="btn btn-primary form-control">
+                            Run Report
+                        </button>
+                    </div>
+            </form>
             </div>
             <div class="table-responsive">
                 <table class="table table-sm" id="printTable">
@@ -33,12 +63,16 @@
                             <th>	Department	</th>
 
                             @php
-                                $today = today();
-                                $dates = [];
+                                use Carbon\Carbon;
+                                    $ps= $start;
+                                    $pe= $end;
+                                    $start = Carbon::create($start);
+                                    $end = Carbon::create($end); // Adjust the end date as needed
+                                    $dates = [];
 
-                                for ($i = 1; $i < $today->daysInMonth + 1; ++$i) {
-                                    $dates[] = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('m/d');
-                                }
+                                    for ($date = $start; $date->lte($end); $date->addDay()) {
+                                        $dates[] = $date->format('m/d');
+                                    }
 
                             @endphp
                             @foreach ($dates as $date)
@@ -72,66 +106,64 @@
                                {{-- <td>{{ $employee->id }}</td>--}}
 
 
-
-
-
                                 @php
+                                    // Define the start and end dates
+                                     $start = Carbon::create($ps);
+                                    $end = Carbon::create($pe); // Adjust the end date as needed
                                     $totalValue = 0;
                                 @endphp
-                                @for ($i = 1; $i < $today->daysInMonth + 1; ++$i)
 
-
+                                @for ($date = $start->copy(); $date->lte($end); $date->addDay())
                                     @php
+                                        $date_picker = $date->format('Y-m-d');
 
-                                        $date_picker = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
-
+                                        // Query attendance for the current date
                                         $check_attd = \App\Models\Attendance::query()
                                             ->where('emp_id', $employee->id)
                                             ->where('attendance_date', $date_picker)
                                             ->get();
 
+                                        // Query leave for the current date
                                         $check_leave = \App\Models\Leave::query()
                                             ->where('emp_id', $employee->id)
                                             ->where('leave_date', $date_picker)
                                             ->first();
-
                                     @endphp
+                                    @if ($check_attd->isNotEmpty())
                                     <td>
                                         <table>
                                             <tr>
-                                           {{-- {{dd($check_attd)}}--}}
+                                                @foreach ($check_attd as $check_attds)
 
-                                            @foreach ($check_attd as $check_attds)
-                                                @if ($check_attds->status=='IN')
-
-                                                @endif
-                                                @if ($check_attds->status=='OUT')
+                                                    @if ($check_attds->status == 'OUT')
                                                         @php
                                                             $checkattd = \App\Models\Attendance::query()
                                                                 ->where('emp_id', $employee->id)
                                                                 ->where('attendance_date', $date_picker)
                                                                 ->where('status', 'IN')
                                                                 ->first();
-                           $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $check_attds->attendance_time);
-                           $existingAttendanceend = DateTime::createFromFormat('H:i:s', $checkattd->attendance_time);
-                            $difference = $existingAttendanceTime->diff($existingAttendanceend);
-                            /*$difference->s + $difference->i + */
-                            $totalSecondsDifference = $difference->h;
-                                $totalValue += $totalSecondsDifference;
+                                                            if ($checkattd) {
+                                                                $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $check_attds->attendance_time);
+                                                                $existingAttendanceEnd = DateTime::createFromFormat('H:i:s', $checkattd->attendance_time);
+                                                                $difference = $existingAttendanceTime->diff($existingAttendanceEnd);
+                                                                $totalSecondsDifference = $difference->h + ($difference->i / 60) + ($difference->s / 3600);
+                                                                $totalValue += $totalSecondsDifference;
+                                                            }
                                                         @endphp
-                                                        <td style="color: blue">{{$difference->h}}</td>
+                                                        <td>{{$difference->h }}:00</td>
+                                                    @endif
 
-                                                @endif
-                                            @endforeach
+                                                @endforeach
                                             </tr>
-
                                         </table>
                                     </td>
-
+                                    @else
+                                        <td>00:00</td>
+                                    @endif
                                 @endfor
 
-                                <td>{{$employee->hourrate}}</td>
-                                <td>${{$totalValue*$employee->hourrate}}</td>
+                                <td>{{ $employee->hourrate }}</td>
+                                <td>${{ number_format($totalValue * $employee->hourrate) }}</td>
                             </tr>
                         @endforeach
 

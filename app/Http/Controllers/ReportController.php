@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -96,6 +97,10 @@ class ReportController extends Controller
     }
     public function employeedailyReport()
     {
-        return view('admin.employee-daily-report')->with(['employees' => Employee::all(),'attendancesall' => []]);
+
+        $start = $request['start'] ?? date("Y-m-05");
+        $end = $request['end'] ?? date("Y-m-10");
+        $empid = $request['employee'] ?? [];
+        return view('admin.employee-daily-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
     }
 }
