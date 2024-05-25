@@ -53,7 +53,7 @@
                     </li>--}}
                     <li class="menu-title">Report</li>
                     <li class="">
-                        <a href=" {{route('sheet-report')}} " class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
+                        <a href=" {{route('report')}} " class="waves-effect {{ request()->is("sheet-report") || request()->is("sheet-report/*") ? "mm active" : "" }}">
                             <i class="dripicons-to-do"></i> <span> Report </span>
                         </a>
                     </li>
