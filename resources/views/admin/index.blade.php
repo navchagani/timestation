@@ -295,7 +295,7 @@
         function refreshDiv() {
             $('.ajax-loading').show();
             $.ajax({
-                url: {{url('/recentActivity')}},
+                url: '{{url('/recentActivity')}}',
                 success: function (data) {
                     if (data.attendances.length === 0) {
                         // If no records found, display a message
