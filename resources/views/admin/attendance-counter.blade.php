@@ -18,24 +18,25 @@
             </div>
 
             <div class="col-md-2">
+
                 <label class="required" for="employee">Select Employee:</label>
                 <select class="form-control" name="employee">
                     <option hidden>Select an employee</option>
                     @foreach($employeesa as $employee)
-                        <option value="{{ $employee->id }}" {{ request()->input('employee') == $employee->id ? 'selected' : '' }}>{{ $employee->name }}</option>
+                        <option value="{{ $employee->id }}" {{ $empid == $employee->id  ? 'selected' : '' }}>{{ $employee->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-2">
                 <label for="time_in" class="col-sm-6 control-label">Start Date</label>
                 <div class="bootstrap-timepicker">
-                    <input type="date" class="form-control timepicker" id="start" name="start" required>
+                    <input type="date" class="form-control timepicker" id="start" name="start" value="{{$start}}" required>
                 </div>
             </div>
             <div class="col-md-2">
                 <label for="time_out" class="col-sm-6 control-label">End Date</label>
                 <div class="bootstrap-timepicker">
-                    <input type="date" class="form-control timepicker" id="end" name="end" required>
+                    <input type="date" class="form-control timepicker" id="end" name="end" value="{{$end}}" required>
                 </div>
             </div>
             <div class="col-md-2">
@@ -69,8 +70,7 @@
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
                             @php
-                                $start = date('2024-05-01');
-                                $end = date('2024-05-05');
+
                                     $check_attd = \App\Models\Attendance::query()
                                                     ->where('emp_id', $employee->id)
                                                     ->where('attendance_date', '>=', $start) // Filter records with attendance_date greater than or equal to $start
