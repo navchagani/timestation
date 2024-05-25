@@ -121,6 +121,7 @@ class ReportController extends Controller
 
     public function currentemployee()
     {
-        return view('admin.employee-current-report')->with(['employees' => Employee::all()]);
+        $empid = $request['employee'] ?? [];
+        return view('admin.employee-current-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'empid' => $empid]);
     }
 }

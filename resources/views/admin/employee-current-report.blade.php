@@ -6,23 +6,44 @@
             <center> <b> Current Employee Status</b></center>
         </div>
         <div class="card-body">
+        <form method="POST" action="{{ route('filterempattendance') }}">
+            @csrf
             <div class="form-group row">
-                <form>
-                    <div class="col-md-12">
-                        <label class="required" for="employee">Select Reports</label>
-                        <select class="form-control" name="employeereport" id="employeereport">
-                            <option hidden>Please Select</option>
-                            <option value="/administrator-list">Administrator list</option>
-                            <option value="/attendance-counter">Attendance Counter</option>
-                            <option value="/attendance-list">Attendance Only</option>
-                            <option value="/sheet-report">Employee Report</option>
-                            <option value="/current-employee">Current Employee Report</option>
-                            <option value="/employee-daily">Employee Daily Summary</option>
-                            <option value="/daily-absence">Employee Daily & Absence Report</option>
-                            <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
-                        </select>
-                    </div>
-                </form>
+                <div class="col-md-2">
+                    <label class="required" for="employee">Select Reports</label>
+                    <select class="form-control" name="employeereport" id="employeereport">
+                        <option hidden>Please Select</option>
+                        <option value="/administrator-list">Administrator list</option>
+                        <option value="/attendance-counter">Attendance Counter</option>
+                        <option value="/attendance-list">Attendance Only</option>
+                        <option value="/sheet-report">Employee Report</option>
+                        <option value="/current-employee">Current Employee Report</option>
+                        <option value="/employee-daily">Employee Daily Summary</option>
+                        <option value="/daily-absence">Employee Daily & Absence Report</option>
+                        <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+
+                    <label class="required" for="employee">Select Employee:</label>
+                    <select class="form-control" name="employee">
+                        <option hidden>Select an employee</option>
+                        @foreach($employeesa as $employee)
+                            <option value="{{ $employee->id }}" {{ $empid == $employee->id  ? 'selected' : '' }}>{{ $employee->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="time_out" class="col-sm-6 control-label"><br></label>
+                    <button type="submit" class="btn btn-primary form-control">
+                        Run Report
+                    </button>
+                </div>
+        </form>
+
+
             </div>
             <div class="table-responsive">
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -52,15 +73,17 @@
                                                't2.name',
                                                't2.position'
                                            )
-                                           //->where('t1.status', 'IN')
                                            ->where('t1.emp_id', $employee->id)
-                                           ->where('t1.attendance_date', date('Y-m-d'))
-                                           ->orderBy('t1.attendance_date', 'asc')
-                                           ->orderBy('t1.attendance_time', 'desc')
-                                           ->first();
+                                           ->where('t1.attendance_date', '>=', '2024-05-01')
+                                           ->where('t1.attendance_date', '<=', '2024-05-31')
+                                           //->whereRaw('MONTH(t1.attendance_date) = MONTH(CURDATE()) AND YEAR(t1.attendance_date) = YEAR(CURDATE())')
+                                          // ->orderBy('t1.attendance_date', 'desc')
+                                            //->orderBy('t1.attendance_time', 'asc')
+                                            //->take(1)
+                                            ->first();
                                 @endphp
-                            <td> {{ $dailyabsence->status ?? ''}}</td>
-                            <td> {{ $dailyabsence->attendance_date ?? '' }} {{ $dailyabsence->attendance_time ?? ''}}</td>
+                            <td> {{ $dailyabsence->status ?? 'N/A'}}</td>
+                            <td> {{ $dailyabsence->attendance_date ?? 'N/A'}} {{ $dailyabsence->attendance_time ?? ''}}</td>
                         </tr>
                     @endforeach
                    {{-- @if (sizeof($dailyabsence))
