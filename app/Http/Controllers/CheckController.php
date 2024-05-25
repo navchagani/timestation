@@ -207,10 +207,7 @@ class CheckController extends Controller
         return view('admin.employee-summary-reporttwo')->with(['employees' => Employee::all()])->withError('Amount pay');
 
     }
-    public function employeedailyReport()
-    {
-        return view('admin.employee-daily-report')->with(['employees' => Employee::all(),'attendancesall' => []]);
-    }
+
 
 
 }

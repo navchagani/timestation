@@ -34,10 +34,10 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::post('/filters', '\App\Http\Controllers\ReportController@filters')->name('filters');
     Route::get('/attendance-list', '\App\Http\Controllers\ReportController@attendancelist')->name('attendance-list');
     Route::post('/filterattendance', '\App\Http\Controllers\ReportController@filterattendance')->name('filterattendance');
+    Route::get('/employee-daily', '\App\Http\Controllers\ReportController@employeedailyReport')->name('employee-daily');
 
 
 
-    Route::get('/employee-daily', '\App\Http\Controllers\CheckController@employeedailyReport')->name('employee-daily');
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
     Route::get('/current-employee', '\App\Http\Controllers\CheckController@currentemployee')->name('current-employee');
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::post('/filter', '\App\Http\Controllers\CheckController@filter')->name('filter');
     Route::post('/pay', '\App\Http\Controllers\CheckController@pay')->name('pay');
     Route::post('/paynow', '\App\Http\Controllers\CheckController@paynow')->name('paynow');
-    Route::post('check-store','\App\Http\Controllers\CheckController@CheckStore')->name('check_store');
+    Route::post('check-store','\App\Http\Cemployee-dailyontrollers\CheckController@CheckStore')->name('check_store');
     // Fingerprint Devices
     Route::post('/check-duplicate', '\App\Http\Controllers\EmployeeController@checkDuplicate')->name('check-duplicate');
     Route::resource('/finger_device', '\App\Http\Controllers\BiometricDeviceController');

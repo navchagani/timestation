@@ -94,4 +94,8 @@ class ReportController extends Controller
             'empid' => $empid
         ]);
     }
+    public function employeedailyReport()
+    {
+        return view('admin.employee-daily-report')->with(['employees' => Employee::all(),'attendancesall' => []]);
+    }
 }
