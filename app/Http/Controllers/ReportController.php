@@ -71,4 +71,27 @@ class ReportController extends Controller
         $empid = $request['employee'] ?? [];
         return view('admin.attendancelist')->with(['employeesa'=> Employee::all(),'employees'=> Employee::all(),'start' => $start,'end' => $end,'empid' => $empid]);
     }
+    public function filterattendance(Request $request)
+    {
+        // Default start and end dates
+        $start = $request['start'];
+        $end = $request['end'];
+        $empid = $request->input('employee');
+
+        // Retrieve employees based on empid
+        if ($empid == 'Select an employee') {
+            $employee = Employee::all();
+        } else {
+            $employee = Employee::where('id', $empid)->get();
+        }
+
+        // Pass data to the view
+        return view('admin.attendancelist')->with([
+            'employeesa' => Employee::all(),
+            'employees' => $employee,
+            'start' => $start,
+            'end' => $end,
+            'empid' => $empid
+        ]);
+    }
 }

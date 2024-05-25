@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/attendance-counter', '\App\Http\Controllers\ReportController@attendancecounter')->name('attendance-counter');
     Route::post('/filters', '\App\Http\Controllers\ReportController@filters')->name('filters');
     Route::get('/attendance-list', '\App\Http\Controllers\ReportController@attendancelist')->name('attendance-list');
+    Route::post('/filterattendance', '\App\Http\Controllers\ReportController@filterattendance')->name('filterattendance');
+
+
 
     Route::get('/employee-daily', '\App\Http\Controllers\CheckController@employeedailyReport')->name('employee-daily');
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
