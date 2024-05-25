@@ -42,7 +42,7 @@
             <div class="col-md-2">
                 <label for="time_out" class="col-sm-6 control-label"><br></label>
                 <button type="submit" class="btn btn-primary form-control">
-                    Filter
+                    Run Report
                 </button>
             </div>
             </form>
