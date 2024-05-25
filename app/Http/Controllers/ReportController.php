@@ -69,6 +69,6 @@ class ReportController extends Controller
         $start = $request['start'] ?? '2024-05-05';
         $end = $request['end'] ?? '2024-05-10';
         $empid = $request['employee'] ?? [];
-        return view('admin.attendance-list')->with(['employeesa'=> Employee::all(),'employees'=> Employee::all(),'start' => $start,'end' => $end,'empid' => $empid]);
+        return view('admin.attendancelist')->with(['employeesa'=> Employee::all(),'employees'=> Employee::all(),'start' => $start,'end' => $end,'empid' => $empid]);
     }
 }
