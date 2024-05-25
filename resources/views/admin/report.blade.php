@@ -13,7 +13,7 @@
                         <option hidden>Please Select</option>
                         <option value="/administrator-list">Administrator list</option>
                         <option value="/attendance-counter">Attendance Counter</option>
-                        <option value="/attendance-list">Attendance list</option>
+                        <option value="/attendance-list">Attendance Only</option>
                         <option value="/sheet-report">Employee Report</option>
                         <option value="/current-employee">Current Employee Report</option>
                         <option value="/employee-daily">Employee Daily Report</option>

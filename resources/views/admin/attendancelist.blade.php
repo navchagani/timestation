@@ -9,7 +9,7 @@
                     <option hidden>Please Select</option>
                     <option value="/administrator-list">Administrator list</option>
                     <option value="/attendance-counter">Attendance Counter</option>
-                    <option value="/attendance-list">Attendance list</option>
+                    <option value="/attendance-list">Attendance Only</option>
                     <option value="/sheet-report">Employee Report</option>
                     <option value="/current-employee">Current Employee Report</option>
                     <option value="/employee-daily">Employee Daily Summary</option>
@@ -51,7 +51,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Attendance list</b></center>
+            <center> <b> Attendance Only</b></center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
