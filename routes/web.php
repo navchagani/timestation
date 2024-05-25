@@ -27,10 +27,13 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::resource('/assigntask', '\App\Http\Controllers\AssigntaskController');
     Route::get('/check', '\App\Http\Controllers\CheckController@index')->name('check');
     Route::get('/sheet-report', '\App\Http\Controllers\CheckController@sheetReport')->name('sheet-report');
+    //Report
     Route::get('/report', '\App\Http\Controllers\ReportController@index')->name('report');
     Route::get('/administrator-list', '\App\Http\Controllers\ReportController@administrator')->name('administrator-list');
     Route::get('/attendance-counter', '\App\Http\Controllers\ReportController@attendancecounter')->name('attendance-counter');
     Route::post('/filters', '\App\Http\Controllers\ReportController@filters')->name('filters');
+    Route::get('/attendance-list', '\App\Http\Controllers\ReportController@attendancelist')->name('attendance-list');
+
     Route::get('/employee-daily', '\App\Http\Controllers\CheckController@employeedailyReport')->name('employee-daily');
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
     Route::get('/current-employee', '\App\Http\Controllers\CheckController@currentemployee')->name('current-employee');

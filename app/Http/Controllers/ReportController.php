@@ -31,6 +31,7 @@ class ReportController extends Controller
     {
         return view('admin.administratorlist')->with(['users'=> User::all()]);
     }
+    //Attendance Counter s
     public function attendancecounter()
     {
         $start = $request['start'] ?? '2024-05-05';
@@ -60,5 +61,14 @@ class ReportController extends Controller
             'end' => $end,
             'empid' => $empid
         ]);
+    }
+    //Attendance Counter e
+    //Attendance list s
+    public function attendancelist()
+    {
+        $start = $request['start'] ?? '2024-05-05';
+        $end = $request['end'] ?? '2024-05-10';
+        $empid = $request['employee'] ?? [];
+        return view('admin.attendance-list')->with(['employeesa'=> Employee::all(),'employees'=> Employee::all(),'start' => $start,'end' => $end,'empid' => $empid]);
     }
 }
