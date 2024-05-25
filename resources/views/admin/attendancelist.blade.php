@@ -61,7 +61,7 @@
                         <th>Employee</th>
                         <th>Title</th>
                         <th>Departments</th>
-                        <th>Check-Ins</th>
+                        <th>Check-In</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -75,13 +75,17 @@
                             @php
 
                                 $check_attd = \App\Models\Attendance::query()
-                                                ->where('emp_id', $employee->id)
-                                                ->where('attendance_date', '>=', $start) // Filter records with attendance_date greater than or equal to $start
-                                                ->where('attendance_date', '<=', $end)
-                                                ->selectRaw('count(emp_id) as count')
-                                                ->first();
+                                ->where('emp_id', $employee->id)
+                                ->whereBetween('attendance_date', [$start, $end]) // More concise way to filter between dates
+                                ->select('attendance_date', 'attendance_time') // Use select instead of selectRaw
+                                ->first();
                             @endphp
-                            <td> {{ $check_attd->count }}</td>
+                            {{--  @foreach ($check_attd as $check_attds)--}}
+                            @if($check_attd)
+                                <td>{{ $check_attd->attendance_date }} {{ $check_attd->attendance_time }}</td>
+                            @else
+                                <td style="color: red;">Absent</td>
+                            @endif  {{--@endforeach--}}
                         </tr>
                     @endforeach
                     </tbody>
