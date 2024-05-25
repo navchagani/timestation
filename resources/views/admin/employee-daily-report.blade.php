@@ -133,7 +133,6 @@
                                     <td>
                                         <table>
                                             <tr>
-                                                {{$difference=''}}
                                                 @foreach ($check_attd as $check_attds)
 
                                                     @if ($check_attds->status == 'OUT')
@@ -147,11 +146,12 @@
                                                                 $existingAttendanceTime = DateTime::createFromFormat('H:i:s', $check_attds->attendance_time);
                                                                 $existingAttendanceEnd = DateTime::createFromFormat('H:i:s', $checkattd->attendance_time);
                                                                 $difference = $existingAttendanceTime->diff($existingAttendanceEnd);
-                                                                $totalSecondsDifference = $difference->h + ($difference->i / 60) + ($difference->s / 3600);
+                                                                //$totalSecondsDifference = $difference->h + ($difference->i / 60) + ($difference->s / 3600);
+                                                                $totalSecondsDifference = $difference->h;
                                                                 $totalValue += $totalSecondsDifference;
                                                             }
                                                         @endphp
-                                                        <td>{{$difference->h }}:00</td>
+                                                        <td>{{$totalSecondsDifference }}:00</td>
                                                     @endif
 
                                                 @endforeach
