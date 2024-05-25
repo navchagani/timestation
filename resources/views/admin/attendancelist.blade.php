@@ -59,8 +59,8 @@
                     <thead>
                     <tr>
                         <th>Employee</th>
+                        <th>Title</th>
                         <th>Departments</th>
-                        <th>Days In</th>
                         <th>Check-Ins</th>
                     </tr>
                     </thead>
@@ -70,6 +70,7 @@
                         <tr>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
+                            <td>{{ $employee->title }}</td>
                             @php
 
                                 $check_attd = \App\Models\Attendance::query()
@@ -79,7 +80,6 @@
                                                 ->selectRaw('count(emp_id) as count')
                                                 ->first();
                             @endphp
-                            <td> {{ $check_attd->count }}</td>
                             <td> {{ $check_attd->count }}</td>
                         </tr>
                     @endforeach
