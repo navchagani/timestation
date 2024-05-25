@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
     <div class="col-sm-6 text-left" >
-        <h4 class="page-title">Dashboard</h4>
+        <h4 class="page-title">Account Home</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Welcome to OpalTime Card </li>
         </ol>
@@ -295,7 +295,7 @@
         function refreshDiv() {
             $('.ajax-loading').show();
             $.ajax({
-                url: 'https://opaltimecard.com/recentActivity',
+                url: {{url('/recentActivity')}},
                 success: function (data) {
                     if (data.attendances.length === 0) {
                         // If no records found, display a message
