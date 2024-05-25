@@ -133,6 +133,7 @@
                                     <td>
                                         <table>
                                             <tr>
+                                                {{$difference=''}}
                                                 @foreach ($check_attd as $check_attds)
 
                                                     @if ($check_attds->status == 'OUT')
