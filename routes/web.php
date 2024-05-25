@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/employee-daily', '\App\Http\Controllers\ReportController@employeedailyReport')->name('employee-daily');
     Route::post('/filterempattendance', '\App\Http\Controllers\ReportController@filterempattendance')->name('filterempattendance');
     Route::get('/current-employee', '\App\Http\Controllers\ReportController@currentemployee')->name('current-employee');
-
+    Route::get('/department-list', '\App\Http\Controllers\ReportController@departmentlist')->name('department-list');
 
 
 

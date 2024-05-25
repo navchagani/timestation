@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -123,5 +124,14 @@ class ReportController extends Controller
     {
         $empid = $request['employee'] ?? [];
         return view('admin.employee-current-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'empid' => $empid]);
+    }
+    public function departmentlist()
+    {
+        $departmentlist = Employee::join('department', 'department.name', '=', 'employees.position')
+            ->select('department.name','department.type')
+            ->selectRaw('count(employees.id) as count')
+            ->groupby('department.id','department.name','department.type')
+            ->get();
+        return view('admin.departmentlist')->with(['departmentlist' => $departmentlist]);
     }
 }
