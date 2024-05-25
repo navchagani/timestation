@@ -3,10 +3,11 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b>Department List</b></center>
+            <center> <b>Department Members</b></center>
         </div>
         <div class="card-body">
             <form>
+                <div class="form-group row">
                 <div class="form-group col-md-3">
                     <label class="required" for="employee">Select Reports</label>
                     <select class="form-control" name="employeereport" id="employeereport">
@@ -24,15 +25,34 @@
                     </select>
                 </div>
             </form>
+                <div class="col-md-2">
+                    <form method="POST" action="{{ route('filters') }}">
+                        @csrf
+                    <label class="required" for="employee">Select Department:</label>
+                    <select class="form-control" name="employee">
+                        <option hidden>Select an Department</option>
+                        @foreach($departments as $department)
+                            <option value="{{$department->name}}">{{$department->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="time_out" class="col-sm-6 control-label"><br></label>
+                    <button type="submit" class="btn btn-primary form-control">
+                        Run Report
+                    </button>
+                </div>
+        </div>
+            </form>
             <div class="table-responsive">
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
                         <th>
                             Department Name</th>
-                        <th>Type	</th>
-                        <th>Total Employees</th>
-                        <th>Primary Employees</th>
+                        <th>Employees	</th>
+                        <th>	Hourly Rate</th>
+                        <th>Primary </th>
 
                     </tr>
                     </thead>
@@ -40,10 +60,10 @@
                     @if (sizeof($departmentlist))
                         @foreach($departmentlist as $departmentlists)
                             <tr>
-                                <td>{{ $departmentlists->name }}</td>
-                                <td>{{ $departmentlists->type  }}</td>
-                                <td>{{ $departmentlists->count  }}</td>
-                                <td>{{ $departmentlists->count  }}</td>
+                                <td>{{ $departmentlists->dename }}</td>
+                                <td>{{ $departmentlists->empname  }}</td>
+                                <td>{{ $departmentlists->hourrate  }}$</td>
+                                <td>Yes</td>
                             </tr>
                         @endforeach
 

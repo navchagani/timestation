@@ -24,7 +24,7 @@ class DepartmentController extends Controller
             ->selectRaw('SUM(CASE WHEN attendances.status = "IN" THEN 1 ELSE 0 END) as ine')
             ->selectRaw('SUM(CASE WHEN attendances.status = "OUT" THEN 1 ELSE 0 END) as oute')
             ->get();
-        return view('admin.department')->with(['department', Department::all(),'empgnams' => $Empgname]);
+        return view('admin.department')->with(['departments'=>Department::all(),'empgnams' => $Empgname]);
         flash()->success('Success','department has been created successfully !');
 
     }

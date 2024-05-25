@@ -134,4 +134,12 @@ class ReportController extends Controller
             ->get();
         return view('admin.departmentlist')->with(['departmentlist' => $departmentlist]);
     }
+    public function departmentmember()
+    {
+        $departmentlist = Employee::join('department', 'department.name', '=', 'employees.position')
+            ->select('department.name as dename','department.type','employees.name as empname','employees.hourrate as hourrate')
+            //->groupby('department.id','department.name','department.type')
+            ->get();
+        return view('admin.department-member')->with(['departmentlist' => $departmentlist,'departments'=>Department::all()]);
+    }
 }

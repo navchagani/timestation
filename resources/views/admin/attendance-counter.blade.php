@@ -11,6 +11,7 @@
                     <option value="/attendance-counter">Attendance Counter</option>
                     <option value="/attendance-list">Attendance Only</option>
                     <option value="/department-list">Department list</option>
+                    <option value="/department-member">Department Members</option>
                     <option value="/sheet-report">Employee Report</option>
                     <option value="/current-employee">Current Employee Report</option>
                     <option value="/employee-daily">Employee Daily Summary</option>
