@@ -1,5 +1,5 @@
 <!-- App's Basic Js  -->
-<script src="{{ URL::asset('assets/js/jquery.min.js') }}"></script>
+
 <script src="{{ URL::asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/metisMenu.min.js') }}"></script>
 <script src="{{ URL::asset('assets/js/jquery.slimscroll.js') }}"></script>
@@ -34,7 +34,7 @@
 <script src="{{ URL::asset('plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 
 <!-- Datatable init js -->
-<script src="{{ URL::asset('assets/pages/datatables.init.js') }}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js">

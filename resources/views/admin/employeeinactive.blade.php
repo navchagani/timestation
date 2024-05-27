@@ -6,8 +6,9 @@
             <center> <b>Inactive Employees</b></center>
         </div>
         <div class="card-body">
+            <div class="form-group row">
             <form>
-                <div class="form-group col-md-3">
+                <div class="col-md-12">
                     <label class="required" for="employee">Select Reports</label>
                     <select class="form-control" name="employeereport" id="employeereport">
                         <option hidden>Please Select</option>
@@ -26,6 +27,34 @@
                         <option value="/daily-absence">Employee Daily & Absence Report</option>
                         <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                     </select>
+                </div>
+                <div class="col-md-12">
+
+                    <label class="required" for="employee">Select Employee:</label>
+                    <select class="form-control" name="employee">
+                        <option hidden>Select an employee</option>
+                     {{--   @foreach($employeesa as $employee)
+                            <option value="{{ $employee->id }}" {{ $empid == $employee->id  ? 'selected' : '' }}>{{ $employee->name }}</option>
+                        @endforeach--}}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="time_in" class="col-sm-6 control-label">Start Date</label>
+                    <div class="bootstrap-timepicker">
+                        <input type="date" class="form-control timepicker" id="start" name="start" value="{{$start}}" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="time_out" class="col-sm-6 control-label">End Date</label>
+                    <div class="bootstrap-timepicker">
+                        <input type="date" class="form-control timepicker" id="end" name="end" value="{{$end}}" required>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="time_out" class="col-sm-6 control-label"><br></label>
+                    <button type="submit" class="btn btn-primary form-control">
+                        Run Report
+                    </button>
                 </div>
             </form>
             <div class="table-responsive">

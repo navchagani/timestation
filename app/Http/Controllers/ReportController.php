@@ -272,6 +272,8 @@ $dailyabsence = DB::table('employees AS t2')
 
     public function inactiveemployee()
     {
-        return view('admin.employeeinactive')->with(['employees' => Employee::all()]);
+        $start = $request['start'] ?? date("Y-m-05");
+        $end = $request['end'] ?? date("Y-m-10");
+        return view('admin.employeeinactive')->with(['employees' => Department::all(),'start' => $start,'end' => $end]);
     }
 }
