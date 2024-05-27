@@ -35,7 +35,7 @@
                             <label class="required" for="employee">Select Employee:</label>
                             <select class="form-control" name="employee">
                                 <option hidden>Select an employee</option>
-                                @foreach($employeesa as $employee)
+                                @foreach($employees as $employee)
                                     <option value="{{ $employee->id }}" {{ $empid == $employee->id  ? 'selected' : '' }}>{{ $employee->name }}</option>
                                 @endforeach
                             </select>
