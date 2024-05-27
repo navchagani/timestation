@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('departmentsummaryfilters') }}">
         @csrf
         <div class="form-group row">
             <div class="col-md-2">
