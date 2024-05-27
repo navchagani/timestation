@@ -18,3 +18,9 @@ resources/views/layouts/sidebar.blade.php
 resources/views/layouts/sidebar.blade.php
 resources/views/admin/schedule.blade.php
 resources/views/layouts/sidebar.blade.php
+resources/views/admin/index.blade.php
+resources/views/admin/index.blade.php
+package-lock.json
+composer.lock
+composer.json
+resources/views/layouts/sidebar.blade.php
