@@ -86,3 +86,5 @@ Route::group(['middleware' => ['auth']], function () {
 
 
  Route::get('{any}', 'App\http\controllers\VeltrixController@index');
+
+ Route::post('/post-settings', 'App\http\controllers\BusinessSettingController@addSettings');
