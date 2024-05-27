@@ -22,7 +22,7 @@
                     <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                 </select>
             </div>
-            <div class="col-md-2">
+            {{--<div class="col-md-2">
                 <label for="time_in" class="col-sm-6 control-label">Start Date</label>
                 <div class="bootstrap-timepicker">
                     <input type="date" class="form-control timepicker" id="start" name="start" value="{{$start}}" required>
@@ -33,7 +33,7 @@
                 <div class="bootstrap-timepicker">
                     <input type="date" class="form-control timepicker" id="end" name="end" value="{{$end}}" required>
                 </div>
-            </div>
+            </div>--}}
             <div class="col-md-2">
                 <label for="time_out" class="col-sm-6 control-label"><br></label>
                 <button type="submit" class="btn btn-primary form-control">
