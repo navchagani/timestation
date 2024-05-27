@@ -19,6 +19,7 @@
                             <option value="/department-member">Department Members</option>
                             <option value="/department-summary">Department Summary</option>
                             <option value="/employee-summary">Employee Summary</option>
+                            <option value="/inactive-employee">Inactive Employee </option>
                             <option value="/employee-permission">Employee Permission</option>
                             <option value="/sheet-report">Employee Report</option>
                             <option value="/current-employee">Current Employee Report</option>
