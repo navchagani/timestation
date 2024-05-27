@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <form method="POST" action="{{ route('filterattendance') }}">
+    <form method="POST" action="">
         @csrf
         <div class="form-group row">
             <div class="col-md-2">
@@ -43,7 +43,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> department Summary</b></center>
+            <center> <b> Department Summary</b></center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -56,12 +56,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($employees as $employee)
+                    @foreach ($employeesa as $employee)
 
                         <tr>
                             <td>{{ $employee->position }}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $employee->total_hours }}</td>
+                            <td>${{ $employee->total_earnings }}</td>
                         </tr>
                     @endforeach
                     </tbody>
