@@ -95,53 +95,70 @@
     </nav>--}}
 
     <div class="card shadow">
-        <div class="card-header">
-            <h2>Settings</h2>
+        <div class="card-header bg-primary text-light">
+            <h2><i class="fa-solid fa-sliders"></i> Settings</h2>
         </div>
         <div class="card-body">
-            <form>
 
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
+                    <strong>Good! {{ session('success') }}</strong>
+                    <button type="button" class="btn  btn-sm btn-outline-success btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+                </div>
+            @endif
+
+
+
+            <form action="{{ url('/post-settings') }}" method="POST">
+                @csrf
                 <div class="row mb-3 mt-4">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="company-name">Company Name:</label>
                     </div>
-                    <div class="col-4">
-                        <input type="text" class="form-control" id="company-name" value="Texas E Cigarette Inc">
+                    <div class="col-md-4 col-sm-12">
+                        <input type="text" name="company_name" class="form-control" id="company-name" value="{{ old('company_name', 'Texas E Cigarette Inc') }}">
+                        @if ($errors->has('company_name'))
+                            <span class="text-danger fw-bold">{{ $errors->first('company_name') }}</span>
+                        @endif
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="attendance-mode">Attendance Mode:</label>
                     </div>
-                    <div class="col-4">
-                        <select class="form-control" id="attendance-mode">
-                            <option value="attendance-time-tracking">Attendance and Time Tracking</option>
-                            <option value="attendance-only">Attendance Only</option>
+                    <div class="col-md-4 col-sm-12">
+                        <select class="form-control" id="attendance-mode" name="attendance_mode">
+                            <option value="attendance-time-tracking" {{ old('attendance_mode') == 'attendance-time-tracking' ? 'selected' : '' }}>Attendance and Time Tracking</option>
+                            <option value="attendance-only" {{ old('attendance_mode') == 'attendance-only' ? 'selected' : '' }}>Attendance Only</option>
                         </select>
+                        @if ($errors->has('attendance_mode'))
+                            <span class="text-danger fw-bold">{{ $errors->first('attendance_mode') }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="" class="fw-bold" >GPS Location Tagging:</label>
                     </div>
-                    <div class="col-4">
-                        <input type="checkbox" class="" id="gps-location">
-                        <label class="form-check-label" for="gps-location">Enable Location Tagging</label>
+                    <div class="col-md-4 col-sm-12">
+                        <input type="checkbox" id="gps-location-tagging" name="gps_location_tagging" value="" >
+                        <label class="form-check-label" for="gps-location-tagging">Enable Location Tagging</label>
+
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="attendance-mode" class="fw-bold">COVID-19 Screening:</label>
                     </div>
-                    <div class="col-4">
-                        <input type="checkbox" class="" id="covid-screening">
+                    <div class="col-md-4 col-sm-12">
+                        <input type="checkbox" class="" id="covid-screening" name="covid_screening">
                         <label class="form-check-label" for="covid-screening">Enable COVID-19 Screening</label>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="time-rounding">Time Rounding:</label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12">
                         <select  class="form-control" name="TimeRounding" id="TimeRounding" onchange="">
                             <option value="0">None</option>
                             <option value="5">5 Minutes</option>
@@ -152,26 +169,26 @@
                         </select>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="attendance-mode">Display time round:</label>
                     </div>
-                    <div class="col-4">
-                        <input type="checkbox" class=" " id="display-round">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="display_round" type="checkbox" class=" " id="display-round">
                         <label class="form-check-label" for="display-round">Display round in & out times in reports</label>
                     </div>
                 </div>
 
                 <div class="row mb-3 mt-5">
-                    <div class="col-2">
-                        <label class="fw-bold">Date & Time Format:</label>
+                    <div class="col-md-2 col-sm-12">
+                        <label class="font-weight-bold">Date & Time Format:</label>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label class="form-label" for="date-format">Date:</label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12">
                         <select class="form-control" name="DateFormat" id="DateFormat" onchange="">
                             <option value="mm/dd/yyyy" selected="selected">MM/DD/YYYY</option>
                             <option value="dd/mm/yyyy">DD/MM/YYYY</option>
@@ -186,10 +203,10 @@
                         </select>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="attendance-mode">Time:</label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12">
                         <select class="form-control" name="TimeFormat" id="TimeFormat" onchange="">
                             <option value="hh:mmAMPM" selected="selected">12 Hours (AM/PM)</option>
                             <option value="hh:mm">24 Hours</option>
@@ -198,11 +215,11 @@
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="hours-format">Hours display format:</label>
                     </div>
-                    <div class="col-4">
-                        <select class="form-control" id="hours-format">
+                    <div class="col-md-4 col-sm-12">
+                        <select name="hours_format" class="form-control" id="hours-format">
                             <option value="decimal-hours">Decimal Hours</option>
                             <option value="hours-mints">Hours and Minutes (HH:MM)</option>
                         </select>
@@ -211,30 +228,38 @@
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="report-range">Default Report Date Range:</label>
                     </div>
-                    <div class="col-4">
-                        <select class="form-control" id="report-range">
-                            <option value="last-7-days">Last 7 Days</option>
-                        </select>
+                    <div class="col-md-4 col-sm-12">
+                        <select class="form-control" name="DefaultReportDateRange" id="DefaultReportDateRange" >
+                            <option value="1">Today</option>
+                            <option value="2">Yesterday</option>
+                            <option value="3">Current Week</option>
+                            <option value="4" selected="">Last 7 Days</option>
+                            <option value="5">Previous Week</option>
+                            <option value="6">Last 14 Days</option>
+                            <option value="7">Last 30 Days</option>
+                            <option value="8">Current Month</option>
+                            <option value="9">Previous Month</option>
+                          </select>
                     </div>
-                    <div class="col-4">
-                        <input type="checkbox" class="" id="include-today">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="include_today" type="checkbox" class="" id="include-today">
                         <label class="form-check-label" for="include-today">Include Today</label>
                     </div>
                 </div>
                 <div class="row mb-3 mt-5">
-                    <div class="col-2">
-                        <label class="fw-bold">Automatic Time Deduction:</label>
+                    <div class="col-md-2 col-sm-12">
+                        <label class="font-weight-bold">Automatic Time Deduction:</label>
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="time-deduction">Deduct: </label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12">
                         <select class="form-control" name="automaticTimeDeduction" id="automaticTimeDeduction" onchange="automaticTimeDeductionChanged();">
                             <option value="0">None</option>
                             <option value="10">10 Minutes</option>
@@ -252,10 +277,10 @@
                           </select>
                     </div>
 
-                    <div class="col-2">
-                        <label for="time-deduction">Deduct: </label>
+                    <div class="col-md-2 col-sm-12">
+                        <label for="time-deduction">For every: </label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12">
                         <select class="form-control" name="automaticTimeDeductionThreshold" id="automaticTimeDeductionThreshold" onchange=""  >
                             <option value="0">-</option>
                             <option value="60">1</option>
@@ -276,19 +301,19 @@
                 </div>
 
                 <div class="row mb-5">
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="card-info">Card Information:</label>
                     </div>
-                    <div class="col-4">
-                        <select class="form-control" id="card-info">
+                    <div class="col-md-4 col-sm-12">
+                        <select name="Card_field_1" class="form-control" id="card-info">
                             <option value="company-name">Company Name</option>
                             <option value="employee-name">Employee Name</option>
                         </select>
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-12">
                         <label for="font-size">Font Size:</label>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12">
                         <select class="form-control" id="font-size">
                             <option value="auto">Auto</option>
                             <option value="small">small</option>
@@ -300,7 +325,7 @@
 
 
                 <div class="form-group text-center mb-3 mt-4">
-                    <button type="submit" class="btn btn-success w-100">Save</button>
+                    <button type="submit" class="btn btn-success w-100 p-2">Save</button>
                 </div>
 
             </form>
