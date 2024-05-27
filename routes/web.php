@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::post('/departmentfilters', '\App\Http\Controllers\ReportController@departmentfilters')->name('departmentfilters');
     Route::any('/department-summary', '\App\Http\Controllers\ReportController@departmentsummarys')->name('department-summary');
     Route::post('/departmentsummaryfilters', '\App\Http\Controllers\ReportController@departmentsummaryfilters')->name('departmentsummaryfilters');
+    Route::any('/employee-summary', '\App\Http\Controllers\ReportController@employeesummarys')->name('employee-summary');
+
+
 
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
