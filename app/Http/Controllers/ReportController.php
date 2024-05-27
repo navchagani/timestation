@@ -153,4 +153,12 @@ class ReportController extends Controller
             ->get();
         return view('admin.department-member')->with(['departmentlist' => $departmentlist,'departments'=>Department::all()]);
     }
+
+    public function departmentsummary()
+    {
+        $start = $request['start'] ?? date("Y-m-05");
+        $end = $request['end'] ?? date("Y-m-10");
+        $empid = $request['employee'] ?? [];
+        return view('admin.departmentsummary')->with(['employeesa'=> Employee::all(),'employees'=> Employee::all(),'start' => $start,'end' => $end,'empid' => $empid]);
+    }
 }

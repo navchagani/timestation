@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/department-list', '\App\Http\Controllers\ReportController@departmentlist')->name('department-list');
     Route::get('/department-member', '\App\Http\Controllers\ReportController@departmentmember')->name('department-member');
     Route::post('/departmentfilters', '\App\Http\Controllers\ReportController@departmentfilters')->name('departmentfilters');
+    Route::get('/department-summary', '\App\Http\Controllers\ReportController@departmentsummary')->name('department-summary');
 
 
     Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
