@@ -269,4 +269,9 @@ $dailyabsence = DB::table('employees AS t2')
         return view('admin.employeepermission')->with(['employeesa'=> $dailyabsence,'employees'=> Employee::all(),'start' => $start,'end' => $end,]);
 
     }
+
+    public function inactiveemployee()
+    {
+        return view('admin.employeeinactive')->with(['employees' => Employee::all()]);
+    }
 }
