@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('employeesummaryfilters') }}">
                     @csrf
                     <div class="form-group row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label class="required" for="employee">Select Reports</label>
                             <select class="form-control" name="employeereport" id="employeereport">
                                 <option hidden>Please Select</option>
@@ -30,34 +30,35 @@
                                 <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
 
-                            <label class="required" for="employee">Select Employee:</label>
+                            <label class="required" for="employee">Select Department:</label>
                             <select class="form-control" name="employee">
-                                <option hidden>Select an employee</option>
-                                @foreach($employees as $employee)
-                                    <option value="{{ $employee->id }}" {{ $empid == $employee->id  ? 'selected' : '' }}>{{ $employee->name }}</option>
+                                <option hidden>Select an Department</option>
+                                @foreach($department as $departments)
+                                    <option value="{{ $departments->id }}" {{ $empid == $departments->id  ? 'selected' : '' }}>{{ $departments->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="time_in" class="col-sm-6 control-label">Start Date</label>
                             <div class="bootstrap-timepicker">
                                 <input type="date" class="form-control timepicker" id="start" name="start" value="{{$start}}" required>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="time_out" class="col-sm-6 control-label">End Date</label>
                             <div class="bootstrap-timepicker">
                                 <input type="date" class="form-control timepicker" id="end" name="end" value="{{$end}}" required>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <label for="time_out" class="col-sm-6 control-label"><br></label>
                             <button type="submit" class="btn btn-primary form-control">
                                 Run Report
                             </button>
                         </div>
+                    </div>
                 </form>
             <div class="table-responsive">
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
