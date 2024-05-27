@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <form method="POST" action="{{ route('filters') }}">
+    <form method="POST" action="{{ route('employeesummaryfilters') }}">
         @csrf
         <div class="form-group row">
             <div class="col-md-2">
@@ -22,17 +22,6 @@
                     <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                 </select>
             </div>
-
-            <div class="col-md-2">
-
-                <label class="required" for="employee">Select Employee:</label>
-                <select class="form-control" name="employee">
-                    <option hidden>Select an employee</option>
-                    @foreach($employeesa as $employee)
-                        <option value="{{ $employee->id }}" {{ $empid == $employee->id  ? 'selected' : '' }}>{{ $employee->name }}</option>
-                    @endforeach
-                </select>
-            </div>
             <div class="col-md-2">
                 <label for="time_in" class="col-sm-6 control-label">Start Date</label>
                 <div class="bootstrap-timepicker">
@@ -51,12 +40,12 @@
                     Run Report
                 </button>
             </div>
-            </form>
-        </div>
+    </form>
+    </div>
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Attendance Counter</b></center>
+            <center> <b> Employees Permissions</b></center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -65,27 +54,16 @@
                     <tr>
                         <th>Employee</th>
                         <th>Departments</th>
-                        <th>Days In</th>
-                        <th>Check-Ins</th>
+                        <th>Permission</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($employees as $employee)
+                    @foreach ($employeesa as $employee)
 
                         <tr>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
-                            @php
-
-                                    $check_attd = \App\Models\Attendance::query()
-                                                    ->where('emp_id', $employee->id)
-                                                    ->where('attendance_date', '>=', $start) // Filter records with attendance_date greater than or equal to $start
-                                                    ->where('attendance_date', '<=', $end)
-                                                    ->selectRaw('count(emp_id) as count')
-                                                    ->first();
-                            @endphp
-                            <td> {{ $check_attd->count }}</td>
-                            <td> {{ $check_attd->count }}</td>
+                            <td>	(No Login Setup)</td>
                         </tr>
                     @endforeach
                     </tbody>

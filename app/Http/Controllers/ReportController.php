@@ -240,7 +240,7 @@ $dailyabsence = DB::table('employees AS t2')
             ->get();
         return view('admin.employeesummary')->with(['employeesa'=> $dailyabsence,'employees'=> Employee::all(),'start' => $start,'end' => $end,]);
     }
-    public function employeesummaryfilters(Request $request)
+    public function employeepermissions()
     {
         $start = $request['start'] ?? date("Y-m-05");
         $end = $request['end'] ?? date("Y-m-10");
@@ -266,7 +266,7 @@ $dailyabsence = DB::table('employees AS t2')
             ->select('t2.name', 't2.position','t2.hourrate', DB::raw('IFNULL(SUM(t1.hours_worked), 0) as total_hours, IFNULL(SUM(t1.hours_worked * t2.hourrate), 0) as total_earnings'))
             ->groupBy('t2.name', 't2.position', 't2.hourrate')
             ->get();
-        return view('admin.employeesummary')->with(['employeesa'=> $dailyabsence,'employees'=> Employee::all(),'start' => $start,'end' => $end,]);
+        return view('admin.employeepermission')->with(['employeesa'=> $dailyabsence,'employees'=> Employee::all(),'start' => $start,'end' => $end,]);
 
     }
 }
