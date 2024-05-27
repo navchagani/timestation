@@ -26,10 +26,10 @@
                 </div>
             </form>
                 <div class="col-md-2">
-                    <form method="POST" action="{{ route('filters') }}">
+                    <form method="POST" action="{{ route('departmentfilters') }}">
                         @csrf
                     <label class="required" for="employee">Select Department:</label>
-                    <select class="form-control" name="employee">
+                    <select class="form-control" name="department">
                         <option hidden>Select an Department</option>
                         @foreach($departments as $department)
                             <option value="{{$department->name}}">{{$department->name}}</option>

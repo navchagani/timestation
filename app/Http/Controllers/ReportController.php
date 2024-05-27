@@ -142,4 +142,15 @@ class ReportController extends Controller
             ->get();
         return view('admin.department-member')->with(['departmentlist' => $departmentlist,'departments'=>Department::all()]);
     }
+    public function departmentfilters(Request $request)
+    {
+        // Default start and end dates
+        $departmentid = $request->input('department');
+        $departmentlist = Employee::join('department', 'department.name', '=', 'employees.position')
+            ->select('department.name as dename','department.type','employees.name as empname','employees.hourrate as hourrate')
+            ->where('department.name',$departmentid)
+            ->groupby('department.id','department.name','department.type','employees.name','employees.hourrate')
+            ->get();
+        return view('admin.department-member')->with(['departmentlist' => $departmentlist,'departments'=>Department::all()]);
+    }
 }
