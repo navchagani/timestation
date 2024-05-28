@@ -55,6 +55,9 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::post('dailyfilters', '\App\Http\Controllers\ReportController@dailyfilters')->name('dailyfilters');
     Route::get('/current-device', '\App\Http\Controllers\ReportController@currentdevice')->name('current-device');
     Route::get('/sheet-report', '\App\Http\Controllers\ReportController@sheetReport')->name('sheet-report');
+    Route::get('/payrollexport', '\App\Http\Controllers\ReportController@payrollexport')->name('payrollexport');
+
+
 
 
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
