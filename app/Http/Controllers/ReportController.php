@@ -332,5 +332,5 @@ $dailyabsence = DB::table('employees AS t2')
         }
         return view('admin.employee-two-week-report')->with(['employeesa' => Employee::all(),'employees' => $employee,'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
 
-    }s
+    }
 }
