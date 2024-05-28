@@ -289,20 +289,48 @@ $dailyabsence = DB::table('employees AS t2')
     public function employeedailyoneReport()
     {
 
-        $start = $request['start'] ?? date("Y-m-05");
+        $start = $request['start'] ?? date("Y-m-01");
         $end = $request['end'] ?? date("Y-m-10");
         $empid = $request['employee'] ?? [];
 
         return view('admin.employee-one-week-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
     }
+    public function filterempattendanceone(Request $request)
+    {
+        // Default start and end dates
+        $start = $request['start'];
+        $end = $request['end'];
+        $empid = $request->input('employee');
+        if ($empid == 'Select an employee') {
+            $employee = Employee::all();
+        } else {
+            $employee = Employee::where('id', $empid)->get();
+        }
+        return view('admin.employee-one-week-report')->with(['employeesa' => Employee::all(),'employees' => $employee,'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
 
+    }
     public function employeedailytwoReport()
     {
 
-        $start = $request['start'] ?? date("Y-m-05");
-        $end = $request['end'] ?? date("Y-m-10");
+        $start = $request['start'] ?? date("Y-m-01");
+        $end = $request['end'] ?? date("Y-m-15");
         $empid = $request['employee'] ?? [];
 
         return view('admin.employee-two-week-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
     }
+
+    public function filterempattendancetwo(Request $request)
+    {
+        // Default start and end dates
+        $start = $request['start'];
+        $end = $request['end'];
+        $empid = $request->input('employee');
+        if ($empid == 'Select an employee') {
+            $employee = Employee::all();
+        } else {
+            $employee = Employee::where('id', $empid)->get();
+        }
+        return view('admin.employee-two-week-report')->with(['employeesa' => Employee::all(),'employees' => $employee,'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
+
+    }s
 }
