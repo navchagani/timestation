@@ -23,11 +23,11 @@
                             @php
                                 $today = today();
                                 $dates = [];
-                                
+
                                 for ($i = 1; $i < $today->daysInMonth + 1; ++$i) {
                                     $dates[] = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
                                 }
-                                
+
                             @endphp
                             @foreach ($dates as $date)
                                 <th>
@@ -43,7 +43,7 @@
 
 
                         <form action="{{ route('check_store') }}" method="post">
-                           
+
                             <button type="submit" class="btn btn-success" style="display: flex; margin:10px">submit</button>
                             @csrf
                             @foreach ($employees as $employee)
@@ -54,32 +54,25 @@
                                     <td>{{ $employee->name }}</td>
                                     <td>{{ $employee->position }}</td>
                                     <td>{{ $employee->id }}</td>
-
-
-
-
-
-
                                     @for ($i = 1; $i < $today->daysInMonth + 1; ++$i)
-
-
                                         @php
-                                            
                                             $date_picker = \Carbon\Carbon::createFromDate($today->year, $today->month, $i)->format('Y-m-d');
-                                            
                                             $check_attd = \App\Models\Attendance::query()
                                                 ->where('emp_id', $employee->id)
                                                 ->where('attendance_date', $date_picker)
+                                                ->where('status', 'IN')
                                                 ->first();
-                                            
+                                            $check_attd_out = \App\Models\Attendance::query()
+                                                ->where('emp_id', $employee->id)
+                                                ->where('attendance_date', $date_picker)
+                                                ->where('status', 'OUT')
+                                                ->first();
                                             $check_leave = \App\Models\Leave::query()
                                                 ->where('emp_id', $employee->id)
                                                 ->where('leave_date', $date_picker)
                                                 ->first();
-                                            
                                         @endphp
                                         <td>
-
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="check_box"
                                                     name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
@@ -89,7 +82,7 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="check_box"
                                                     name="leave[{{ $date_picker }}][{{ $employee->id }}]]" type="checkbox"
-                                                    @if (isset($check_leave))  checked @endif id="inlineCheckbox2" value="1">
+                                                    @if (isset($check_attd_out))  checked @endif id="inlineCheckbox2" value="1">
 
                                             </div>
 

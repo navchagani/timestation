@@ -26,8 +26,13 @@
                         <option value="/employee-daily">Employee Daily Summary</option>
                         <option value="/employee-daily-one-week">Employee Daily Summary - One Week</option>
                         <option value="/employee-daily-two-week">Employee Daily Summary - Two Week</option>
+                        <option value="/employee-details">Employee Details</option>
                         <option value="/daily-absence">Daily Attendance & Absence</option>
                         <option value="/sheet-report">Payroll Export - Crystal Payroll</option>
+                        <option value="/payrollexport">Payroll Export - Ctuit</option>
+                        {{--<option value="/payrollheartland">Payroll Export - Heartland</option>
+                        <option value="/payrollpaychex">Payroll Export - Paychex</option>
+                        <option value="/payrollsure">Payroll Export - SurePayroll</option>--}}
                         <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                     </select>
                 </div>
@@ -58,7 +63,7 @@
                     <button type="submit" class="btn btn-primary form-control">
                         Run Report
                     </button>
-                    
+
            </form>>
             </div>
             <div class="table-responsive">
