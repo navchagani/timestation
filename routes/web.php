@@ -49,8 +49,8 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::post('/employeeinactivefilters', '\App\Http\Controllers\ReportController@employeeinactivefilters')->name('employeeinactivefilters');
     Route::get('/employee-daily-one-week', '\App\Http\Controllers\ReportController@employeedailyoneReport')->name('employee-daily-one-week');
     Route::get('/employee-daily-two-week', '\App\Http\Controllers\ReportController@employeedailytwoReport')->name('employee-daily-two-week');
-    Route::get('filterempattendanceone', '\App\Http\Controllers\ReportController@filterempattendanceone')->name('filterempattendanceone');
-    Route::get('filterempattendancetwo', '\App\Http\Controllers\ReportController@filterempattendancetwo')->name('filterempattendancetwo');
+    Route::post('filterempattendanceone', '\App\Http\Controllers\ReportController@filterempattendanceone')->name('filterempattendanceone');
+    Route::post('filterempattendancetwo', '\App\Http\Controllers\ReportController@filterempattendancetwo')->name('filterempattendancetwo');
 
 
 
