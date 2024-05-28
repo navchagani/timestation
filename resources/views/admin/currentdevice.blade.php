@@ -49,7 +49,7 @@
                     @if (sizeof($users))
                         @foreach($users as $user)
                             <tr>
-                                <td>OpalTime-{{ 0+1 }}</td>
+                                <td>OpalTime-{{ 1+1 }}</td>
                                 <td>{{ $user->model_name  }}</td>
                                 <td>{{ $user->mac_address  }}</td>
                                 <td>{{ $user->name  }}</td>
