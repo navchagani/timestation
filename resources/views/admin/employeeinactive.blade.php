@@ -6,11 +6,10 @@
             <center> <b>Inactive Employees</b></center>
         </div>
         <div class="card-body">
+            <form method="POST" action="{{ route('employeeinactivefilters') }}">
+                @csrf
             <div class="form-group row">
-                <form method="POST" action="{{ route('employeeinactivefilters') }}">
-                    @csrf
-                    <div class="form-group row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="required" for="employee">Select Reports</label>
                             <select class="form-control" name="employeereport" id="employeereport">
                                 <option hidden>Please Select</option>
@@ -30,7 +29,7 @@
                                 <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
 
                             <label class="required" for="employee">Select Department:</label>
                             <select class="form-control" name="department">
@@ -40,19 +39,19 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="time_in" class="col-sm-6 control-label">Start Date</label>
                             <div class="bootstrap-timepicker">
                                 <input type="date" class="form-control timepicker" id="start" name="start" value="{{$start}}" required>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="time_out" class="col-sm-6 control-label">End Date</label>
                             <div class="bootstrap-timepicker">
                                 <input type="date" class="form-control timepicker" id="end" name="end" value="{{$end}}" required>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="time_out" class="col-sm-6 control-label"><br></label>
                             <button type="submit" class="btn btn-primary form-control">
                                 Run Report
