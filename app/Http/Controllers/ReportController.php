@@ -377,4 +377,26 @@ $dailyabsence = DB::table('employees AS t2')
 
         return view('admin.sheet-report')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall,'start' => $start,'end' => $end,'empid' => $empid]);
     }
+
+    public function payrollexport()
+    {
+        $start = $request['start'] ?? date("Y-m-01");
+        $end = $request['end'] ?? date("Y-m-15");
+        $empid = $request['employee'] ?? [];
+
+        // Subquery to calculate total hours worked per attendance entry
+        $attendancesall = DB::table('attendances AS in_att')
+            ->join('attendances AS out_att', function($join) {
+                $join->on('in_att.emp_id', '=', 'out_att.emp_id')
+                    ->on('in_att.attendance_date', '=', 'out_att.attendance_date')
+                    ->where('in_att.status', '=', 'IN') // Considering only clock in time
+                    ->where('out_att.status', '=', 'OUT');
+            })->join('employees AS t2', 'in_att.emp_id', '=', 't2.id')
+            ->select('t2.empid','t2.hourrate','t2.name','in_att.emp_id', 'in_att.attendance_date', 'in_att.attendance_time', 'out_att.attendance_time as iou', 'in_att.status','out_att.attendance_date as ou',
+                DB::raw('TIMESTAMPDIFF(HOUR, in_att.attendance_time, out_att.attendance_time) as hours_worked'))
+            ->whereBetween('in_att.attendance_date', [$start, $end])
+            ->get();
+
+        return view('admin.payrollexport')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall,'start' => $start,'end' => $end,'empid' => $empid]);
+    }
 }
