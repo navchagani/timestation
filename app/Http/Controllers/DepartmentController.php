@@ -32,7 +32,7 @@ class DepartmentController extends Controller
 
     public function store(DepartmentEmp $request)
     {
-   
+
         $request->validated();
         $department = new department;
         $department->name = $request->name;

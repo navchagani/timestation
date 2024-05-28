@@ -27,6 +27,7 @@
                         <option value="/employee-daily-two-week">Employee Daily Summary - Two Week</option>
                         <option value="/daily-absence">Daily Attendance & Absence</option>
                         <option value="/sheet-report">Payroll Export - Crystal Payroll</option>
+                        <option value="/payrollexport">Payroll Export - Ctuit</option>
                         <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                     </select>
                 </div>
