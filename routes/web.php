@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::resource('/business-setting', '\App\Http\Controllers\BusinessSettingController');
     Route::resource('/assigntask', '\App\Http\Controllers\AssigntaskController');
     Route::get('/check', '\App\Http\Controllers\CheckController@index')->name('check');
-    Route::get('/sheet-report', '\App\Http\Controllers\CheckController@sheetReport')->name('sheet-report');
+
     //Report
     Route::get('/report', '\App\Http\Controllers\ReportController@index')->name('report');
     Route::get('/administrator-list', '\App\Http\Controllers\ReportController@administrator')->name('administrator-list');
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/daily-absence', '\App\Http\Controllers\ReportController@dailyabsenceReport')->name('daily-absence');
     Route::post('dailyfilters', '\App\Http\Controllers\ReportController@dailyfilters')->name('dailyfilters');
     Route::get('/current-device', '\App\Http\Controllers\ReportController@currentdevice')->name('current-device');
-
+    Route::get('/sheet-report', '\App\Http\Controllers\ReportController@sheetReport')->name('sheet-report');
 
 
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');

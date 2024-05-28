@@ -110,34 +110,7 @@ class CheckController extends Controller
         }
         return view('admin.employee-summary-report')->with(['employees' => Employee::all(),'dailyabsence' => $dailyabsence,'empi' => $empid,'sta' => $start,'dend' => $end])->withError('Amount pay');
     }
-    public function sheetReport(Request $request)
-    {
-        $emp = $request->input('employee');
-        if($emp) {
-            $attendancesall = DB::table('attendances AS t1')
-                ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
-                ->select(
-                    't1.status',
-                    't1.attendance_time',
-                    't1.attendance_date',
-                    't2.name',
-                    't2.position',
-                    't2.hourrate',
-                    DB::raw('TIMESTAMPDIFF(HOUR,
-            (SELECT t3.attendance_time FROM attendances AS t3 WHERE t3.emp_id = t1.emp_id AND t3.attendance_date = t1.attendance_date AND t3.status = "IN" ORDER BY t3.attendance_time LIMIT 1),
-            t1.attendance_time
-        ) AS time_difference')
-                )
-                ->where('t1.status', 'OUT')
-                ->where('t1.emp_id', $emp)
-                ->orderBy('t1.attendance_date', 'asc')
-                ->orderBy('t1.attendance_time', 'asc')
-                ->get();
-        }else{
-            $attendancesall = []; // Set to an empty array instead of 0
-        }
-    return view('admin.sheet-report')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall]);
-    }
+
     public function pay(Request $request)
     {
         $start = $request['sta'];

@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b>Salary calculated to hourly based</b></center>
+            <center> <b>Payroll Export - Crystal Payroll</b></center>
         </div>
         <div class="card-body">
             <div class="form-group row">
@@ -22,12 +22,12 @@
                         <option value="/employee-summary">Employee Summary</option>
                         <option value="/inactive-employee">Inactive Employee </option>
                         <option value="/employee-permission">Employee Permission</option>
-                        <option value="/sheet-report">Employee Report</option>
                         <option value="/current-employee">Current Employee Report</option>
                         <option value="/employee-daily">Employee Daily Summary</option>
                         <option value="/employee-daily-one-week">Employee Daily Summary - One Week</option>
                         <option value="/employee-daily-two-week">Employee Daily Summary - Two Week</option>
                         <option value="/daily-absence">Daily Attendance & Absence</option>
+                        <option value="/sheet-report">Payroll Export - Crystal Payroll</option>
                         <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                     </select>
                 </div>
@@ -48,11 +48,17 @@
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
-                        <th>Employee Name</th>
-                        <th>Attendance Date</th>
+                        <th>
+                            EmployeeLink</th>
+                        <th>ActionDate	</th>
+                        <th>ActionType	</th>
+                        <th>	ActionTask</th>
                         <th>Action Hours</th>
+                        <th>PayTimes	</th>
                         <th>Pay Rate</th>
-                        <th>Total pay</th>
+                        <th>MiscType</th>
+                        <th>MiscUnits</th>
+                        <th>MiscPayRate</th>
                         <th>Department</th>
                     </tr>
                     </thead>
@@ -63,24 +69,27 @@
                              $totalHourRate = 0;
                         @endphp
                     @foreach($attendancesall as $attendance)
-                        {{! $hourRate = $attendance->time_difference*$attendance->hourrate  }}
-                        {{! $totalHourRate += $hourRate }}
+                       {{-- {{! $hourRate = $attendance->time_difference*$attendance->hourrate  }}
+                        {{! $totalHourRate += $hourRate }}--}}
                         <tr>
                             <td>{{ $attendance->name }}</td>
-                            {{--<td>{{ $attendance->status }}</td>--}}
-                            {{--<td>{{ $attendance->attendance_time }}</td>--}}
                             <td>{{ $attendance->attendance_date }}</td>
+                            <td></td>
+                            <td></td>
                             <td>{{ $attendance->time_difference }}</td>
+                            <td>1</td>
                             <td>{{ $attendance->hourrate }}</td>
-                             <td><b>$</b>{{ $hourRate }}</td>
+                             <td></td>
+                            <td></td>
+                            <td></td>
                             <td>{{ $attendance->position }}</td>
                         </tr>
                     @endforeach
-                    <tr>
+                   {{-- <tr>
                         <td colspan="4"><b>Total payment</b></td>
                         <td><b>$</b>{{ $totalHourRate }}</td>
                         <td></td>
-                    </tr>
+                    </tr>--}}
                     @else
                     <tr>
                         <td colspan="6"><center>No attendance records found</center></td>
