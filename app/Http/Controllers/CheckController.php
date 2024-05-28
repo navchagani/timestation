@@ -165,31 +165,7 @@ class CheckController extends Controller
         }
         return view('admin.employee-summary-reporttwo')->with(['employees' => Employee::all()])->withError('Amount pay');
     }
-    public function dailyabsenceReport()
-    {
-        /*$d =date('Y-m-d');
-        $dailyabsence = DB::table('attendances AS t1')
-            ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
-            ->select(
-                't1.status',
-                't1.attendance_time',
-                't1.attendance_date',
-                't2.name',
-                't2.position'
-            )
-            ->where('t1.status', 'IN')
-            ->where('t1.attendance_date', $d)
-            ->orderBy('t1.attendance_date', 'asc')
-            ->orderBy('t1.attendance_time', 'asc')
-            ->groupBy('t1.emp_id')
-            ->get();*/
 
-
-        // Assuming $Empgname is already formatted correctly
-
-
-        return view('admin.employee-daily-and-absence-report')->with(['employees' => Employee::all()]);
-    }
 
 
     public function summaryReport()

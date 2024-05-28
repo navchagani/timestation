@@ -3,12 +3,12 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Employee Daily & Absence</b></center>
+            <center> <b> Daily Attendance & Absence</b></center>
         </div>
         <div class="card-body">
-            <div class="form-group row">
-                <form>
-                    <div class="col-md-12">
+            <form method="POST" action="{{ route('dailyfilters') }}">
+                <div class="form-group row">
+                    <div class="col-md-2">
                         <label class="required" for="employee">Select Reports</label>
                         <select class="form-control" name="employeereport" id="employeereport">
                             <option hidden>Please Select</option>
@@ -24,9 +24,40 @@
                             <option value="/sheet-report">Employee Report</option>
                             <option value="/current-employee">Current Employee Report</option>
                             <option value="/employee-daily">Employee Daily Summary</option>
-                            <option value="/daily-absence">Employee Daily & Absence Report</option>
+                            <option value="/daily-absence">Daily Attendance & Absence</option>
                             <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                         </select>
+                    </div>
+                    <div class="col-md-2">
+
+                        <label class="required" for="employee">Select Department:</label>
+                        <select class="form-control" name="department">
+                            <option hidden>Select an Department</option>
+                            @foreach($department as $departments)
+                                <option value="{{ $departments->name }}" {{ $empid == $departments->name  ? 'selected' : '' }}>{{ $departments->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="time_in" class="col-sm-6 control-label">Day:</label>
+                        <div class="bootstrap-timepicker">
+                            <input type="date" class="form-control timepicker" id="start" name="start" required>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+
+                        <label class="required" for="employee">Attendance Status:</label>
+                        <select class="form-control" name="department">
+                            <option value="all">{All}</option>
+                            <option value="Present">{Present}</option>
+                            <option value="Absent">{Absent}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="time_out" class="col-sm-6 control-label"><br></label>
+                        <button type="submit" class="btn btn-primary form-control">
+                            Run Report
+                        </button>
                     </div>
                 </form>
             </div>
@@ -45,7 +76,7 @@
                     @foreach ($employees as $employee)
 
                         <tr>
-                            <td>{{ $d = date('Y-m-d') }}</td>
+                            <td>{{ $start }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->position }}</td>
                             @php
@@ -60,12 +91,21 @@
                                            )
                                            ->where('t1.status', 'IN')
                                            ->where('t1.emp_id', $employee->id)
-                                           ->where('t1.attendance_date', $d)
+                                           ->where('t1.attendance_date', $start)
                                            ->orderBy('t1.attendance_date', 'asc')
                                            ->orderBy('t1.attendance_time', 'asc')
                                            ->first();
                                 @endphp
-                            <td> {{ $dailyabsence->status ?? ''}}</td>
+                            <td>
+                                @php
+                                    $status = $dailyabsence->status ?? '';
+                                @endphp
+                                @if ($status == 'IN')
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
                             <td> {{ $dailyabsence->attendance_time ?? ''}}</td>
                         </tr>
                     @endforeach

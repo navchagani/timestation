@@ -51,11 +51,12 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/employee-daily-two-week', '\App\Http\Controllers\ReportController@employeedailytwoReport')->name('employee-daily-two-week');
     Route::post('filterempattendanceone', '\App\Http\Controllers\ReportController@filterempattendanceone')->name('filterempattendanceone');
     Route::post('filterempattendancetwo', '\App\Http\Controllers\ReportController@filterempattendancetwo')->name('filterempattendancetwo');
+    Route::get('/daily-absence', '\App\Http\Controllers\ReportController@dailyabsenceReport')->name('daily-absence');
+    Route::post('dailyfilters', '\App\Http\Controllers\ReportController@dailyfilters')->name('dailyfilters');
 
 
 
 
-    Route::get('/daily-absence', '\App\Http\Controllers\CheckController@dailyabsenceReport')->name('daily-absence');
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
     Route::get('/summary-reporttwo', '\App\Http\Controllers\CheckController@summaryReportTwo')->name('summary-reporttwo');
     Route::post('/filter', '\App\Http\Controllers\CheckController@filter')->name('filter');

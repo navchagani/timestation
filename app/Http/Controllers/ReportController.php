@@ -333,4 +333,16 @@ $dailyabsence = DB::table('employees AS t2')
         return view('admin.employee-two-week-report')->with(['employeesa' => Employee::all(),'employees' => $employee,'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
 
     }
+    public function dailyabsenceReport()
+    {
+        $start = $request['start'] ?? date("Y-m-01");
+        $empid = $request['employee'] ?? [];
+        return view('admin.employee-daily-and-absence-report')->with(['employees' => Employee::all(),'department' => Department::all(),'empid' => $empid,'start' => $start]);
+    }
+    public function dailyfilters(Request $request)
+    {
+        $start = $request['start'] ?? date("Y-m-01");
+        $empid = $request['employee'] ?? [];
+        return view('admin.employee-daily-and-absence-report')->with(['employees' => Employee::all(),'department' => Department::all(),'empid' => $empid,'start' => $start]);
+    }
 }
