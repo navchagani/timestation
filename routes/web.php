@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::post('filterempattendancetwo', '\App\Http\Controllers\ReportController@filterempattendancetwo')->name('filterempattendancetwo');
     Route::get('/daily-absence', '\App\Http\Controllers\ReportController@dailyabsenceReport')->name('daily-absence');
     Route::post('dailyfilters', '\App\Http\Controllers\ReportController@dailyfilters')->name('dailyfilters');
-
+    Route::get('/current-device', '\App\Http\Controllers\ReportController@currentdevice')->name('current-device');
 
 
 

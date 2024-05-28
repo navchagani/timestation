@@ -345,4 +345,8 @@ $dailyabsence = DB::table('employees AS t2')
         $empid = $request['employee'] ?? [];
         return view('admin.employee-daily-and-absence-report')->with(['employees' => Employee::all(),'department' => Department::all(),'empid' => $empid,'start' => $start]);
     }
+    public function currentdevice()
+    {
+        return view('admin.currentdevice')->with(['users'=> User::all()]);
+    }
 }

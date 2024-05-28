@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b>Reports</b></center>
+            <center> <b>Current Device Status</b></center>
         </div>
         <div class="card-body">
             <form>
@@ -32,7 +32,40 @@
                 </div>
             </form>
             <div class="table-responsive">
+                <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th> Name</th>
+                        <th>Type</th>
+                        <th>App Version</th>
+                        <th>Authorized By</th>
+                        <th>Departments</th>
+                        <th>Status</th>
+                        <th>Last Synchronized</th>
 
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (sizeof($users))
+                        @foreach($users as $user)
+                            <tr>
+                                <td>OpalTime-1/td>
+                                <td>{{ $user->model_name  }}</td>
+                                <td>{{ $user->mac_address  }}</td>
+                                <td>{{ $user->name  }}</td>
+                                <td>	(All)</td>
+                                <td>On-Line</td>
+                                <td>{{ $user->updated_at }}</td>
+                            </tr>
+                        @endforeach
+
+                    @else
+                        <tr>
+                            <td colspan="6"><center>No Administrator List records found</center></td>
+                        </tr>
+                    @endif
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
