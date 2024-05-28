@@ -7,6 +7,7 @@
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('dailyfilters') }}">
+                @csrf
                 <div class="form-group row">
                     <div class="col-md-2">
                         <label class="required" for="employee">Select Reports</label>
@@ -41,7 +42,7 @@
                     <div class="col-md-2">
                         <label for="time_in" class="col-sm-6 control-label">Day:</label>
                         <div class="bootstrap-timepicker">
-                            <input type="date" class="form-control timepicker" id="start" name="start" required>
+                            <input type="date" class="form-control timepicker" id="start" name="start" value="{{$start}}" required>
                         </div>
                     </div>
                     <div class="col-md-2">
