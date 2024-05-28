@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <div class="form-group row">
-                <form method="POST" action="{{ route('employeesummaryfilters') }}">
+                <form method="POST" action="{{ route('employeeinactivefilters') }}">
                     @csrf
                     <div class="form-group row">
                         <div class="col-md-3">
@@ -33,10 +33,10 @@
                         <div class="col-md-3">
 
                             <label class="required" for="employee">Select Department:</label>
-                            <select class="form-control" name="employee">
+                            <select class="form-control" name="department">
                                 <option hidden>Select an Department</option>
                                 @foreach($department as $departments)
-                                    <option value="{{ $departments->id }}" {{ $empid == $departments->id  ? 'selected' : '' }}>{{ $departments->name }}</option>
+                                    <option value="{{ $departments->name }}" {{ $empid == $departments->name  ? 'selected' : '' }}>{{ $departments->name }}</option>
                                 @endforeach
                             </select>
                         </div>

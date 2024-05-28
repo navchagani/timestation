@@ -274,7 +274,15 @@ $dailyabsence = DB::table('employees AS t2')
     {
         $start = $request['start'] ?? date("Y-m-05");
         $end = $request['end'] ?? date("Y-m-10");
-        $empid = $request['employee'] ?? [];
+        $empid = $request['department'] ?? [];
         return view('admin.employeeinactive')->with(['employees'=> Employee::all(),'department' => Department::all(),'start' => $start,'end' => $end,'empid' => $empid]);
+    }
+    public function employeeinactivefilters(Request $request)
+    {
+        $start = $request['start'] ?? date("Y-m-05");
+        $end = $request['end'] ?? date("Y-m-10");
+        $empid = $request['department'] ?? [];
+        $employee = Employee::where('position', $empid)->get();
+        return view('admin.employeeinactive')->with(['employees'=> $employee,'department' => Department::all(),'start' => $start,'end' => $end,'empid' => $empid]);
     }
 }
