@@ -18,7 +18,7 @@
     </div>
 @endsection
 @section('button')
-    <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="mdi mdi-plus mr-2"></i>Add</a>
+    <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="mdi mdi-plus mr-2"></i>  Create New Department</a>
 
 
 @endsection
