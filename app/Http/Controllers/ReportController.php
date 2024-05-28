@@ -418,6 +418,6 @@ $dailyabsence = DB::table('employees AS t2')
             ->whereBetween('in_att.attendance_date', [$start, $end])
             ->get();
 
-        return view('admin.employeedetails')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall,'start' => $start,'end' => $end,'empid' => $empid]);
+        return view('admin.employeedetails')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall,'start' => $start,'end' => $end,'empid' => $empid,'department' => Department::all()]);
     }
 }

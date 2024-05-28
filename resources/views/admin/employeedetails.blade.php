@@ -35,6 +35,16 @@
                 </div>
                 <div class="col-md-2">
 
+                    <label class="required" for="employee">Select Department:</label>
+                    <select class="form-control" name="department">
+                        <option hidden>Select an Department</option>
+                        @foreach($department as $departments)
+                            <option value="{{ $departments->name }}" {{ $empid == $departments->name  ? 'selected' : '' }}>{{ $departments->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2">
+
                     <label class="required" for="employee">Select Employee:</label>
                     <select class="form-control" name="employee">
                         <option hidden>Select an employee</option>
