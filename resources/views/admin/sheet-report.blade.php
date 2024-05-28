@@ -15,6 +15,7 @@
                         <option value="/administrator-list">Administrator list</option>
                         <option value="/attendance-counter">Attendance Counter</option>
                         <option value="/attendance-list">Attendance Only</option>
+                        <option value="/current-device">Current Device Status</option>
                         <option value="/department-list">Department list</option>
                         <option value="/department-member">Department Members</option>
                         <option value="/department-summary">Department Summary</option>
@@ -24,6 +25,8 @@
                         <option value="/sheet-report">Employee Report</option>
                         <option value="/current-employee">Current Employee Report</option>
                         <option value="/employee-daily">Employee Daily Summary</option>
+                        <option value="/employee-daily-one-week">Employee Daily Summary - One Week</option>
+                        <option value="/employee-daily-two-week">Employee Daily Summary - Two Week</option>
                         <option value="/daily-absence">Daily Attendance & Absence</option>
                         <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                     </select>

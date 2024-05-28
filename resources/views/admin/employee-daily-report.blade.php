@@ -16,6 +16,7 @@
                             <option value="/administrator-list">Administrator list</option>
                             <option value="/attendance-counter">Attendance Counter</option>
                             <option value="/attendance-list">Attendance Only</option>
+                            <option value="/current-device">Current Device Status</option>
                             <option value="/department-list">Department list</option>
                             <option value="/department-member">Department Members</option>
                             <option value="/department-summary">Department Summary</option>
