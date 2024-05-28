@@ -351,7 +351,9 @@ $dailyabsence = DB::table('employees AS t2')
     }
     public function sheetReport()
     {
-        //$emp = $request->input('employee');
+        $start = $request['start'] ?? date("Y-m-01");
+        $end = $request['end'] ?? date("Y-m-15");
+        $empid = $request['employee'] ?? [];
 
             $attendancesall = DB::table('attendances AS t1')
                 ->join('employees AS t2', 't1.emp_id', '=', 't2.id')
@@ -373,6 +375,6 @@ $dailyabsence = DB::table('employees AS t2')
                 ->orderBy('t1.attendance_time', 'asc')
                 ->get();
 
-        return view('admin.sheet-report')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall]);
+        return view('admin.sheet-report')->with(['employees' => Employee::all(),'attendancesall' => $attendancesall,'start' => $start,'end' => $end,'empid' => $empid]);
     }
 }
