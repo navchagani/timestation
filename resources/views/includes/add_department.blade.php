@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Department Type:</label>
-                            <select class="form-control" name="DepartmentType" id="DepartmentType" style="margin-left:0px;">
+                            <select class="form-control" name="type" id="DepartmentType" style="margin-left:0px;">
                                 <option value="Class">Class</option>
                                 <option value="Client">Client</option>
                                 <option value="Department" >Department</option>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Automatic Time Deduction :    </label>
-                            <input type="checkbox" name="deduction" value="1"> Use Company Settings
+                            <input type="checkbox" name="timededuction" value="1"> Use Company Settings
                         </div>
                         <div class="form-group">
                             <label for="name">Assign to All :     </label>

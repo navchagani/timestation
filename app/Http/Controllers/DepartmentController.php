@@ -32,12 +32,13 @@ class DepartmentController extends Controller
 
     public function store(DepartmentEmp $request)
     {
+   
         $request->validated();
         $department = new department;
         $department->name = $request->name;
-        $department->type = $request->DepartmentType;
+        $department->type = $request->type;
         $department->reporting = $request->reporting ?? 0;
-        $department->timededuction = $request->deduction ?? 0;
+        $department->timededuction = $request->timededuction ?? 0;
         $department->assign = $request->assign ?? 0;
         $department->save();
         flash()->success('Success','Department has been created successfully !');
