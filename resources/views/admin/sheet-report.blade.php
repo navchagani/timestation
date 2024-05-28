@@ -24,7 +24,7 @@
                         <option value="/sheet-report">Employee Report</option>
                         <option value="/current-employee">Current Employee Report</option>
                         <option value="/employee-daily">Employee Daily Summary</option>
-                        <option value="/daily-absence">Employee Daily & Absence Report</option>
+                        <option value="/daily-absence">Daily Attendance & Absence</option>
                         <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                     </select>
                 </div>
