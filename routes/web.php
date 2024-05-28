@@ -47,6 +47,10 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::any('/employee-permission', '\App\Http\Controllers\ReportController@employeepermissions')->name('employee-permission');
     Route::get('/inactive-employee', '\App\Http\Controllers\ReportController@inactiveemployee')->name('inactive-employee');
     Route::post('/employeeinactivefilters', '\App\Http\Controllers\ReportController@employeeinactivefilters')->name('employeeinactivefilters');
+    Route::get('/employee-daily-one-week', '\App\Http\Controllers\ReportController@employeedailyoneReport')->name('employee-daily-one-week');
+    Route::get('/employee-daily-two-week', '\App\Http\Controllers\ReportController@employeedailytwoReport')->name('employee-daily-two-week');
+
+
 
 
 

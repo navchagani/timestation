@@ -23,8 +23,10 @@
                         <option value="/sheet-report">Employee Report</option>
                         <option value="/current-employee">Current Employee Report</option>
                         <option value="/employee-daily">Employee Daily Summary</option>
+                        <option value="/employee-daily-one-week">Employee Daily Summary - One Week</option>
+                        <option value="/employee-daily-two-week">Employee Daily Summary - two Week</option>
                         <option value="/daily-absence">Employee Daily & Absence Report</option>
-                        <option value="/summary-reporttwo">Multiple Employee Summary Report</option>s
+                        <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                     </select>
                 </div>
             </form>

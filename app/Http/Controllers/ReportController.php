@@ -285,4 +285,24 @@ $dailyabsence = DB::table('employees AS t2')
         $employee = Employee::where('position', $empid)->get();
         return view('admin.employeeinactive')->with(['employees'=> $employee,'department' => Department::all(),'start' => $start,'end' => $end,'empid' => $empid]);
     }
+
+    public function employeedailyoneReport()
+    {
+
+        $start = $request['start'] ?? date("Y-m-05");
+        $end = $request['end'] ?? date("Y-m-10");
+        $empid = $request['employee'] ?? [];
+
+        return view('admin.employee-one-week-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
+    }
+
+    public function employeedailytwoReport()
+    {
+
+        $start = $request['start'] ?? date("Y-m-05");
+        $end = $request['end'] ?? date("Y-m-10");
+        $empid = $request['employee'] ?? [];
+
+        return view('admin.employee-two-week-report')->with(['employeesa' => Employee::all(),'employees' => Employee::all(),'attendancesall' => [],'start' => $start,'end' => $end,'empid' => $empid]);
+    }
 }
