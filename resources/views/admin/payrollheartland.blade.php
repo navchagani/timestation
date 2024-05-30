@@ -75,7 +75,7 @@
 
     <div class="card">
         <div class="card-header bg-success text-white">
-            <center> <b> Employees Summary</b></center>
+            <center> <b>Payroll Export - SurePayroll</b></center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
