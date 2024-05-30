@@ -16,6 +16,7 @@
                     <option value="/department-summary">Department Summary</option>
                     <option value="/employee-summary">Employee Summary</option>
                     <option value="/inactive-employee">Inactive Employee </option>
+                    <option value="/manual">Manual Time Adjustments</option>
                     <option value="/employee-permission">Employee Permission</option>
                     <option value="/current-employee">Current Employee Report</option>
                     <option value="/employee-daily">Employee Daily Summary</option>

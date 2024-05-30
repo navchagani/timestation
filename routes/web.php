@@ -58,6 +58,8 @@ Route::group(['middleware' => ['auth', 'Role'], 'roles' => ['admin']], function 
     Route::get('/payrollexport', '\App\Http\Controllers\ReportController@payrollexport')->name('payrollexport');
     Route::get('/employee-details', '\App\Http\Controllers\ReportController@employeedetails')->name('employee-details');
     Route::any('/payrollheartland', '\App\Http\Controllers\ReportController@payrollheartland')->name('payrollheartland');
+    Route::any('/manual-time', '\App\Http\Controllers\ReportController@manualtime')->name('manual-time');
+
 
 
     Route::get('/summary-report', '\App\Http\Controllers\CheckController@summaryReport')->name('summary-report');
