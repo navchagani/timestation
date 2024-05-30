@@ -66,7 +66,7 @@ class AttendanceController extends Controller
         $attendance->deduction = $deduction;
         $attendance->type = $type;
         $attendance->note = $note;
-        $attendance->status = 1; // Set status to 0 for check-in
+        $attendance->status = 'IN'; // Set status to 0 for check-in
         $attendance->manual = 1;
         $attendance->save();
         $attendance->emp_id = $emp_id;
@@ -75,7 +75,7 @@ class AttendanceController extends Controller
         $attendance->deduction = $deduction;
         $attendance->type = $type;
         $attendance->note = $note;
-        $attendance->status = 0; // Set status to 0 for check-in
+        $attendance->status = 'OUT'; // Set status to 0 for check-in
         $attendance->manual = 1;
         $attendance->save();
         flash()->success('Success','Addandence Record has been add successfully !');

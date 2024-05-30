@@ -98,6 +98,7 @@
                              $totalHourRate = 0;
                         @endphp
                     @foreach($attendancesall as $attendance)
+                        @if ($attendance->manu == 1)
                        {{-- {{! $hourRate = $attendance->time_difference*$attendance->hourrate  }}
                         {{! $totalHourRate += $hourRate }}--}}
                         <tr>
@@ -111,6 +112,7 @@
                             <td>{{ $attendance->hours_worked *  $attendance->hourrate}} </td>
 
                         </tr>
+                        @endif
                     @endforeach
                    {{-- <tr>
                         <td colspan="4"><b>Total payment</b></td>

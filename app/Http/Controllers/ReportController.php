@@ -451,7 +451,7 @@ $dailyabsence = DB::table('employees AS t2')
     public function manualtime()
     {
         $start = $request['start'] ?? date("Y-m-01");
-        $end = $request['end'] ?? date("Y-m-15");
+        $end = $request['end'] ?? date("Y-m-30");
         $empid = $request['employee'] ?? [];
 
         // Subquery to calculate total hours worked per attendance entry
@@ -462,7 +462,7 @@ $dailyabsence = DB::table('employees AS t2')
                     ->where('in_att.status', '=', 'IN') // Considering only clock in time
                     ->where('out_att.status', '=', 'OUT');
             })->join('employees AS t2', 'in_att.emp_id', '=', 't2.id')
-            ->select('t2.position','t2.hourrate','t2.name','in_att.emp_id', 'in_att.attendance_date', 'in_att.attendance_time', 'out_att.attendance_time as iou', 'in_att.status','out_att.attendance_date as ou',
+            ->select('t2.position','t2.hourrate','t2.name','in_att.manual as manu','in_att.emp_id', 'in_att.attendance_date', 'in_att.attendance_time', 'out_att.attendance_time as iou', 'in_att.status','out_att.attendance_date as ou',
                 DB::raw('TIMESTAMPDIFF(HOUR, in_att.attendance_time, out_att.attendance_time) as hours_worked'))
             ->whereBetween('in_att.attendance_date', [$start, $end])
             ->get();
