@@ -31,9 +31,9 @@
                                 <option value="/daily-absence">Daily Attendance & Absence</option>
                                 <option value="/sheet-report">Payroll Export - Crystal Payroll</option>
                                 <option value="/payrollexport">Payroll Export - Ctuit</option>
-                                {{--<option value="/payrollheartland">Payroll Export - Heartland</option>
-                                <option value="/payrollpaychex">Payroll Export - Paychex</option>
-                                <option value="/payrollsure">Payroll Export - SurePayroll</option>--}}
+                                <option value="/payrollheartland">Payroll Export - Heartland</option>
+                                {{-- <option value="/payrollpaychex">Payroll Export - Paychex</option>
+                                 <option value="/payrollsure">Payroll Export - SurePayroll</option>--}}
                                 <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
                             </select>
                         </div>
