@@ -81,11 +81,10 @@
                 <table id="datatable-buttons" class="table table-striped table-hover dt-responsive display nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                     <tr>
-                        <th>
-                            Employee Name</th>
+                        <th>Employee Name</th>
                         <th>Department	</th>
-                        <th>In 	</th>
-                        <th> Out </th>
+                        <th>Manual Time In 	</th>
+                        <th> Manual Time Out </th>
                         <th>Deduction	Hours</th>
 
                         <th>Hourly Rate</th>
