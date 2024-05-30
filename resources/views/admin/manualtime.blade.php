@@ -85,9 +85,8 @@
                         <th>Department	</th>
                         <th>Manual Time In 	</th>
                         <th> Manual Time Out </th>
-                        <th>Deduction Hours</th>
-                        <th>Hourly Rate</th>
-                        <th>Total Pay</th>
+                        <th>Date Updated</th>
+                        <th>Notes</th>
 
                     </tr>
                     </thead>
@@ -107,9 +106,11 @@
                             <td>{{ $attendance->position }} </td>
                             <td>{{ $attendance->attendance_date }} {{ $attendance->attendance_time }}</td>
                             <td>{{ $attendance->ou }} {{ $attendance->iou }}</td>
-                            <td>{{ $attendance->hours_worked }} </td>
+                            <td>{{ $attendance->created_at }}</td>
+                            <td>{{ $attendance->note }}</td>
+                            {{--<td>{{ $attendance->hours_worked }} </td>
                             <td>{{ $attendance->hourrate }} </td>
-                            <td>{{ $attendance->hours_worked *  $attendance->hourrate}} </td>
+                            <td>{{ $attendance->hours_worked *  $attendance->hourrate}} </td>--}}
 
                         </tr>
                         @endif
