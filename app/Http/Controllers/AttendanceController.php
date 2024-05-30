@@ -67,6 +67,7 @@ class AttendanceController extends Controller
         $attendance->type = $type;
         $attendance->note = $note;
         $attendance->status = 1; // Set status to 0 for check-in
+        $attendance->manual = 1;
         $attendance->save();
         $attendance->emp_id = $emp_id;
         $attendance->attendance_time = $endtime;
@@ -75,6 +76,7 @@ class AttendanceController extends Controller
         $attendance->type = $type;
         $attendance->note = $note;
         $attendance->status = 0; // Set status to 0 for check-in
+        $attendance->manual = 1;
         $attendance->save();
         flash()->success('Success','Addandence Record has been add successfully !');
         return redirect()->route('employees.index')->with('success');

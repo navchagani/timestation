@@ -85,8 +85,7 @@
                         <th>Department	</th>
                         <th>Manual Time In 	</th>
                         <th> Manual Time Out </th>
-                        <th>Deduction	Hours</th>
-
+                        <th>Deduction Hours</th>
                         <th>Hourly Rate</th>
                         <th>Total Pay</th>
 
