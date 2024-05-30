@@ -21,6 +21,7 @@
                         <option value="/department-summary">Department Summary</option>
                         <option value="/employee-summary">Employee Summary</option>
                         <option value="/inactive-employee">Inactive Employee </option>
+                        <option value="/manual-time">Manual Time Adjustments</option>
                         <option value="/employee-permission">Employee Permission</option>
                         <option value="/current-employee">Current Employee Report</option>
                         <option value="/employee-daily">Employee Daily Summary</option>
@@ -32,8 +33,8 @@
                         <option value="/payrollexport">Payroll Export - Ctuit</option>
                         <option value="/payrollheartland">Payroll Export - SurePayroll</option>
                         {{-- <option value="/payrollpaychex">Payroll Export - Paychex</option>
-                         <option value="/payrollsure">Payroll Export - SurePayroll</option>--}}
-                        <option value="/summary-reporttwo">Multiple Employee Summary Report</option>
+                         <option value="/payrollsure">Payroll Export - SurePayroll</option>
+                        <option value="/summary-reporttwo">Multiple Employee Summary Report</option>--}}
                     </select>
                 </div>
                 <div class="col-md-2">
