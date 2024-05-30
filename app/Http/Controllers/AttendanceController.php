@@ -69,15 +69,16 @@ class AttendanceController extends Controller
         $attendance->status = 'IN'; // Set status to 0 for check-in
         $attendance->manual = 1;
         $attendance->save();
-        $attendance->emp_id = $emp_id;
-        $attendance->attendance_time = $endtime;
-        $attendance->attendance_date = $enddateemp;
-        $attendance->deduction = $deduction;
-        $attendance->type = $type;
-        $attendance->note = $note;
-        $attendance->status = 'OUT'; // Set status to 0 for check-in
-        $attendance->manual = 1;
-        $attendance->save();
+        $attendances = new Attendance;
+        $attendances->emp_id = $emp_id;
+        $attendances->attendance_time = $endtime;
+        $attendances->attendance_date = $enddateemp;
+        $attendances->deduction = $deduction;
+        $attendances->type = $type;
+        $attendances->note = $note;
+        $attendances->status = 'OUT'; // Set status to 0 for check-in
+        $attendances->manual = 1;
+        $attendances->save();
         flash()->success('Success','Addandence Record has been add successfully !');
         return redirect()->route('employees.index')->with('success');
 
