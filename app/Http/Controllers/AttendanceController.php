@@ -36,8 +36,31 @@ class AttendanceController extends Controller
         $deduction = $request->input('deduction');
         $type = $request->input('type');
         $note = $request->input('note');
+        $emp_id = $request->input('emp_id');
+        $affected = DB::table('attendances')->where('id', $inid)->delete();
+        $affected = DB::table('attendances')->where('id', $outid)->delete();
 
-        DB::table('attendances')->updateOrInsert(
+        $attendance = new Attendance;
+        $attendance->emp_id = $emp_id;
+        $attendance->attendance_time = $starttime;
+        $attendance->attendance_date = $indateemp;
+        $attendance->deduction = $deduction;
+        $attendance->type = $type;
+        $attendance->note = $note;
+        $attendance->status = 'IN'; // Set status to 0 for check-in
+        $attendance->manual = 1;
+        $attendance->save();
+        $attendances = new Attendance;
+        $attendances->emp_id = $emp_id;
+        $attendances->attendance_time = $endtime;
+        $attendances->attendance_date = $enddateemp;
+        $attendances->deduction = $deduction;
+        $attendances->type = $type;
+        $attendances->note = $note;
+        $attendances->status = 'OUT'; // Set status to 0 for check-in
+        $attendances->manual = 1;
+        $attendances->save();
+      /*  DB::table('attendances')->updateOrInsert(
             ['id' => $inid],
             ['attendance_time' => $starttime, 'attendance_date' => $indateemp, 'deduction' => $deduction, 'type' => $type, 'note' => $note]
         );
@@ -45,14 +68,9 @@ class AttendanceController extends Controller
         DB::table('attendances')->updateOrInsert(
             ['id' => $outid],
             ['attendance_time' => $endtime,'attendance_date' => $enddateemp,'deduction' => $deduction,'type' => $type,'note' => $note]
-        );
+        );*/
 
-//        DB::table('attendances')
-//            ->where('id', $inid)
-//            ->update(['attendance_time' => $starttime,'attendance_date' => $indateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);
-/*        DB::table('attendances')
-            ->where('id', $outid)
-            ->update(['attendance_time' => $endtime,'attendance_date' => $enddateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);*/
+
         flash()->success('Success','Addandence Record has been Updated successfully !');
         return redirect()->route('employees.index')->with('success');
     }

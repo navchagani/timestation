@@ -12,6 +12,7 @@
                 <form class="form-horizontal" method="POST" action="{{ route('employees.update', $employee->name) }}">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
+
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Name</label>
 
@@ -124,6 +125,7 @@
                                             @csrf
                                             <input type="hidden" name="inid" value="{{$check_attds->id}}">
                                             <input type="hidden" name="outid" value="{{$out_id}}">
+                                            <input type="hidden" name="emp_id" value="{{ $employee->id }}">
                                             <div class="form-row">
                                             <div class="form-group col-md-4">
                                                 <label for="position">Time In:	 </label>
