@@ -37,12 +37,16 @@ class AttendanceController extends Controller
         $type = $request->input('type');
         $note = $request->input('note');
 
-        DB::table('attendances')
-            ->where('id', $inid)
-            ->update(['attendance_time' => $starttime,'attendance_date' => $indateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);
-        DB::table('attendances')
+        DB::table('attendances')->updateOrInsert(
+            ['id' => $inid],
+            ['attendance_time' => $starttime, 'attendance_date' => $indateemp, 'deduction' => $deduction, 'type' => $type, 'note' => $note]
+        );
+//        DB::table('attendances')
+//            ->where('id', $inid)
+//            ->update(['attendance_time' => $starttime,'attendance_date' => $indateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);
+/*        DB::table('attendances')
             ->where('id', $outid)
-            ->update(['attendance_time' => $endtime,'attendance_date' => $enddateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);
+            ->update(['attendance_time' => $endtime,'attendance_date' => $enddateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);*/
         flash()->success('Success','Addandence Record has been Updated successfully !');
         return redirect()->route('employees.index')->with('success');
     }
