@@ -41,6 +41,12 @@ class AttendanceController extends Controller
             ['id' => $inid],
             ['attendance_time' => $starttime, 'attendance_date' => $indateemp, 'deduction' => $deduction, 'type' => $type, 'note' => $note]
         );
+
+        DB::table('attendances')->updateOrInsert(
+            ['id' => $outid],
+            ['attendance_time' => $endtime,'attendance_date' => $enddateemp,'deduction' => $deduction,'type' => $type,'note' => $note]
+        );
+
 //        DB::table('attendances')
 //            ->where('id', $inid)
 //            ->update(['attendance_time' => $starttime,'attendance_date' => $indateemp,'deduction' => $deduction,'type' => $type,'note' => $note]);
