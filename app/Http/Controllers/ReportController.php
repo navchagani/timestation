@@ -240,6 +240,34 @@ $dailyabsence = DB::table('employees AS t2')
             ->get();
         return view('admin.employeesummary')->with(['employeesa'=> $dailyabsence,'employees'=> Employee::all(),'start' => $start,'end' => $end,]);
     }
+    public function employeesummaryfilters(Request $request)
+    {
+        $start = $request['start'] ?? date("Y-m-05");
+        $end = $request['end'] ?? date("Y-m-10");
+        $empid = $request['employee'] ?? [];
+
+        // Subquery to calculate total hours worked per attendance entry
+        $subquery = DB::table('attendances AS in_att')
+            ->join('attendances AS out_att', function($join) {
+                $join->on('in_att.emp_id', '=', 'out_att.emp_id')
+                    ->on('in_att.attendance_date', '=', 'out_att.attendance_date')
+                    ->where('in_att.status', '=', 'IN')
+                    ->where('out_att.status', '=', 'OUT');
+            })
+            ->select('in_att.emp_id', 'in_att.attendance_date',
+                DB::raw('TIMESTAMPDIFF(HOUR, in_att.attendance_time, out_att.attendance_time) as hours_worked'))
+            ->whereBetween('in_att.attendance_date', [$start, $end]);
+
+// Main query to calculate total earnings by position, including employees with no attendance records
+        $dailyabsence = DB::table('employees AS t2')
+            ->leftJoinSub($subquery, 't1', function($join) {
+                $join->on('t2.id', '=', 't1.emp_id');
+            })
+            ->select('t2.name', 't2.position','t2.hourrate', DB::raw('IFNULL(SUM(t1.hours_worked), 0) as total_hours, IFNULL(SUM(t1.hours_worked * t2.hourrate), 0) as total_earnings'))
+            ->groupBy('t2.name', 't2.position', 't2.hourrate')
+            ->get();
+        return view('admin.employeesummary')->with(['employeesa'=> $dailyabsence,'employees'=> Employee::all(),'start' => $start,'end' => $end,]);
+    }
     public function employeepermissions()
     {
         $start = $request['start'] ?? date("Y-m-05");
