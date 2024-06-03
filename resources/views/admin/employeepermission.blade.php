@@ -43,13 +43,13 @@
                 <div class="bootstrap-timepicker">
                     <input type="date" class="form-control timepicker" id="end" name="end" value="{{$end}}" required>
                 </div>
-            </div>--}}
+            </div>
             <div class="col-md-2">
                 <label for="time_out" class="col-sm-6 control-label"><br></label>
                 <button type="submit" class="btn btn-primary form-control">
                     Run Report
                 </button>
-            </div>
+            </div>--}}
     </form>
     </div>
 
